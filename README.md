@@ -21,4 +21,6 @@ Then literally after that go to *~/devkitPro/examples* and type *make* in any of
 I'm using DESMUME as the emulator to test out the code on OSX. I do have an R4 that I'll be using to test on device
 
 #Resources to read
-1. https://patater.com/files/projects/manual/manual.html
+1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
+2. https://patater.com/files/projects/manual/manual.html - Best guide to get you really familair with developing NDS
+2. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
