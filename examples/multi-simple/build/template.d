@@ -1,5 +1,5 @@
 template.o: \
- /Users/jdriselvato/devkitPro/examples/nds/Graphics/Sprites/simple/source/template.c \
+ /Users/jdriselvato/Programming/NDS/NDS-Development/examples/multi-simple/source/template.c \
  /Users/jdriselvato/devkitPro/libnds/include/nds.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/libversion.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/ndstypes.h \
