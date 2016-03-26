@@ -1,11 +1,7 @@
 # NDS-Development Intro
-My research and projects for developing on the NDS will be placed in this read me.
-This repo will also include the default SDK folder and various projects I build.
-All development will be done on OSX and unfortunately I don't know how this effect those trying the code out on windows.
-Windows users this might help you out: http://www.coranac.com/tonc/text/setup.htm
+This is my research and development for programming on the Nintendo DS.
 
 # Repo details
-
 ### Example code list:
 
 #### *improved-simple*
