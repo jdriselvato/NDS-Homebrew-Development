@@ -9,9 +9,7 @@ Windows users this might help you out: http://www.coranac.com/tonc/text/setup.ht
 Exmaple code list:
 
 /improved-simple/ 
-```
-  Includes an on going practice script to learn the kit. It's based off the *simple* example shipped with DKP.
-```
+Includes an on going practice script to learn the kit. It's based off the *simple* example shipped with DKP.
 
 
 # Downloading and Installing
