@@ -141,7 +141,7 @@ Linker script and memory map
 .plt
  *(.plt)
 
-.text           0x02000240     0x18f0
+.text           0x02000240     0x1900
  *(EXCLUDE_FILE(*.itcm*) .text)
  .text          0x02000240       0xd4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
  .text          0x02000314      0x1bc /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
@@ -229,154 +229,156 @@ Linker script and memory map
  .text          0x02001944       0x4c /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libsysbase.a(build_argv.o)
                 0x02001944                build_argv
  *(.text.*)
- .text.startup  0x02001990       0x9c template.o
+ .text.startup  0x02001990       0xac template.o
                 0x02001990                main
  .text.__libc_init_array
-                0x02001a2c       0x58 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
-                0x02001a2c                __libc_init_array
- .text.memcpy   0x02001a84       0x80 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
-                0x02001a84                memcpy
- *fill*         0x02001b04        0x4 ff
+                0x02001a3c       0x58 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-init.o)
+                0x02001a3c                __libc_init_array
+ .text.memcpy   0x02001a94       0x80 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libg.a(lib_a-memcpy.o)
+                0x02001a94                memcpy
+ *fill*         0x02001b14        0x4 ff
  .text.memcpy.__stub
-                0x02001b08       0x24 linker stubs
+                0x02001b18       0x24 linker stubs
  *(.stub)
  *(.gnu.warning)
  *(.gnu.linkonce.t*)
  *(.glue_7)
- .glue_7        0x02001b30        0x0 linker stubs
+ .glue_7        0x02001b40        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x02001b30        0x0 linker stubs
-                0x02001b30                . = ALIGN (0x4)
+ .glue_7t       0x02001b40        0x0 linker stubs
+                0x02001b40                . = ALIGN (0x4)
 
-.vfp11_veneer   0x02001b30        0x0
- .vfp11_veneer  0x02001b30        0x0 linker stubs
+.vfp11_veneer   0x02001b40        0x0
+ .vfp11_veneer  0x02001b40        0x0 linker stubs
 
-.v4_bx          0x02001b30        0x0
- .v4_bx         0x02001b30        0x0 linker stubs
+.v4_bx          0x02001b40        0x0
+ .v4_bx         0x02001b40        0x0 linker stubs
 
-.iplt           0x02001b30        0x0
- .iplt          0x02001b30        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+.iplt           0x02001b40        0x0
+ .iplt          0x02001b40        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
 
-.fini           0x02001b30        0xc
+.fini           0x02001b40        0xc
  *(.fini)
- .fini          0x02001b30        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crti.o
-                0x02001b30                _fini
- .fini          0x02001b34        0x8 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtn.o
-                0x02001b3c                __text_end = .
+ .fini          0x02001b40        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crti.o
+                0x02001b40                _fini
+ .fini          0x02001b44        0x8 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtn.o
+                0x02001b4c                __text_end = .
 
-.rodata         0x02001b3c        0x0
+.rodata         0x02001b4c        0x4
  *(.rodata)
  *all.rodata*(*)
  *(.roda)
  *(.rodata.*)
+ .rodata.cst2   0x02001b4c        0x2 template.o
  *(.gnu.linkonce.r*)
-                0x02001b3c                . = ALIGN (0x4)
+                0x02001b50                . = ALIGN (0x4)
+ *fill*         0x02001b4e        0x2 ff
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x02001b3c                __exidx_start = .
+                0x02001b50                __exidx_start = .
 
 ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x02001b3c                __exidx_end = .
-                0x02001b3c                . = ALIGN (0x4)
-                0x02001b3c                PROVIDE (__preinit_array_start, .)
+                0x02001b50                __exidx_end = .
+                0x02001b50                . = ALIGN (0x4)
+                0x02001b50                PROVIDE (__preinit_array_start, .)
 
 .preinit_array
  *(.preinit_array)
-                0x02001b3c                PROVIDE (__preinit_array_end, .)
-                0x02001b3c                PROVIDE (__init_array_start, .)
+                0x02001b50                PROVIDE (__preinit_array_end, .)
+                0x02001b50                PROVIDE (__init_array_start, .)
 
-.init_array     0x02001b3c        0x4
+.init_array     0x02001b50        0x4
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x02001b3c        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
-                0x02001b40                PROVIDE (__init_array_end, .)
+ .init_array    0x02001b50        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+                0x02001b54                PROVIDE (__init_array_end, .)
                 [!provide]                PROVIDE (__fini_array_start, .)
 
-.fini_array     0x02001b40        0x4
+.fini_array     0x02001b54        0x4
  *(.fini_array)
- .fini_array    0x02001b40        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+ .fini_array    0x02001b54        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
  *(SORT(.fini_array.*))
                 [!provide]                PROVIDE (__fini_array_end, .)
 
-.ctors          0x02001b44        0x0
+.ctors          0x02001b58        0x0
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x02001b44                . = ALIGN (0x4)
+                0x02001b58                . = ALIGN (0x4)
 
-.dtors          0x02001b44        0x0
+.dtors          0x02001b58        0x0
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x02001b44                . = ALIGN (0x4)
+                0x02001b58                . = ALIGN (0x4)
 
-.eh_frame       0x02001b44        0x4
+.eh_frame       0x02001b58        0x4
  *(.eh_frame)
- .eh_frame      0x02001b44        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
- .eh_frame      0x02001b44        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtend.o
-                0x02001b48                . = ALIGN (0x4)
+ .eh_frame      0x02001b58        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+ .eh_frame      0x02001b58        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtend.o
+                0x02001b5c                . = ALIGN (0x4)
 
-.rel.dyn        0x02001b48        0x0
- .rel.iplt      0x02001b48        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+.rel.dyn        0x02001b5c        0x0
+ .rel.iplt      0x02001b5c        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
 
 .gcc_except_table
-                0x02001b48        0x0
+                0x02001b5c        0x0
  *(.gcc_except_table)
-                0x02001b48                . = ALIGN (0x4)
+                0x02001b5c                . = ALIGN (0x4)
 
-.jcr            0x02001b48        0x4
+.jcr            0x02001b5c        0x4
  *(.jcr)
- .jcr           0x02001b48        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
- .jcr           0x02001b48        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtend.o
+ .jcr           0x02001b5c        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+ .jcr           0x02001b5c        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtend.o
 
 .got
  *(.got.plt)
  *(.got)
  *(.rel.got)
 
-.ewram          0x02001b4c        0x0
-                0x02001b4c                __ewram_start = ABSOLUTE (.)
+.ewram          0x02001b60        0x0
+                0x02001b60                __ewram_start = ABSOLUTE (.)
  *(.ewram)
  *ewram.*(.text)
-                0x02001b4c                . = ALIGN (0x4)
+                0x02001b60                . = ALIGN (0x4)
 
-.data           0x02001b4c       0x10
-                0x02001b4c                __data_start = ABSOLUTE (.)
+.data           0x02001b60       0x10
+                0x02001b60                __data_start = ABSOLUTE (.)
  *(.data)
- .data          0x02001b4c       0x10 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
-                0x02001b4c                fifo_buffer_free
-                0x02001b50                fifo_freewords
-                0x02001b54                fifo_send_queue
-                0x02001b58                fifo_receive_queue
+ .data          0x02001b60       0x10 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02001b60                fifo_buffer_free
+                0x02001b64                fifo_freewords
+                0x02001b68                fifo_send_queue
+                0x02001b6c                fifo_receive_queue
  *(.data.*)
  *(.gnu.linkonce.d*)
-                0x02001b5c                . = ALIGN (0x4)
-                0x02001b5c                __data_end = ABSOLUTE (.)
-                0x02001b5c                __dtcm_lma = .
-                0x02001b5c                __bss_vma = .
+                0x02001b70                . = ALIGN (0x4)
+                0x02001b70                __data_end = ABSOLUTE (.)
+                0x02001b70                __dtcm_lma = .
+                0x02001b70                __bss_vma = .
 
-.igot.plt       0x02001b5c        0x0
- .igot.plt      0x02001b5c        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
+.igot.plt       0x02001b70        0x0
+ .igot.plt      0x02001b70        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
 
 .tm_clone_table
-                0x02001b5c        0x0
+                0x02001b70        0x0
  .tm_clone_table
-                0x02001b5c        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+                0x02001b70        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
  .tm_clone_table
-                0x02001b5c        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtend.o
+                0x02001b70        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtend.o
 
-.dtcm           0x0b000000        0x0 load address 0x02001b5c
+.dtcm           0x0b000000        0x0 load address 0x02001b70
  *(.dtcm)
  *(.dtcm.*)
                 0x0b000000                . = ALIGN (0x4)
                 0x0b000000                __dtcm_end = ABSOLUTE (.)
-                0x02001b5c                __itcm_lma = (__dtcm_lma + SIZEOF (.dtcm))
+                0x02001b70                __itcm_lma = (__dtcm_lma + SIZEOF (.dtcm))
 
-.itcm           0x01000100      0x194 load address 0x02001b5c
+.itcm           0x01000100      0x194 load address 0x02001b70
  *(.itcm)
  .itcm          0x01000100       0xc8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
                 0x01000100                irqTable
@@ -385,9 +387,9 @@ ARM.exidx
  *itcm.*(.text)
                 0x01000294                . = ALIGN (0x4)
                 0x01000294                __itcm_end = ABSOLUTE (.)
-                0x02001cf0                __vectors_lma = (__itcm_lma + SIZEOF (.itcm))
+                0x02001d04                __vectors_lma = (__itcm_lma + SIZEOF (.itcm))
 
-.vectors        0x01000000        0x0 load address 0x02001cf0
+.vectors        0x01000000        0x0 load address 0x02001d04
  *(.vectors)
  *vectors.*(.text)
                 0x01000000                . = ALIGN (0x4)
@@ -400,41 +402,41 @@ ARM.exidx
                 0x0b000000                . = ALIGN (0x4)
                 0x0b000000                __sbss_end = ABSOLUTE (.)
 
-.bss            0x02001b5c      0xab0
-                0x02001b5c                __bss_start = ABSOLUTE (.)
-                0x02001b5c                __bss_start__ = ABSOLUTE (.)
+.bss            0x02001b70      0xab0
+                0x02001b70                __bss_start = ABSOLUTE (.)
+                0x02001b70                __bss_start__ = ABSOLUTE (.)
  *(.dynbss)
  *(.gnu.linkonce.b*)
  *(.bss*)
- .bss           0x02001b5c       0x1c /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
- .bss           0x02001b78        0x8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
-                0x02001b7c                processing
- .bss           0x02001b80        0x4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
- .bss           0x02001b84        0x8 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
-                0x02001b84                fake_heap_start
-                0x02001b88                fake_heap_end
- .bss           0x02001b8c       0x38 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
-                0x02001b8c                __syscalls
+ .bss           0x02001b70       0x1c /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+ .bss           0x02001b8c        0x8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02001b90                processing
+ .bss           0x02001b94        0x4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
+ .bss           0x02001b98        0x8 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libsysbase.a(malloc_vars.o)
+                0x02001b98                fake_heap_start
+                0x02001b9c                fake_heap_end
+ .bss           0x02001ba0       0x38 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/libsysbase.a(syscall_support.o)
+                0x02001ba0                __syscalls
  *(COMMON)
- COMMON         0x02001bc4        0x1 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
-                0x02001bc4                __dsimode
- *fill*         0x02001bc5        0x3 
- COMMON         0x02001bc8      0xa40 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
-                0x02001bc8                fifo_datamsg_data
-                0x02001c08                fifo_buffer
-                0x02002408                fifo_value32_func
-                0x02002448                fifo_address_func
-                0x02002488                fifo_value32_data
-                0x020024c8                fifo_value32_queue
-                0x02002508                fifo_data_queue
-                0x02002548                fifo_address_data
-                0x02002588                fifo_datamsg_func
-                0x020025c8                fifo_address_queue
- COMMON         0x02002608        0x4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
-                0x02002608                punixTime
-                0x0200260c                . = ALIGN (0x4)
-                0x0200260c                __bss_end__ = ABSOLUTE (.)
-                0x0200260c                __end__ = ABSOLUTE (.)
+ COMMON         0x02001bd8        0x1 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+                0x02001bd8                __dsimode
+ *fill*         0x02001bd9        0x3 
+ COMMON         0x02001bdc      0xa40 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+                0x02001bdc                fifo_datamsg_data
+                0x02001c1c                fifo_buffer
+                0x0200241c                fifo_value32_func
+                0x0200245c                fifo_address_func
+                0x0200249c                fifo_value32_data
+                0x020024dc                fifo_value32_queue
+                0x0200251c                fifo_data_queue
+                0x0200255c                fifo_address_data
+                0x0200259c                fifo_datamsg_func
+                0x020025dc                fifo_address_queue
+ COMMON         0x0200261c        0x4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+                0x0200261c                punixTime
+                0x02002620                . = ALIGN (0x4)
+                0x02002620                __bss_end__ = ABSOLUTE (.)
+                0x02002620                __end__ = ABSOLUTE (.)
 
 .stab
  *(.stab)
@@ -567,64 +569,64 @@ ARM.exidx
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x53fe
+.debug_info     0x00000000     0x540c
  *(.debug_info)
- .debug_info    0x00000000      0xe82 template.o
- .debug_info    0x00000e82      0x6f8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_info    0x0000157a     0x10b3 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
- .debug_info    0x0000262d     0x1647 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_info    0x00003c74      0x337 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
- .debug_info    0x00003fab      0x5d8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
- .debug_info    0x00004583       0xd1 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(IntrWait.o)
- .debug_info    0x00004654       0xd2 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
- .debug_info    0x00004726       0xd0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
- .debug_info    0x000047f6       0xcd /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
- .debug_info    0x000048c3       0xd7 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
- .debug_info    0x0000499a      0x917 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
- .debug_info    0x000052b1      0x14d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .debug_info    0x00000000      0xe90 template.o
+ .debug_info    0x00000e90      0x6f8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_info    0x00001588     0x10b3 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_info    0x0000263b     0x1647 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_info    0x00003c82      0x337 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_info    0x00003fb9      0x5d8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_info    0x00004591       0xd1 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(IntrWait.o)
+ .debug_info    0x00004662       0xd2 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_info    0x00004734       0xd0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_info    0x00004804       0xcd /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_info    0x000048d1       0xd7 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_info    0x000049a8      0x917 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_info    0x000052bf      0x14d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
 
-.debug_abbrev   0x00000000     0x12d5
+.debug_abbrev   0x00000000     0x12de
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x28c template.o
- .debug_abbrev  0x0000028c      0x1f7 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_abbrev  0x00000483      0x2d2 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
- .debug_abbrev  0x00000755      0x411 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_abbrev  0x00000b66      0x17c /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
- .debug_abbrev  0x00000ce2      0x284 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
- .debug_abbrev  0x00000f66       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(IntrWait.o)
- .debug_abbrev  0x00000f7a       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
- .debug_abbrev  0x00000f8e       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
- .debug_abbrev  0x00000fa2       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
- .debug_abbrev  0x00000fb6       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
- .debug_abbrev  0x00000fca      0x24e /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
- .debug_abbrev  0x00001218       0xbd /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .debug_abbrev  0x00000000      0x295 template.o
+ .debug_abbrev  0x00000295      0x1f7 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_abbrev  0x0000048c      0x2d2 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_abbrev  0x0000075e      0x411 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_abbrev  0x00000b6f      0x17c /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_abbrev  0x00000ceb      0x284 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_abbrev  0x00000f6f       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(IntrWait.o)
+ .debug_abbrev  0x00000f83       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_abbrev  0x00000f97       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_abbrev  0x00000fab       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_abbrev  0x00000fbf       0x14 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_abbrev  0x00000fd3      0x24e /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_abbrev  0x00001221       0xbd /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
 
-.debug_line     0x00000000     0x1b35
+.debug_line     0x00000000     0x1b36
  *(.debug_line)
- .debug_line    0x00000000      0x24f template.o
- .debug_line    0x0000024f      0x253 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_line    0x000004a2      0x38d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
- .debug_line    0x0000082f      0x706 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_line    0x00000f35      0x223 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
- .debug_line    0x00001158      0x298 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
- .debug_line    0x000013f0       0x97 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(IntrWait.o)
- .debug_line    0x00001487      0x107 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
- .debug_line    0x0000158e       0x9d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
- .debug_line    0x0000162b       0xc5 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
- .debug_line    0x000016f0       0xcd /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
- .debug_line    0x000017bd      0x29a /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
- .debug_line    0x00001a57       0xde /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .debug_line    0x00000000      0x250 template.o
+ .debug_line    0x00000250      0x253 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_line    0x000004a3      0x38d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_line    0x00000830      0x706 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_line    0x00000f36      0x223 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_line    0x00001159      0x298 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_line    0x000013f1       0x97 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(IntrWait.o)
+ .debug_line    0x00001488      0x107 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(mpu_setup.o)
+ .debug_line    0x0000158f       0x9d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(swiSoftReset.o)
+ .debug_line    0x0000162c       0xc5 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_line    0x000016f1       0xcd /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_line    0x000017be      0x29a /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_line    0x00001a58       0xde /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
 
-.debug_frame    0x00000000      0x574
+.debug_frame    0x00000000      0x588
  *(.debug_frame)
- .debug_frame   0x00000000       0x28 template.o
- .debug_frame   0x00000028       0xb8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_frame   0x000000e0       0x28 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
- .debug_frame   0x00000108      0x2a4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_frame   0x000003ac       0x3c /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
- .debug_frame   0x000003e8       0xa4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
- .debug_frame   0x0000048c       0xc8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
- .debug_frame   0x00000554       0x20 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .debug_frame   0x00000000       0x3c template.o
+ .debug_frame   0x0000003c       0xb8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_frame   0x000000f4       0x28 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_frame   0x0000011c      0x2a4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_frame   0x000003c0       0x3c /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_frame   0x000003fc       0xa4 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_frame   0x000004a0       0xc8 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_frame   0x00000568       0x20 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
 
 .debug_str      0x00000000     0x2a0e
  *(.debug_str)
@@ -645,16 +647,16 @@ ARM.exidx
  .debug_str     0x0000299c       0x72 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
                                 0x1de (size before relaxing)
 
-.debug_loc      0x00000000     0x18ea
+.debug_loc      0x00000000     0x1943
  *(.debug_loc)
- .debug_loc     0x00000000       0x42 template.o
- .debug_loc     0x00000042      0x20d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_loc     0x0000024f       0x1f /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
- .debug_loc     0x0000026e     0x12bf /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_loc     0x0000152d       0x58 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
- .debug_loc     0x00001585      0x14b /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
- .debug_loc     0x000016d0      0x1f9 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
- .debug_loc     0x000018c9       0x21 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
+ .debug_loc     0x00000000       0x9b template.o
+ .debug_loc     0x0000009b      0x20d /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_loc     0x000002a8       0x1f /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_loc     0x000002c7     0x12bf /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_loc     0x00001586       0x58 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(libnds_exit.arm.o)
+ .debug_loc     0x000015de      0x14b /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_loc     0x00001729      0x1f9 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_loc     0x00001922       0x21 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(timeSupport.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -689,8 +691,8 @@ LOAD /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/t
 LOAD /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtn.o
 OUTPUT(/Users/jdriselvato/Programming/NDS/NDS-Development/examples/multi-simple/multi-simple.elf elf32-littlearm)
 
-.debug_ranges   0x00000000      0x528
- .debug_ranges  0x00000000       0x40 template.o
- .debug_ranges  0x00000040       0x48 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_ranges  0x00000088      0x3e0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_ranges  0x00000468       0xc0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+.debug_ranges   0x00000000      0x548
+ .debug_ranges  0x00000000       0x60 template.o
+ .debug_ranges  0x00000060       0x48 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_ranges  0x000000a8      0x3e0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_ranges  0x00000488       0xc0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(interrupts.o)

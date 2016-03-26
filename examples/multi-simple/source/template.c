@@ -38,7 +38,7 @@ int main(void) {
 		SCREEN_BASE_BLOCK_SUB is apparently the location at which the memory is mapped to, specifically screen memory
 		(http://greatflash.co.uk/index.php?topic=67.5;wap2).
 	*/
-	uint16* map0 = (uint16*)SCREEN_BASE_BLOCK_SUB(1); // why is this 1?
+	// uint16* map0 = (uint16*)SCREEN_BASE_BLOCK_SUB(1); // why is this 1?
 	uint16* map1 = (uint16*)SCREEN_BASE_BLOCK_SUB(2); // why is this 2?
 	//---------------------------------------------------------------------------------
 
@@ -55,12 +55,11 @@ int main(void) {
 
 	// Used to create the bottom screen
 	REG_BG0CNT_SUB = BG_COLOR_256 | (0 << MAP_BASE_SHIFT);
-	REG_BG1CNT_SUB = BG_COLOR_256 | (1 << MAP_BASE_SHIFT);
 	// REG_BG1CNT_SUB = BG_COLOR_256 | (2 << MAP_BASE_SHIFT);
 
 	// colors for the bottom screen
-	BG_PALETTE_SUB[0] = RGB15(10,0,31); // blue color
-	BG_PALETTE_SUB[1] = RGB15(31,31,0); // yellow color
+	//BG_PALETTE_SUB[0] = RGB15(10,0,31); // blue color
+	 //BG_PALETTE_SUB[1] = RGB15(31,31,0); // yellow color
 	// BG_PALETTE_SUB[2] = RGB15(31,15,0); // orange color
 	
 	//load the maps with alternating tiles (0,1 for bg0 and 0,2 for bg1)
@@ -72,17 +71,29 @@ int main(void) {
 	// 	}
 	// }    
 
-	map0[10 * 32 + 7] = (7 ^ 10) & 1;
-	map1[50 * 32 + 60] = ((60 ^ 50) & 1);
+	//map0[10 * 32 + 7] = (7 ^ 10) & 1;
+	// map1[50 * 32 + 60] = ((60 ^ 50) & 1);
 
 	//fill 2 tiles with different colors (bottom screen)
-	for(i = 0; i < 64 / 2; i++) {
-		BG_GFX_SUB[i+32] = 0x0101;
-		BG_GFX_SUB[i+32+32] = 0x0202;
-	}	
 
+	// for(i = 0; i < 64 / 2; i++) {
+	// 	BG_GFX_SUB[i+32] = 0x0101;
+	// 	//BG_GFX_SUB[i+32+32] = 0x0202;
+	// }	
+	int v = 1;
 	while (1) {
+		for(i = 0; i < 64 / 2; i++) {
+				REG_BG1CNT_SUB = BG_COLOR_256 | (1 << MAP_BASE_SHIFT);
+
+			uint16* map0 = (uint16*)SCREEN_BASE_BLOCK_SUB(1); // why is this 1?
+
+			BG_PALETTE_SUB[0] = RGB15(31,31 - i, v + i); // yellow color
+			map0[0 * 32 + v] = (7 ^ 10) & 1;
+			BG_GFX_SUB[i+32] = 0x0101;
+		//BG_GFX_SUB[i+32+32] = 0x0202;
+		}	
 		swiWaitForVBlank();
+		v++;
 	}    
 	return 0;
 }
