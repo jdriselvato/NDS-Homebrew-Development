@@ -7,11 +7,11 @@ Windows users this might help you out: http://www.coranac.com/tonc/text/setup.ht
 # Repo details
 
 Exmaple code list:
-1. /improved-simple/ 
+
+/improved-simple/ 
 ```
   Includes an on going practice script to learn the kit. It's based off the *simple* example shipped with DKP.
 ```
-2. 
 
 
 # Downloading and Installing
