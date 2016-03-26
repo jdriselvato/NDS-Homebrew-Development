@@ -24,3 +24,4 @@ I'm using DESMUME as the emulator to test out the code on OSX. I do have an R4 t
 1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
 2. https://patater.com/files/projects/manual/manual.html - Best guide to get you really familair with developing NDS
 2. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
+3. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
