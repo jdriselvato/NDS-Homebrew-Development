@@ -19,3 +19,6 @@ Then literally after that go to *~/devkitPro/examples* and type *make* in any of
 
 #Emulator
 I'm using DESMUME as the emulator to test out the code on OSX. I do have an R4 that I'll be using to test on device
+
+#Resources to read
+1. https://patater.com/files/projects/manual/manual.html
