@@ -6,7 +6,7 @@ This is my research and development for programming on the Nintendo DS.
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
 #### *Multi-simple*
-`improved-simple` is basically a way to manage a single sprite, in this example we explore dynamically generating sprites with `SpriteEntry` for multiple sprite objects.
+`improved-simple` is basically a way to manage a single square. Multi-simple tries to understand how to create mutliple squares. I still don't know how to do this, atm.
 
 
 # Downloading and Installing
@@ -30,3 +30,4 @@ I'm using DESMUME as the emulator to test out the code on OSX. I do have an R4 t
 2. https://patater.com/files/projects/manual/manual.html - Best guide to get you really familair with developing NDS
 2. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
 3. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
+4. https://mtheall.com/vram.html#T0=1&NT0=32&MB0=0&TB0=0&S0=0 - Tool to check VRAM

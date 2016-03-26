@@ -65,12 +65,15 @@ int main(void) {
 	
 	//load the maps with alternating tiles (0,1 for bg0 and 0,2 for bg1)
 	// this is used to create the bottom pattern
-	for(iy = 0; iy < 32; iy++) {
-		for(ix = 0; ix < 32; ix++) {
-			map0[iy * 32 + ix] = (ix ^ iy) & 1;
-			map1[iy * 32 + ix] = ((ix ^ iy) & 1) <<1;
-		}
-	}    
+	// for(iy = 0; iy < 32; iy++) {
+	// 	for(ix = 0; ix < 32; ix++) {
+	// 		map0[iy * 32 + ix] = (ix ^ iy) & 1;
+	// 		map1[iy * 32 + ix] = ((ix ^ iy) & 1) <<1;
+	// 	}
+	// }    
+
+	map0[10 * 32 + 7] = (7 ^ 10) & 1;
+	map1[50 * 32 + 60] = ((60 ^ 50) & 1);
 
 	//fill 2 tiles with different colors (bottom screen)
 	for(i = 0; i < 64 / 2; i++) {
