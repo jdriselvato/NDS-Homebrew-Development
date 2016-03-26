@@ -2,8 +2,6 @@
 This is my research and development for programming on the Nintendo DS.
 
 # Repo details
-### Example code list:
-
 #### *improved-simple*
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
