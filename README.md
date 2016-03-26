@@ -9,7 +9,7 @@ Windows users this might help you out: http://www.coranac.com/tonc/text/setup.ht
 ### Example code list:
 
 #### *improved-simple*
-This project is where I first started out trying to understand OAM, Sprite management and other basic graphic concepts. In end result is a two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
+I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
 #### *Multi-simple*
 `improved-simple` is basically a way to manage a single sprite, in this example we explore dynamically generating sprites with `SpriteEntry` for multiple sprite objects.
