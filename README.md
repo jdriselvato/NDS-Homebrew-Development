@@ -9,9 +9,7 @@ I first started out here trying to understand OAM, Sprite management and other b
 This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. 
 - March 26th, 2016 - supports dynamic sprite generation
 - March 27th, 2016 - now supports different colors per sprite
-
-![multi-simple](http://i.imgur.com/zv62hWU.gifv){:style="float: right;margin-right: 7px;margin-top: 7px;"}
-
+<img align="right" src="http://i.imgur.com/zv62hWU.gif">
 
 # Downloading and Installing
 So since the NDS is getting a little old devkitPro is now starting you off with Wii and GC. Which we don't want we want GBA/NDS devkitPro. So the correct download link is here:
