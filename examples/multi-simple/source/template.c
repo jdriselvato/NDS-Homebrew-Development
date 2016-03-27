@@ -1,10 +1,15 @@
 /*---------------------------------------------------------------------------------
 
-Generating a background 
-(original multiple sprites but background seems like the better place to start learning before sprites)
+Generating a multiple sprites
+
+This project demos the ability to dynamically add sprites to the screen. 
+Pressing the key up adds another sprite to the screen
+
 -- John Riselvato ( March 26th, 2016 )
 
-What I listened to while developing this: https://www.youtube.com/watch?v=qB4agGGyZFg
+What I listened to while developing: 
+- https://www.youtube.com/watch?v=qB4agGGyZFg
+- https://www.youtube.com/watch?v=RhOS3OQs3Pg
 Animal Crossing New Leaf music is the kind of music I hope is available in the after life. 
 Every single song is a master peice of child-like innocence. As if everything is going to be
 okay, no worries, just a small town, with friends and relaxation. That's why I love the DS/GBA/3DS
@@ -25,75 +30,86 @@ Things to know:
 - 
 ---------------------------------------------------------------------------------*/
 
-//---------------------------------------------------------------------------------
-int main(void) {
-//---------------------------------------------------------------------------------
+typedef struct {
+   u16* gfx;
+   SpriteSize size;
+   SpriteColorFormat format;
+   int rotationIndex;
+   int paletteAlpha;
+   int x;
+   int y;
+}Sprite;
 
-	int i, delta = 0;
-	int ix = 0;
-	int iy = 0;
-	
-    /*---------------------------------------------------------------------------------
-		These maps are used to write to the map bottom screen sprites.
-		SCREEN_BASE_BLOCK_SUB is apparently the location at which the memory is mapped to, specifically screen memory
-		(http://greatflash.co.uk/index.php?topic=67.5;wap2).
-	*/
-	// uint16* map0 = (uint16*)SCREEN_BASE_BLOCK_SUB(1); // why is this 1?
-	uint16* map1 = (uint16*)SCREEN_BASE_BLOCK_SUB(2); // why is this 2?
-	//---------------------------------------------------------------------------------
+int SCREEN_HEIGHT = 256;
+int SCREEN_WIDTH = 192;
 
-	//set main display to render directly from the frame buffer
-	videoSetMode(MODE_FB1);
-	
-	//set up the sub display
-	videoSetModeSub(MODE_0_2D |  
-					DISPLAY_BG0_ACTIVE |
-					DISPLAY_BG1_ACTIVE );
-	
-	//vram banks are somewhat complex
-	vramSetPrimaryBanks(VRAM_A_LCD, VRAM_B_LCD, VRAM_C_SUB_BG, VRAM_D_SUB_SPRITE);	
+int main(int argc, char** argv) {
+	Sprite sprites[100] = { // maximum amount of sprites allocated
+		{0, SpriteSize_16x16, SpriteColorFormat_Bmp, 0, 15, 20, 15},
+		{0, SpriteSize_16x16, SpriteColorFormat_Bmp, 0, 15, 20, 80},
+	};
 
-	// Used to create the bottom screen
-	REG_BG0CNT_SUB = BG_COLOR_256 | (0 << MAP_BASE_SHIFT);
-	// REG_BG1CNT_SUB = BG_COLOR_256 | (2 << MAP_BASE_SHIFT);
+	int sprite_count = 2; // keep track of how many sprites on are the screen so we can append properly
 
-	// colors for the bottom screen
-	//BG_PALETTE_SUB[0] = RGB15(10,0,31); // blue color
-	 //BG_PALETTE_SUB[1] = RGB15(31,31,0); // yellow color
-	// BG_PALETTE_SUB[2] = RGB15(31,15,0); // orange color
-	
-	//load the maps with alternating tiles (0,1 for bg0 and 0,2 for bg1)
-	// this is used to create the bottom pattern
-	// for(iy = 0; iy < 32; iy++) {
-	// 	for(ix = 0; ix < 32; ix++) {
-	// 		map0[iy * 32 + ix] = (ix ^ iy) & 1;
-	// 		map1[iy * 32 + ix] = ((ix ^ iy) & 1) <<1;
-	// 	}
-	// }    
+	videoSetModeSub(MODE_0_2D);
 
-	//map0[10 * 32 + 7] = (7 ^ 10) & 1;
-	// map1[50 * 32 + 60] = ((60 ^ 50) & 1);
+	consoleDemoInit();
 
-	//fill 2 tiles with different colors (bottom screen)
+	//initialize the sub sprite engine with 1D mapping 128 byte boundary
+	//and no external palette support
+	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
+	vramSetBankD(VRAM_D_SUB_SPRITE);
 
-	// for(i = 0; i < 64 / 2; i++) {
-	// 	BG_GFX_SUB[i+32] = 0x0101;
-	// 	//BG_GFX_SUB[i+32+32] = 0x0202;
-	// }	
-	int v = 1;
-	while (1) {
-		for(i = 0; i < 64 / 2; i++) {
-				REG_BG1CNT_SUB = BG_COLOR_256 | (1 << MAP_BASE_SHIFT);
+   //ugly positional printf
 
-			uint16* map0 = (uint16*)SCREEN_BASE_BLOCK_SUB(1); // why is this 1?
+   int angle = 0;
 
-			BG_PALETTE_SUB[0] = RGB15(31,31 - i, v + i); // yellow color
-			map0[0 * 32 + v] = (7 ^ 10) & 1;
-			BG_GFX_SUB[i+32] = 0x0101;
-		//BG_GFX_SUB[i+32+32] = 0x0202;
-		}	
+   while(1) {
+		iprintf("\x1b[1;1HNumber of sprites: %d", sprite_count);
+
+
+		for(int i = 0; i < sprite_count; i++) {
+			sprites[i].gfx = oamAllocateGfx(&oamSub, sprites[i].size, sprites[i].format); //allocate some space for the sprite graphics
+
+			dmaFillHalfWords(ARGB16(1, 31, 0,0), sprites[i].gfx, 32*32*2); // fill each as a Red Square
+
+			oamSet(
+			&oamSub, //sub display 
+			i,       //oam entry to set
+			sprites[i].x, sprites[i].y, //position 
+			0, //priority
+			sprites[i].paletteAlpha, //palette for 16 color sprite or alpha for bmp sprite
+			sprites[i].size, 
+			sprites[i].format, 
+			sprites[i].gfx, 
+			sprites[i].rotationIndex, 
+			true, //double the size of rotated sprites
+			false, //don't hide the sprite
+			false, false, //vflip, hflip
+			false //apply mosaic
+			);
+		}
+		oamRotateScale(&oamSub, 0, angle, (1 << 8), (1 << 8));
+		angle += 45;
+
+	   	scanKeys();
+		int keys = keysHeld();
+
+		if(keys & KEY_UP) { // add a new square when up key is pressed
+			if (sprite_count < 100) {
+				int rand_x = rand() % SCREEN_HEIGHT + 1; // get random x location to place square on
+				int rand_y = rand() % SCREEN_WIDTH + 1; // get random y location to place square on
+
+				Sprite tmp = {0, SpriteSize_16x16, SpriteColorFormat_Bmp, 0, 15, rand_x, rand_y}; // create a sprite
+				sprites[sprite_count + 1] = tmp; // add sprite to our sprites array
+				sprite_count++; // increase sprite_count one
+			}
+		}
+
 		swiWaitForVBlank();
-		v++;
-	}    
-	return 0;
+
+		//send the updates to the hardware
+		oamUpdate(&oamSub);
+   }
+   return 0;
 }
