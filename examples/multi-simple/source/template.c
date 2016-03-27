@@ -40,9 +40,6 @@ typedef struct {
    int y;
 }Sprite;
 
-int SCREEN_HEIGHT = 256;
-int SCREEN_WIDTH = 192;
-
 int main(int argc, char** argv) {
 	Sprite sprites[100] = { // maximum amount of sprites allocated
 		{0, SpriteSize_16x16, SpriteColorFormat_Bmp, 0, 15, 20, 15},
@@ -97,8 +94,8 @@ int main(int argc, char** argv) {
 
 		if(keys & KEY_UP) { // add a new square when up key is pressed
 			if (sprite_count < 100) {
-				int rand_x = rand() % SCREEN_HEIGHT + 1; // get random x location to place square on
-				int rand_y = rand() % SCREEN_WIDTH + 1; // get random y location to place square on
+				int rand_x = rand() % SCREEN_WIDTH + 1; // get random x location to place square on
+				int rand_y = rand() % SCREEN_HEIGHT + 1; // get random y location to place square on
 
 				Sprite tmp = {0, SpriteSize_16x16, SpriteColorFormat_Bmp, 0, 15, rand_x, rand_y}; // create a sprite
 				sprites[sprite_count + 1] = tmp; // add sprite to our sprites array
