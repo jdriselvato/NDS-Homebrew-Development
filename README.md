@@ -10,6 +10,9 @@ This project demos the ability to dynamically add sprites to the screen and simp
 - March 26th, 2016 - supports dynamic sprite generation
 - March 27th, 2016 - now supports different colors per sprite
 
+![multi-simple](http://i.imgur.com/zv62hWU.gifv){:style="float: right;margin-right: 7px;margin-top: 7px;"}
+
+
 # Downloading and Installing
 So since the NDS is getting a little old devkitPro is now starting you off with Wii and GC. Which we don't want we want GBA/NDS devkitPro. So the correct download link is here:
 http://devkitpro.org/wiki/Getting_Started/devkitARM
