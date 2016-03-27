@@ -6,7 +6,7 @@ This is my research and development for programming on the Nintendo DS.
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
 #### *Multi-simple*
-<img align="right" width="100" src="http://i.imgur.com/zv62hWU.gif">
+<img align="right" width="250" src="http://i.imgur.com/zv62hWU.gif">
 This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. 
 - March 26th, 2016 - supports dynamic sprite generation
 - March 27th, 2016 - now supports different colors per sprite
