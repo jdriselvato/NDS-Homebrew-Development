@@ -4,11 +4,11 @@ The Nintendo DS has a special place in my heart and I thought it was about time 
 This repo is designed to provide an easier way to learn how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as needed to understand and provide resources to further an understanding of the topic. Also, feel free to report issues!
 
 # Repo Examples
-#### *3. maze-generator*
-We take what we've learned from `Multi-simple` and instead if randomly placing sprites down, we follow an tile array. Just like you would in a tile based game. 
+#### *3. tile-generator*
+We take what we've learned from `multi-simple` and instead if randomly placing sprites down, we follow an tile array. Just like you would in a tile based game. 
 
 <img align="right" width="150" src="http://i.imgur.com/zv62hWU.gif">
-#### *2. Multi-simple*
+#### *2. multi-simple*
 This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. This is also a good example to see how to apply different colors to the same sprite object.
 
 #### *1. improved-simple*
