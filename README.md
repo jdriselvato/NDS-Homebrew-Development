@@ -5,7 +5,7 @@ This repo is designed to provide an easier way to learn how to develop on the ND
 
 # Repo Examples
 #### *3. tile-generator*
-We take what we've learned from `multi-simple` and instead if randomly placing sprites down, we follow an tile array. Just like you would in a tile based game. 
+We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. 
 
 <img align="right" width="150" src="http://i.imgur.com/zv62hWU.gif">
 #### *2. multi-simple*
