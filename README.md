@@ -5,8 +5,11 @@ This is my research and development for programming on the Nintendo DS.
 #### *improved-simple*
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
+<img align="right" width="250" src="http://i.imgur.com/zv62hWU.gif">
 #### *Multi-simple*
-`improved-simple` is basically a way to manage a single square. This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. 
+This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. 
+- March 26th, 2016 - supports dynamic sprite generation
+- March 27th, 2016 - now supports different colors per sprite
 
 # Downloading and Installing
 So since the NDS is getting a little old devkitPro is now starting you off with Wii and GC. Which we don't want we want GBA/NDS devkitPro. So the correct download link is here:
