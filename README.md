@@ -12,20 +12,21 @@ This project demos the ability to dynamically add sprites to the screen and simp
 - March 27th, 2016 - now supports different colors per sprite
 
 # Downloading and Installing
-So since the NDS is getting a little old devkitPro is now starting you off with Wii and GC. Which we don't want we want GBA/NDS devkitPro. So the correct download link is here:
+Devkitpro now starts you off with GC and Wii SDKs. To get the GBA/NDS version of devkitPro use the link below:
 http://devkitpro.org/wiki/Getting_Started/devkitARM
 
-After installing (at least with the OSX perl install) it requires you to set up environment variables.
+After installing (OSX perl install) it requires you to set up environment variables.
 This is what my *~/.bash_profile* looks like:
 ```
   export DEVKITPRO=/Users/jdriselvato/devkitPro
   export DEVKITARM=${DEVKITPRO}/devkitARM
 ```
 
-Then literally after that go to *~/devkitPro/examples* and type *make* in any of the example folders and it will run. It couldn't be easier.
+Then literally after that go to *~/devkitPro/examples* and type *make* in any of the example folders and it will compile the source to NDS file. It couldn't be easier.
 
 #Emulator
 I'm using DESMUME as the emulator to test out the code on OSX. I do have an R4 that I'll be using to test on device
+Download here: http://desmume.org
 
 #Resources to read
 1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
