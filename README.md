@@ -1,15 +1,18 @@
 # NDS-Development
 The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples I've developed and more as I learn more about the NDS and devkitpro.
 
-# Repo Examples
-#### *improved-simple*
-I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
+This repo is designed to provide an easier way to learn how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as needed to understand and provide resources to further an understanding of the topic. Also, feel free to report issues!
 
-<img align="right" width="250" src="http://i.imgur.com/zv62hWU.gif">
-#### *Multi-simple*
-This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. 
-- March 26th, 2016 - supports dynamic sprite generation
-- March 27th, 2016 - now supports different colors per sprite
+# Repo Examples
+#### *3. maze-generator*
+We take what we've learned from `Multi-simple` and instead if randomly placing sprites down, we follow an tile array. Just like you would in a tile based game. 
+
+<img align="right" width="150" src="http://i.imgur.com/zv62hWU.gif">
+#### *2. Multi-simple*
+This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. This is also a good example to see how to apply different colors to the same sprite object.
+
+#### *1. improved-simple*
+I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
 # Downloading and Installing
 Devkitpro now starts you off with GC and Wii SDKs. To get the GBA/NDS version of devkitPro use the link below:
