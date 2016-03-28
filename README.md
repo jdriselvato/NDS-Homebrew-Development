@@ -1,5 +1,5 @@
-# NDS-Development Intro
-This is my research and development for programming on the Nintendo DS.
+# NDS-Development
+The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples I've developed and more as I learn more about the NDS and devkitpro.
 
 # Repo Examples
 #### *improved-simple*
