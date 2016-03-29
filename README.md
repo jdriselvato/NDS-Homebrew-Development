@@ -4,8 +4,11 @@ The Nintendo DS has a special place in my heart and I thought it was about time 
 This repo is designed to provide an easier way to learn how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as needed to understand and provide resources to further an understanding of the topic. Also, feel free to report issues!
 
 # Repo Examples
+#### *4. tile-generator-top*
+In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A.
+
 #### *3. tile-generator*
-We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. This generates a simple 6 x 8 tiled map of 16x16 sized sprites.
+We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. This generates a simple 6 x 8 tiled map of 16x16 sized sprites. We used the VRAM Bank D which is specific to the bottom screen in this example.
 
 <img align="right" width="150" src="http://i.imgur.com/zv62hWU.gif">
 #### *2. multi-simple*
