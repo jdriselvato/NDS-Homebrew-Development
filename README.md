@@ -1,20 +1,22 @@
 # NDS-Development
 The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples I've developed and more as I learn more about the NDS and devkitpro.
 
+The repo examples are in order as I learn devkitpro, so the early numbers are going to be condsidered novice. Learn use this as a way to learn the same way I did!
+
 This repo is designed to provide an easier way to learn how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as needed to understand and provide resources to further an understanding of the topic. Also, feel free to report issues!
 
 # Repo Examples
-#### *4. tile-generator-top*
-In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A.
+#### *4. tile-generator-top* (Novice)
+In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A. (Novice)
 
-#### *3. tile-generator*
+#### *3. tile-generator* (Novice)
 We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. This generates a simple 6 x 8 tiled map of 16x16 sized sprites. We used the VRAM Bank D which is specific to the bottom screen in this example.
 
 <img align="right" width="150" src="http://i.imgur.com/zv62hWU.gif">
-#### *2. multi-simple*
+#### *2. multi-simple* (Novice)
 This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. This is also a good example to see how to apply different colors to the same sprite object.
 
-#### *1. improved-simple*
+#### *1. improved-simple* (Novice)
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
 # Downloading and Installing
