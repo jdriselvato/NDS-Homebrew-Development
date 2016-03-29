@@ -61,8 +61,7 @@ int main(int argc, char** argv) {
 			if (sprites[i].gfx == 0) { // we only need to allocate space the first time the sprite is created
 				sprites[i].gfx = oamAllocateGfx(&oamSub, sprites[i].size, sprites[i].format); // allocate some space for the sprite graphics
 			}
-
-
+			dmaFillHalfWords(sprites[i].color, sprites[i].gfx, 16*16*2); // fill each as a Red Square
 			oamSet(
 				&oamSub, //sub display 
 				i,       //oam entry to set
@@ -79,7 +78,6 @@ int main(int argc, char** argv) {
 				false //apply mosaic
 			);
 
-			dmaFillHalfWords(sprites[i].color, sprites[i].gfx, 16*16*2); // fill each as a Red Square
 
 		}
 		oamRotateScale(&oamSub, 0, angle, (1 << 8), (1 << 8));

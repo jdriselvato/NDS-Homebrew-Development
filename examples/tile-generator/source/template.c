@@ -8,9 +8,8 @@ Generating a basic tile generator from array
 #include <unistd.h>
 /*---------------------------------------------------------------------------------
 Things to know:
-- 
+- NDS only supports 128 sprites on screen unfortunately, so 12 x 16 tiles wont work at 16x16 sprites.
 ---------------------------------------------------------------------------------*/
-
 typedef struct {
 	u16* gfx;
 	SpriteSize size;
@@ -26,57 +25,56 @@ int main(int argc, char** argv) {
 	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false); //initialize the sub sprite engine with 1D mapping 128 byte boundary
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 
-	Sprite tilesArray[] = { // create an array of the different tiles to be used
-		{0, SpriteSize_16x16, SpriteColorFormat_Bmp, ARGB16(1, 0, 0, 31), 15, 20, 15}, // Blue Tile (water?)
-		{0, SpriteSize_16x16, SpriteColorFormat_Bmp, ARGB16(1, 0, 31, 0), 15, 20, 80}, // Green Tile (grass?)
-	}
-
-	int mapArray[] = { // create a map layout
-		0, 0, 0, 1, 0,
-		0, 1, 1, 1, 0,
-		0, 0, 0, 1, 0,
+	int tile_colors[] = {
+		ARGB16(1, 0, 0, 31), // blue (water?)
+		ARGB16(1, 0, 31, 0), // green (grass?)
+		ARGB16(1, 31, 31, 0) // yellow (sand?)
 	};
 
+	int tile_array[6][8] = { // create a map layout
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 2, 2, 1, 1, 0, 0},
+		{0, 1, 1, 2, 1, 1, 1, 0},
+		{0, 1, 1, 2, 2, 2, 2, 0},
+		{0, 0, 1, 1, 1, 1, 2, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+	};
+
+	u16* gfx_array[6*8] = {0}; // unfortunately using this is the easiest way to keep track of gfx for oamSet.
+	int sprite_width = 32;
+	int sprite_height = 32;
+
 	while(1) {
-		for(int i = 0; i < 15; i++) {
-			if (sprites[i].gfx == 0) { // we only need to allocate space the first time the sprite is created
-				sprites[i].gfx = oamAllocateGfx(&oamSub, sprites[i].size, sprites[i].format); // allocate some space for the sprite graphics
-			}
+		int count = 0;
+		for(int x = 0; x < 6; x++) {
+			for (int y = 0; y < 8; y++) {
+				count++;
+				int tile = tile_array[x][y]; // select the color for selected tile
+				Sprite tmp = { 0, SpriteSize_32x32, SpriteColorFormat_Bmp, tile_colors[tile], 15, y * sprite_width, x * sprite_height };
 
-			oamSet(
-				&oamSub, //sub display 
-				i,       //oam entry to set
-				sprites[i].x, sprites[i].y, //position 
-				0, //priority
-				sprites[i].paletteAlpha, //palette for 16 color sprite or alpha for bmp sprite
-				sprites[i].size, 
-				sprites[i].format, 
-				sprites[i].gfx, 
-				-1, 
-				false, //double the size of rotated sprites
-				false, //don't hide the sprite
-				false, false, //vflip, hflip
-				false //apply mosaic
-			);
+				if (gfx_array[count] == 0) { // you can only allocate once
+					gfx_array[count] = oamAllocateGfx(&oamSub, tmp.size, tmp.format); // allocate some space for the sprite graphics
+				}
 
-			dmaFillHalfWords(sprites[i].color, sprites[i].gfx, 16*16*2); // fill each as a Red Square
-		}
+				dmaFillHalfWords(tmp.color, gfx_array[count], sprite_width*sprite_height*2); // fill each as a Red Square
 
-		scanKeys();
-		int keys = keysHeld();
-
-		if(keys & KEY_UP) { // add a new square when up key is pressed
-			if (sprite_count < 100) {
-				int color = ARGB16(1, rand() % 31 + 1, rand() % 31 + 1, rand() % 31 + 1);
-				int rand_x = rand() % SCREEN_WIDTH + 1; // get random x location to place square on
-				int rand_y = rand() % SCREEN_HEIGHT + 1; // get random y location to place square on
-				Sprite tmp = {0, SpriteSize_16x16, SpriteColorFormat_Bmp, color, 15, rand_x, rand_y}; // create a sprite
-				sprites[sprite_count + 1] = tmp; // add sprite to our sprites array
-				sprite_count++; // increase sprite_count one
+				oamSet(
+					&oamSub, //sub display 
+					count, //oam entry to set
+					tmp.x, tmp.y, //position 
+					0, //priority
+					tmp.paletteAlpha, //palette for 16 color sprite or alpha for bmp sprite
+					tmp.size, tmp.format, gfx_array[count], -1, 
+					false, //double the size of rotated sprites
+					false, //don't hide the sprite
+					false, false, //vflip, hflip
+					false //apply mosaic
+				);
 			}
 		}
+
 		swiWaitForVBlank();
-		oamUpdate(&oamSub); //send the updates to the hardware
+		oamUpdate(&oamSub); // send the updates to the hardware
 	}
 	//return 0;
 }
