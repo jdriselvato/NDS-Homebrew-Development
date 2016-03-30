@@ -6,6 +6,9 @@ The repo examples are in order as I learn devkitpro, so the early numbers are go
 This repo is designed to provide an easier way to learn how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as needed to understand and provide resources to further an understanding of the topic. Also, feel free to report issues!
 
 # Repo Examples
+#### *5. scrolling-background* (Novice)
+Since I found out about the 128 sprite limit, I needed to figure out a better way to display backgrounds. I'm guessing some where I'm missing a critical peice, probably the understanding of VRAM. So because devkitpro does come with a couple of background examples, I'm going to learn from those and make my own.
+
 #### *4. tile-generator-top* (Novice)
 In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A. (Novice)
 
