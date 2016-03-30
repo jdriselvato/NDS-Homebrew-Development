@@ -8,18 +8,8 @@ Scrolling background based on backgrounds example from Devkitpro, scrolling.cpp
 #include <unistd.h>
 /*---------------------------------------------------------------------------------
 Things to know:
-
+- How VRAM works and the differences between the A-D Banks
 ---------------------------------------------------------------------------------*/
-typedef struct {
-	u16* gfx;
-	SpriteSize size;
-	SpriteColorFormat format;
-	int color;
-	int paletteAlpha;
-	int x;
-	int y;
-} Sprite;
-
 int main(int argc, char** argv) {
 	int x, y;
 
