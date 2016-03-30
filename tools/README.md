@@ -22,4 +22,5 @@ brew install freeimage
 ````
 4. Now we should be able to compile GRIT from the above repo by alvasnaedis. Which in my case was a success. We can use command line grit.
 
+How to use manual here: http://www.coranac.com/man/grit/html/index.htm
 
