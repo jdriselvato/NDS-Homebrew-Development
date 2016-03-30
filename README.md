@@ -1,9 +1,9 @@
 # NDS-Development
-The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples I've developed and more as I learn more about the NDS and devkitpro.
+The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples and more as I learn how to program on the NDS.
 
-The repo examples are in order as I learn devkitpro, so the early numbers are going to be condsidered novice. Learn use this as a way to learn the same way I did!
+This repo is designed to provide an easier understanding of how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see git and provide resources to further the understanding of the topic.
 
-This repo is designed to provide an easier way to learn how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as needed to understand and provide resources to further an understanding of the topic. Also, feel free to report issues!
+Also, feel free to report issues!
 
 # Repo Examples
 #### *5. scrolling-background* (Novice)
@@ -45,4 +45,3 @@ Download here: http://desmume.org
 2. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
 3. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
 4. https://mtheall.com/vram.html#T0=1&NT0=32&MB0=0&TB0=0&S0=0 - Tool to check VRAM
-5. http://www.coranac.com/projects/#grit - GRIT (GBA Raster Image Transmogrifier)
