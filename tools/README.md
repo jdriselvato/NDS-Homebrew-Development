@@ -6,7 +6,7 @@ Because 99% of these tools are released for public homebrew use, I'll try to ens
 
 # NDS Development Tools
 
-### GRIT
+### GRIT - GBA Raster Image Transmogrifier
 Grit is this nice software that has a bunch of image/map handling abilites. Looks like the last time this was updated was in 2010 but fortunately the project developer still provides links to different versions: http://www.coranac.com/projects/#grit
 
 Most likely once I figure out how to use this tool (and compile it on OSX, which once I do I'll provide a copy of it here), this will be the go to way to generate maps for tile based games.
