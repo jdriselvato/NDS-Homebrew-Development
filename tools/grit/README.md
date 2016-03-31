@@ -3,7 +3,7 @@
 The GBA Image Transmogrifier (“grit” for short) is a bitmap conversion tool for GBA/NDS development. It accepts a multitude of file types (bmp, pcx, png, gif, etc) at any bitdepth and can convert them to palette, graphics and/or map data that can be used directly in GBA code. The output formats are C/asm arrays, raw binary files GBFS files, and a RIFF-format I call GRF. The data can be compressed to fit the BIOS decompression routines.
 
 # Devkitpro to the rescue (no install required)
-Turns out devkitpro actually supports Grit automatically. So you don't have to go through the process of getting Grit install. Simply follow the below instructions to getting your image ready with grit.
+Turns out devkitpro actually supports Grit automatically. So you don't have to go through the process of getting Grit installed. Simply follow the below instructions to getting your image ready with grit.
 
 1. make a folder called `data`
 2. put image (png, bmp, jpeg, etc) in this folder (example: tile_sheet.png)
