@@ -57,7 +57,8 @@ template.o: \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/sprite.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/video.h \
- /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h
+ /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h \
+ /Users/jdriselvato/Programming/NDS/NDS-Development/examples/scrolling-background/build/map_tiles.h
 
 /Users/jdriselvato/devkitPro/libnds/include/nds.h:
 
@@ -174,3 +175,5 @@ template.o: \
 /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/video.h:
 
 /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h:
+
+/Users/jdriselvato/Programming/NDS/NDS-Development/examples/scrolling-background/build/map_tiles.h:
