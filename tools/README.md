@@ -9,18 +9,7 @@ Because 99% of these tools are released for public homebrew use, I'll try to ens
 ### GRIT - GBA Raster Image Transmogrifier
 Grit is this nice software that has a bunch of image/map handling abilites. Looks like the last time this was updated was in 2010 but fortunately the project developer still provides links to different versions: http://www.coranac.com/projects/#grit
 
-Most likely once I figure out how to use this tool (and compile it on OSX, which once I do I'll provide a copy of it here), this will be the go to way to generate maps for tile based games.
-
-So getting GRIT to compile on OSX was pretty messy. I've included the final output of what I compiled in the GRIT folder but just in case something breaks here's how I did it.
-1. I found out that there's a github repo that makes compiling GRIT a lot easier on OSX. So clone that repo:
-````
-git clone https://github.com/alvasnaedis/grit
-````
-2. I had to download Freeimage which is a requirement to compile GRIT. You can find that here: http://freeimage.sourceforge.net/download.html but I had a hard time compiling it as well, so I found out brew has a version. So simply run:
-````
-brew install freeimage
-````
-4. Now we should be able to compile GRIT from the above repo by alvasnaedis. Which in my case was a success. We can use command line grit.
+Please notice, GRIT is actually pre-installed and ready to go with DevKitPro. Read the grit [README.md](grit/README.md) for more
 
 You can learn how to use GRIT with the [official manual](http://www.coranac.com/man/grit/html/index.htm) but I've also put together a list of commands in the [/grit](grit/README.md) folder. 
 
