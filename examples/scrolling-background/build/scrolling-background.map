@@ -82,6 +82,12 @@ Discarded input sections
  .data          0x00000000        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crti.o
  .bss           0x00000000        0x0 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crti.o
  .data          0x00000000        0x4 /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+ .text          0x00000000        0x0 map_tiles.o
+ .data          0x00000000        0x0 map_tiles.o
+ .bss           0x00000000        0x0 map_tiles.o
+ .rodata        0x00000000      0x800 map_tiles.o
+ .ARM.attributes
+                0x00000000       0x14 map_tiles.o
  .data          0x00000000        0x0 template.o
  .bss           0x00000000        0x0 template.o
  .bss           0x00000000        0x0 /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a(background.o)
@@ -822,6 +828,7 @@ ARM.exidx
 LOAD /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/../../../../arm-none-eabi/lib/thumb/ds_arm9_crt0.o
 LOAD /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crti.o
 LOAD /Users/jdriselvato/devkitPro/devkitARM/bin/../lib/gcc/arm-none-eabi/5.3.0/thumb/crtbegin.o
+LOAD map_tiles.o
 LOAD template.o
 LOAD /Users/jdriselvato/devkitPro/libnds/lib/libnds9.a
 START GROUP

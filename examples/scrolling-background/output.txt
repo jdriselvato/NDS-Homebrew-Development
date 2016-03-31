@@ -1,0 +1,98 @@
+4a5,6
+> .SECONDARY:
+> 
+16,21d17
+< # DATA is a list of directories containing binary data
+< # GRAPHICS is a list of directories containing files to be processed by grit
+< #
+< # All directories are specified relative to the project directory where
+< # the makefile is found
+< #
+23c19
+< TARGET		:=	$(notdir $(CURDIR))
+---
+> TARGET		:=	$(shell basename $(CURDIR))
+26c22
+< DATA		:=	  
+---
+> DATA		:=  
+33c29
+< ARCH		:=	-mthumb -mthumb-interwork
+---
+> ARCH	:=	-mthumb -mthumb-interwork
+36,38c32,34
+<  			-march=armv5te -mtune=arm946e-s -fomit-frame-pointer\
+< 			-ffast-math \
+< 			$(ARCH)
+---
+>  		-march=armv5te -mtune=arm946e-s -fomit-frame-pointer\
+> 		-ffast-math \
+> 		$(ARCH)
+41c37
+< CXXFLAGS	:=	$(CFLAGS) -fno-rtti -fno-exceptions
+---
+> CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
+57c53
+< 
+---
+>  
+62,64c58
+< 
+< 
+< ifneq ($(BUILDDIR), $(CURDIR))
+---
+> ifneq ($(BUILD),$(notdir $(CURDIR)))
+79,80c73,74
+< BMPFILES	:=	$(foreach dir,$(GRAPHICS),$(notdir $(wildcard $(dir)/*.bmp)))
+< 
+---
+> PNGFILES	:=	$(foreach dir,$(GRAPHICS),$(notdir $(wildcard $(dir)/*.png)))
+>  
+96c90
+< 					$(BMPFILES:.bmp=.o) \
+---
+> 					$(PNGFILES:.png=.o) \
+99c93,94
+< export INCLUDE	:=	$(foreach dir,$(INCLUDES),-iquote $(CURDIR)/$(dir)) \
+---
+> export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+> 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+104c99
+< 
+---
+>  
+110c105
+< 	@make BUILDDIR=`cd $(BUILD) && pwd` --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+---
+> 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+128,136c123
+< 
+< 
+< #---------------------------------------------------------------------------------
+< # The bin2o rule should be copied and modified
+< # for each extension used in the data directories
+< #---------------------------------------------------------------------------------
+< 
+< #---------------------------------------------------------------------------------
+< # This rule links in binary data with the .bin extension
+---
+>  
+143,149d129
+< #---------------------------------------------------------------------------------
+< # This rule links in binary data with the .raw extension
+< #---------------------------------------------------------------------------------
+< %.raw.o	:	%.raw
+< #---------------------------------------------------------------------------------
+< 	@echo $(notdir $<)
+< 	@$(bin2o)
+152,157c132
+< # This rule creates assembly source files using grit
+< # grit takes an image file and a .grit describing how the file is to be processed
+< # add additional rules like this for each image extension
+< # you use in the graphics folders 
+< #---------------------------------------------------------------------------------
+< %.s %.h	: %.bmp %.grit
+---
+> %.s %.h	: %.png %.grit
+161d135
+<  

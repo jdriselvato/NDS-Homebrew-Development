@@ -1,0 +1,4 @@
+-mB16 # 16 bit bitmap
+-mlz # Map data is LZ77 compressed.
+-m # output map file
+
