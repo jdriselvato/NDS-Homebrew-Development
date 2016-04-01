@@ -1,4 +1,6 @@
 /*---------------------------------------------------------------------------------
+Listening to: Małpa. Thanks to connections at my day time job I've had the oppertunity to meet some awesome people in Poland. Specifical this guy Przemek who is really into worldly hip-hop. Every once in a while we go back and forth on whats popular in our country. I've never been a huge fan of anerican rap but I really dig Polish hip-hop. https://www.youtube.com/watch?v=FpNSVRPRLhw
+
 Scrolling background based on backgrounds example from Devkitpro, scrolling.cpp
 -- John Riselvato ( March 26th, 2016 )
 ---------------------------------------------------------------------------------*/

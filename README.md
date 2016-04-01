@@ -6,7 +6,10 @@ This repo is designed to provide an easier understanding of how to develop on th
 Also, feel free to report issues!
 
 # Repo Examples
-#### *5. scrolling-background* (Novice)
+#### *6. basic-user-menu* (Novice)
+Here we will explore how to make a simple user menu with various fields and allow the user to select items and go to new data.
+
+#### *5. scrolling-background* (Novice) incomplete
 Since I found out about the 128 sprite limit, I needed to figure out a better way to display backgrounds. I'm guessing some where I'm missing a critical peice, probably the understanding of VRAM. So because devkitpro does come with a couple of background examples, I'm going to learn from those and make my own.
 
 #### *4. tile-generator-top* (Novice)
