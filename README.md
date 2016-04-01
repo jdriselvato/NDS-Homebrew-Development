@@ -48,3 +48,4 @@ Download here: http://desmume.org
 2. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
 3. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
 4. https://mtheall.com/vram.html#T0=1&NT0=32&MB0=0&TB0=0&S0=0 - Tool to check VRAM
+5. http://www.coranac.com/2009/02/some-interesting-numbers-on-nds-code-size/ - Some interesting numbers on NDS code size
