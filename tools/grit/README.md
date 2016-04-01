@@ -50,6 +50,7 @@ usage: grit srcfile(s) [args]...
 # Examples
 
 ### Grit Files for Maps
+Still learning how to use these files, example code to come!
 ````
 grit map_tiles.png -mLs -o$*
 ````
