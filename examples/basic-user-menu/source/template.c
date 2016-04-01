@@ -62,6 +62,7 @@ int main(void) {
 	}
 }
 
+// function to handel only A button (for now)
 int otherKeysDownHandler(int keys) {
 	return 0; // come back to this
 }
