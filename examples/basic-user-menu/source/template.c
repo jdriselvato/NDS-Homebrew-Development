@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------
-Listening to: I'm sick today, I usually get a sick like this once a year so it's normal but having a hard time messing around with scrolling-background. I can't think straight so I'm going to learn something different, menu navigation. 
-In any case I'm listening to more Polish Hip-hop, current this: 
-MAŁPA - Nie byłem nigdy (teledysk): https://youtu.be/HCHvGI0-ypA 
+Listening to: I'm sick today, I usually get a sick like this once a year so it's normal but having a hard time messing around with scrolling-background. I can't think straight so I'm going to learn something different, menu navigation.
+In any case I'm listening to more Polish Hip-hop, current this:
+MAŁPA - Nie byłem nigdy (teledysk): https://youtu.be/HCHvGI0-ypA
 Sitek - Chodź Ze Mną: https://www.youtube.com/watch?v=38kk_HtN06s
 Sulin - Jedna minuta: https://youtu.be/-PJ10-qwvcc
 
@@ -18,13 +18,13 @@ What's new:
 #include <nds.h>
 #include <stdio.h>
 // Menu item object
-struct MenuItem { 
+struct MenuItem {
 	const char* name;
 	int count;
 };
 
 // list of menu items
-struct MenuItem items[] = { 
+struct MenuItem items[] = {
 	{"Play", 0},
 	{"Load", 1},
 	{"Settings", 2},
@@ -32,7 +32,8 @@ struct MenuItem items[] = {
 };
 
 // functions
-int keysDownHandler(int keys, int cursorLocation);
+int arrowKeysDownHandler(int keys, int cursorLocation);
+int otherKeysDownHandler(int keys);
 
 int main(void) {
 	videoSetModeSub(MODE_0_2D);
@@ -45,12 +46,14 @@ int main(void) {
 	while(1) {
 		swiWaitForVBlank();
 		consoleClear();
-		
+
 		scanKeys(); // scan for button presses
 		keys = keysDown();
-		cursorLocation = keysDownHandler(keys, cursorLocation);
-
-		//if(keys & KEY_A);
+		if (keys & !KEY_A) { // all arrow button commands should go here
+			cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
+		} else if(keys & KEY_A) {
+			otherKeysDownHandler(keys);
+		}
 
 		for(int x = 0; x < itemCount; x++) {
 			char cursor = (x == cursorLocation) ? '>' : ' '; // check if cursor is at the 'x' location in the list
@@ -59,8 +62,11 @@ int main(void) {
 	}
 }
 
+int otherKeysDownHandler(int keys) {
+	return 0; // come back to this
+}
 // function to handle all button presses
-int keysDownHandler(int keys, int cursorLocation) {
+int arrowKeysDownHandler(int keys, int cursorLocation) {
 	int newCursorLocation = cursorLocation;
 	if (keys & KEY_UP) newCursorLocation--;
 	if (keys & KEY_DOWN) newCursorLocation++;
