@@ -2,7 +2,10 @@
 # disable alpha and set opaque bit for all pixels
 -gT!
 
-# 8 bit bitmap
+# use lz77 compression
+-gzl
+
+# 16 bit bitmap
 -gB16
 
 -gb

@@ -38,40 +38,37 @@ int arrowKeysDownHandler(int keys, int cursorLocation);
 int otherKeysDownHandler(int keys);
 
 int main(void) {
-	// videoSetMode(MODE_5_2D);
-	videoSetModeSub(MODE_5_2D);
-	//vramSetBankC(VRAM_C_SUB_BG);
+	videoSetModeSub(MODE_3_2D);
 
-	int subBg = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 1,0);
-	bgSetPriority(subBg, 3);
-	decompress(backgroundBitmap, BG_GFX_SUB,  LZ77Vram);
-
-    // consoleInit(&consoleSub, 0, BgType_Text4bpp, BgSize_T_256x256, 2,0, false, true); // add console to screen
-    // consoleSetWindow(&consoleSub, 5,5,32,32); // makes things cleaner to set up a window
+	int subBg = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
+	decompress(backgroundBitmap, BG_GFX_SUB, LZ77Vram);
+	// bgScroll(subBg, 0, 32);
+    consoleInit(&consoleSub, 0, BgType_Text4bpp, BgSize_T_256x256, 2, 0, false, true); // add console to screen
+    consoleSetWindow(&consoleSub, 5, 5, 32, 32); // makes things cleaner to set up a window
 
     // lets also set up the console font attributes to make things look more realistic to a games menu
 
-	// int keys; // handles user button presses
-	// int itemCount = 4; // number of item[]
-	// int cursorLocation = 0; //cursor location determines where the > is on the list
+	int keys; // handles user button presses
+	int itemCount = 4; // number of item[]
+	int cursorLocation = 0; //cursor location determines where the > is on the list
 
 	while(1) {
 		swiWaitForVBlank();
-		// consoleClear();
+		consoleClear();
 
-		// scanKeys(); // scan for button presses
-		// keys = keysDown();
-		// if (keys) { // all arrow button commands should go here
-		// 	cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
+		scanKeys(); // scan for button presses
+		keys = keysDown();
+		if (keys) { // all arrow button commands should go here
+			cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
+		}
+		// else if(keys & KEY_A) {
+		// 	otherKeysDownHandler(keys);
 		// }
-		// // else if(keys & KEY_A) {
-		// // 	otherKeysDownHandler(keys);
-		// // }
 
-		// for(int x = 0; x < itemCount; x++) {
-		// 	char cursor = (x == cursorLocation) ? '>' : ' '; // check if cursor is at the 'x' location in the list
-		// 	iprintf("%c %s\n\n\n\n", cursor, items[x].name); // print the item
-		// }
+		for(int x = 0; x < itemCount; x++) {
+			char cursor = (x == cursorLocation) ? '>' : ' '; // check if cursor is at the 'x' location in the list
+			iprintf("%c %s\n\n\n\n", cursor, items[x].name); // print the item
+		}
 	}
 }
 
