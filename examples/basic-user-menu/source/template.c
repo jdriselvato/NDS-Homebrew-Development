@@ -37,14 +37,24 @@ struct MenuItem items[] = {
 int arrowKeysDownHandler(int keys, int cursorLocation);
 int otherKeysDownHandler(int keys);
 
+/*
+PrintConsole cs1;
+videoSetModeSub(MODE_5_2D);
+
+consoleInit(&cs1, 1, BgType_Text4bpp, BgSize_T_256x256, 0, 1, false, true);
+bgInitSub(2, BgType_Bmp16, BgSize_B16_128x128, 2, 1);
+
+*/
+
 int main(void) {
 	videoSetModeSub(MODE_3_2D);
 
-	int subBg = bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
+//	bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 1);
+    // consoleInit(&consoleSub, 0, BgType_Text4bpp, BgSize_T_256x256, 1, 2, false, true); // add console to screen
+    // consoleSetWindow(&consoleSub, 5, 5, 32, 32); // makes things cleaner to set up a window
+
+	bgInitSub(3, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
 	decompress(backgroundBitmap, BG_GFX_SUB, LZ77Vram);
-	// bgScroll(subBg, 0, 32);
-    consoleInit(&consoleSub, 0, BgType_Text4bpp, BgSize_T_256x256, 2, 0, false, true); // add console to screen
-    consoleSetWindow(&consoleSub, 5, 5, 32, 32); // makes things cleaner to set up a window
 
     // lets also set up the console font attributes to make things look more realistic to a games menu
 
