@@ -34,7 +34,6 @@ struct MenuItem items[] = {
 
 // functions
 int arrowKeysDownHandler(int keys, int cursorLocation);
-int otherKeysDownHandler(int keys);
 
 int main(void) {
 	videoSetModeSub(MODE_0_2D);
@@ -61,21 +60,20 @@ int main(void) {
 				char cursor = (x == cursorLocation) ? '>' : ' '; // check if cursor is at the 'x' location in the list
 				iprintf("%c %s\n\n\n\n", cursor, items[x].name); // print the item
 			}
+		} else {
+			iprintf("Not Selected");
 		}
 
 		if (keys & KEY_A) { // A Key Selects current menu item
-			otherKeysDownHandler(keys);
+			selected = true;
 		} else if (keys & KEY_B) { // B Key goes back to menu screen
-
+			selected = false;
 		} else { // handle any other key besides A
-			cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
+			if (selected == false) { // we don't want to move the cursor if its not shown
+				cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
+			}
 		}
 	}
-}
-
-// function to handel only A button (for now)
-int otherKeysDownHandler(int keys) {
-	return 0; // come back to this
 }
 // function to handle all button presses
 int arrowKeysDownHandler(int keys, int cursorLocation) {
