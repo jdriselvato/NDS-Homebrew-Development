@@ -3,6 +3,8 @@ The Nintendo DS has a special place in my heart and I thought it was about time 
 
 This repo is designed to provide an easier understanding of how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see git and provide resources to further the understanding of the topic.
 
+Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
+
 Also, feel free to report issues!
 
 # Repo Examples
