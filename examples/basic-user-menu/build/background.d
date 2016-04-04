@@ -1,1 +1,0 @@
-background.o: background.s
