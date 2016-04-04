@@ -21,7 +21,7 @@ typedef struct {
 Sprite wallSprite;
 
 int main(void) {
-	Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 20, 15};
+	Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 0, 0};
 	mainSprite.gfx = oamAllocateGfx(&oamSub, mainSprite.size, SpriteColorFormat_Bmp);
 
 	videoSetModeSub(MODE_0_2D);
@@ -30,6 +30,7 @@ int main(void) {
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 
 	while(1) {
+
 		dmaFillHalfWords(mainSprite.color, mainSprite.gfx, 16*16*2);
 		oamSet(
 			&oamSub, //sub display

@@ -9,8 +9,9 @@ Also, feel free to report issues!
 
 # Repo Examples
 
-#### *7. sprite-collision* (Moderate) working progress
+#### *7. basic-sprite-collision* (Novice) working progress
 This source code explores the understanding of Sprite Collision detection. Obviously one of the more important parts of developing a game is allowing a reaction based on two sprites touching. In this example, we'll have a center object (wall) that will prevent the sprite from entering it's boundries.
+This is considered basic and does not contain any physics.
 
 #### *6. basic-user-menu* (Novice)
 Here we will explore how to make a simple user menu with various fields and allow the user to select items and go to new data.
