@@ -19,11 +19,13 @@ typedef struct {
 } Sprite;
 
 touchPosition touch;
-Sprite wallSprite;
+
+Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 31, 31};
+Sprite wallSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 31), 256/2 - 16, 192/2 - 16};
 
 int main(void) {
-	Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 31, 31};
 	mainSprite.gfx = oamAllocateGfx(&oamSub, mainSprite.size, SpriteColorFormat_Bmp);
+	wallSprite.gfx = oamAllocateGfx(&oamSub, wallSprite.size, SpriteColorFormat_Bmp);
 
 	videoSetModeSub(MODE_0_2D);
 
@@ -58,6 +60,24 @@ int main(void) {
 			false, false, //vflip, hflip
 			false //apply mosaic
 		);
+
+		dmaFillHalfWords(wallSprite.color, wallSprite.gfx, 16*16*2);
+		oamSet(
+			&oamSub, //sub display
+			1,       //oam entry to set
+			wallSprite.x, wallSprite.y,
+			0, //priority
+			15, //palette for 16 color sprite or alpha for bmp sprite
+			wallSprite.size,
+			SpriteColorFormat_Bmp,
+			wallSprite.gfx,
+			0,
+			true, //double the size of rotated sprites
+			false, //don't hide the sprite
+			false, false, //vflip, hflip
+			false //apply mosaic
+		);
+
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
 	}
