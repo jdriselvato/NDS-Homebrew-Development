@@ -8,11 +8,15 @@ Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more 
 Also, feel free to report issues!
 
 # Repo Examples
+
+#### *7. sprite-collision* (Moderate) working progress
+This source code explores the understanding of Sprite Collision detection. Obviously one of the more important parts of developing a game is allowing a reaction based on two sprites touching. In this example, we'll have a center object (wall) that will prevent the sprite from entering it's boundries.
+
 #### *6. basic-user-menu* (Novice)
 Here we will explore how to make a simple user menu with various fields and allow the user to select items and go to new data.
 
 #### *5. scrolling-background* (Novice) incomplete
-Since I found out about the 128 sprite limit, I needed to figure out a better way to display backgrounds. I'm guessing some where I'm missing a critical peice, probably the understanding of VRAM. So because devkitpro does come with a couple of background examples, I'm going to learn from those and make my own.
+Since I found out about the 128 sprite limit, I needed to figure out a better way to display backgrounds. I'm guessing some where I'm missing a critical peice, probably the understanding of VRAM. So because devkitpro does come with a couple of background examples. This has turned out more complex then I thought. I'll come back to this.
 
 #### *4. tile-generator-top* (Novice)
 In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A. (Novice)
