@@ -1,0 +1,2 @@
+make
+open *.nds
