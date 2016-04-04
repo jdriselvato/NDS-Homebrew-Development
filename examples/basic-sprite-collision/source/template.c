@@ -14,25 +14,24 @@ typedef struct {
 	u16* gfx;
 	SpriteSize size;
 	int color;
-	int x;
-	int y;
+	int x, y; // location on screen
 } Sprite;
 
 touchPosition touch;
 
 Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 31, 31};
-Sprite wallSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 31), 256/2 - 16, 192/2 - 16};
+Sprite wallSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 21), 256/2 - 16, 192/2 - 16};
+
+bool collision();
 
 int main(void) {
 	mainSprite.gfx = oamAllocateGfx(&oamSub, mainSprite.size, SpriteColorFormat_Bmp);
 	wallSprite.gfx = oamAllocateGfx(&oamSub, wallSprite.size, SpriteColorFormat_Bmp);
 
 	videoSetModeSub(MODE_0_2D);
-
-	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
 	vramSetBankD(VRAM_D_SUB_SPRITE);
+	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
 
-	// get the main sprites location
 	int xLoc = mainSprite.x;
 	int yLoc = mainSprite.y;
 
@@ -40,8 +39,10 @@ int main(void) {
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
-			xLoc = touch.px - 16;
-			yLoc = touch.py - 16;
+			if (!collision()) {
+				xLoc = touch.px - 16;
+				yLoc = touch.py - 16;
+			}
 		}
 
 		dmaFillHalfWords(mainSprite.color, mainSprite.gfx, 16*16*2);
@@ -82,4 +83,9 @@ int main(void) {
 		oamUpdate(&oamSub);
 	}
 	return 0;
+}
+
+bool collision() {
+
+	return false;
 }
