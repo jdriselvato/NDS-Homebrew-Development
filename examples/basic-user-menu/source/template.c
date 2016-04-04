@@ -61,7 +61,7 @@ int main(void) {
 				iprintf("%c %s\n\n\n\n", cursor, items[x].name); // print the item
 			}
 		} else {
-			iprintf("Not Selected");
+			iprintf("Selected: %s", items[cursorLocation].name);
 		}
 
 		if (keys & KEY_A) { // A Key Selects current menu item
