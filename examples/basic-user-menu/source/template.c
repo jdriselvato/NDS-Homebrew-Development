@@ -47,6 +47,7 @@ int main(void) {
 	int keys; // handles user button presses
 	int itemCount = 4; // number of item[]
 	int cursorLocation = 0; //cursor location determines where the > is on the list
+	bool selected = false;
 
 	while(1) {
 		swiWaitForVBlank();
@@ -54,16 +55,20 @@ int main(void) {
 
 		scanKeys(); // scan for button presses
 		keys = keysDown();
-		if (keys) { // all arrow button commands should go here
-			cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
-		}
-		// else if(keys & KEY_A) {
-		// 	otherKeysDownHandler(keys);
-		// }
 
-		for(int x = 0; x < itemCount; x++) {
-			char cursor = (x == cursorLocation) ? '>' : ' '; // check if cursor is at the 'x' location in the list
-			iprintf("%c %s\n\n\n\n", cursor, items[x].name); // print the item
+		if (!selected) {
+			for(int x = 0; x < itemCount; x++) {
+				char cursor = (x == cursorLocation) ? '>' : ' '; // check if cursor is at the 'x' location in the list
+				iprintf("%c %s\n\n\n\n", cursor, items[x].name); // print the item
+			}
+		}
+
+		if (keys & KEY_A) { // A Key Selects current menu item
+			otherKeysDownHandler(keys);
+		} else if (keys & KEY_B) { // B Key goes back to menu screen
+
+		} else { // handle any other key besides A
+			cursorLocation = arrowKeysDownHandler(keys, cursorLocation);
 		}
 	}
 }
@@ -78,7 +83,5 @@ int arrowKeysDownHandler(int keys, int cursorLocation) {
 	if (keys & KEY_UP) newCursorLocation--;
 	if (keys & KEY_DOWN) newCursorLocation++;
 	if (newCursorLocation < 0 || newCursorLocation > 3) return cursorLocation; // set boundries so the '> doesn't go off screen
-	// TODO: set these globally I suppose
-
 	return newCursorLocation;
 }
