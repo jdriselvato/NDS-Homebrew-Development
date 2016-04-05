@@ -7,7 +7,9 @@ This source code explores the understanding of Sprite Collision detection. Obvio
 /*---------------------------------------------------------------------------------
 What's new?
 - First time we've messed with the bottom screen touch!
-- Collision. I've adapted the examples from this posting  (from 1999 actually) which has beena great resource:http://www.gamedev.net/page/resources/_/technical/game-programming/collision-detection-r735
+- Collision. Checkout these resources for more details:
+	- http://www.gamedev.net/page/resources/_/technical/game-programming/collision-detection-r735
+	- http://buildnewgames.com/gamephysics/
 ---------------------------------------------------------------------------------*/
 typedef struct {
 	u16* gfx;
