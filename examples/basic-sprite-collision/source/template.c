@@ -4,12 +4,11 @@ This source code explores the understanding of Sprite Collision detection. Obvio
 ---------------------------------------------------------------------------------*/
 
 #include <nds.h>
-
 /*---------------------------------------------------------------------------------
 What's new?
 - First time we've messed with the bottom screen touch!
+- Collision. I've adapted the examples from this posting  (from 1999 actually) which has beena great resource:http://www.gamedev.net/page/resources/_/technical/game-programming/collision-detection-r735
 ---------------------------------------------------------------------------------*/
-
 typedef struct {
 	u16* gfx;
 	SpriteSize size;
@@ -20,7 +19,7 @@ typedef struct {
 touchPosition touch;
 
 Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 31, 31};
-Sprite wallSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 21), 256/2 - 16, 192/2 - 16};
+Sprite wallSprite = {0, SpriteSize_32x32, ARGB16(1, 31, 0, 21), 256/2 - 32, 192/2 - 32`};
 
 bool collision();
 
@@ -62,7 +61,7 @@ int main(void) {
 			false //apply mosaic
 		);
 
-		dmaFillHalfWords(wallSprite.color, wallSprite.gfx, 16*16*2);
+		dmaFillHalfWords(wallSprite.color, wallSprite.gfx, 32*32*2);
 		oamSet(
 			&oamSub, //sub display
 			1,       //oam entry to set
@@ -86,6 +85,24 @@ int main(void) {
 }
 
 bool collision() {
+	int left1, left2;
+	int right1, right2;
+	int top1, top2;
+	int bottom1, bottom2;
 
+	left1 = object1->x;
+	left2 = object2->x;
+	right1 = object1->x + object1->width;
+	right2 = object2->x + object2->width;
+	top1 = object1->y;
+	top2 = object2->y;
+	bottom1 = object1->y + object1->height;
+	bottom2 = object2->y + object2->height;
+
+	if (bottom1 < top2) return(0);
+	if (top1 > bottom2) return(0);
+
+	if (right1 < left2) return(0);
+	if (left1 > right2) return(0);
 	return false;
 }
