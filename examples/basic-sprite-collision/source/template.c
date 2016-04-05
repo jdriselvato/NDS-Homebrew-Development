@@ -40,6 +40,9 @@ int main(void) {
 			if (!collision()) {
 				mainSprite.x = touch.px - 16;
 				mainSprite.y = touch.py - 16;
+			} else {
+				mainSprite.x++;
+				mainSprite.y--;
 			}
 		}
 
@@ -76,14 +79,13 @@ int main(void) {
 			false, false, //vflip, hflip
 			false //apply mosaic
 		);
-
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
 	}
 	return 0;
 }
 
-bool collision() {
+bool collision() { // not working yet
 	int mainLeft, wallLeft;
 	int mainRight, wallRight;
 	int mainTop, wallTop;
@@ -91,17 +93,17 @@ bool collision() {
 
 	mainLeft = mainSprite.x;
 	wallLeft = wallSprite.x;
-	mainRight = mainSprite.x + 16; // 16 because its a 16x16 square
-	wallRight = wallSprite.x + 32; //32x32 square
+	mainRight = mainSprite.x + 8; // 16 because its a 16x16 square
+	wallRight = wallSprite.x + 16; //32x32 square
 	mainTop = mainSprite.y;
 	wallTop = wallSprite.y;
-	mainBottom = mainSprite.y + 16;
-	wallBottom = wallSprite.y + 32;
+	mainBottom = mainSprite.y + 8;
+	wallBottom = wallSprite.y + 16;
 
-	if (mainBottom < wallTop) return true;
-	if (mainTop > wallBottom) return true;
+	if (mainBottom > wallTop) return true;
+	// if (mainTop > wallBottom) return true;
 
-	if (mainRight < wallLeft) return true;
-	if (mainLeft > mainRight) return true;
+	// if (mainRight < wallLeft) return true;
+	// if (mainLeft > mainRight) return true;
 	return false;
 }
