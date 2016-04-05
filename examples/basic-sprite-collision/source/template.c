@@ -19,7 +19,7 @@ typedef struct {
 touchPosition touch;
 
 Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 31, 31};
-Sprite wallSprite = {0, SpriteSize_32x32, ARGB16(1, 31, 0, 21), 256/2 - 32, 192/2 - 32`};
+Sprite wallSprite = {0, SpriteSize_32x32, ARGB16(1, 31, 0, 21), 256/2 - 32, 192/2 - 32};
 
 bool collision();
 
@@ -31,16 +31,13 @@ int main(void) {
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
 
-	int xLoc = mainSprite.x;
-	int yLoc = mainSprite.y;
-
 	while(1) {
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
 			if (!collision()) {
-				xLoc = touch.px - 16;
-				yLoc = touch.py - 16;
+				mainSprite.x = touch.px - 16;
+				mainSprite.y = touch.py - 16;
 			}
 		}
 
@@ -48,7 +45,7 @@ int main(void) {
 		oamSet(
 			&oamSub, //sub display
 			0,       //oam entry to set
-			xLoc, yLoc,
+			mainSprite.x, mainSprite.y,
 			0, //priority
 			15, //palette for 16 color sprite or alpha for bmp sprite
 			mainSprite.size,
@@ -85,24 +82,24 @@ int main(void) {
 }
 
 bool collision() {
-	int left1, left2;
-	int right1, right2;
-	int top1, top2;
-	int bottom1, bottom2;
+	int mainLeft, wallLeft;
+	int mainRight, wallRight;
+	int mainTop, wallTop;
+	int mainBottom, wallBottom;
 
-	left1 = object1->x;
-	left2 = object2->x;
-	right1 = object1->x + object1->width;
-	right2 = object2->x + object2->width;
-	top1 = object1->y;
-	top2 = object2->y;
-	bottom1 = object1->y + object1->height;
-	bottom2 = object2->y + object2->height;
+	mainLeft = mainSprite.x;
+	wallLeft = wallSprite.x;
+	mainRight = mainSprite.x + 16; // 16 because its a 16x16 square
+	wallRight = wallSprite.x + 32; //32x32 square
+	mainTop = mainSprite.y;
+	wallTop = wallSprite.y;
+	mainBottom = mainSprite.y + 16;
+	wallBottom = wallSprite.y + 32;
 
-	if (bottom1 < top2) return(0);
-	if (top1 > bottom2) return(0);
+	if (mainBottom < wallTop) return true;
+	if (mainTop > wallBottom) return true;
 
-	if (right1 < left2) return(0);
-	if (left1 > right2) return(0);
+	if (mainRight < wallLeft) return true;
+	if (mainLeft > mainRight) return true;
 	return false;
 }
