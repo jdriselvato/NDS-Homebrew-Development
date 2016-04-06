@@ -4,6 +4,8 @@ This source code explores the understanding of Sprite Collision detection. Obvio
 ---------------------------------------------------------------------------------*/
 
 #include <nds.h>
+#include <stdio.h>
+
 /*---------------------------------------------------------------------------------
 What's new?
 - First time we've messed with the bottom screen touch!
@@ -14,14 +16,13 @@ What's new?
 typedef struct {
 	u16* gfx;
 	SpriteSize size;
-	int color;
 	int x, y; // location on screen
 } Sprite;
 
 touchPosition touch;
 
-Sprite mainSprite = {0, SpriteSize_16x16, ARGB16(1, 31, 0, 0), 31, 31};
-Sprite wallSprite = {0, SpriteSize_32x32, ARGB16(1, 31, 0, 21), 256/2 - 32, 192/2 - 32};
+Sprite mainSprite = {0, SpriteSize_16x16, 31, 31};
+Sprite wallSprite = {0, SpriteSize_32x32, 256/2 - 32, 192/2 - 32};
 
 bool collision();
 
@@ -33,20 +34,22 @@ int main(void) {
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
 
+	u16 color = ARGB16(1, 31, 0, 31);
+
 	while(1) {
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
 			if (!collision()) {
-				mainSprite.x = touch.px - 16;
-				mainSprite.y = touch.py - 16;
+				color = ARGB16(1, 31, 0, 31);
 			} else {
-				mainSprite.x++;
-				mainSprite.y--;
+				color = ARGB16(1, 31, 31, 0);
 			}
+			mainSprite.x = touch.px - 16;
+			mainSprite.y = touch.py - 16;
 		}
 
-		dmaFillHalfWords(mainSprite.color, mainSprite.gfx, 16*16*2);
+		dmaFillHalfWords(color, mainSprite.gfx, 16*16*2);
 		oamSet(
 			&oamSub, //sub display
 			0,       //oam entry to set
@@ -63,7 +66,7 @@ int main(void) {
 			false //apply mosaic
 		);
 
-		dmaFillHalfWords(wallSprite.color, wallSprite.gfx, 32*32*2);
+		dmaFillHalfWords(color, wallSprite.gfx, 32*32*2);
 		oamSet(
 			&oamSub, //sub display
 			1,       //oam entry to set
@@ -85,25 +88,21 @@ int main(void) {
 	return 0;
 }
 
-bool collision() { // not working yet
-	int mainLeft, wallLeft;
-	int mainRight, wallRight;
-	int mainTop, wallTop;
-	int mainBottom, wallBottom;
+bool collision() { // not working yes
+	int mainLeft = mainSprite.x;
+	int wallLeft = wallSprite.x;
+	int mainRight = mainSprite.x + 16; // 16 because its a 16x16 square
+	int wallRight = wallSprite.x + 32; //32x32 square
+	int mainTop = mainSprite.y;
+	int wallTop = wallSprite.y;
+	int mainBottom = mainSprite.y + 16;
+	int wallBottom = wallSprite.y + 32;
 
-	mainLeft = mainSprite.x;
-	wallLeft = wallSprite.x;
-	mainRight = mainSprite.x + 8; // 16 because its a 16x16 square
-	wallRight = wallSprite.x + 16; //32x32 square
-	mainTop = mainSprite.y;
-	wallTop = wallSprite.y;
-	mainBottom = mainSprite.y + 8;
-	wallBottom = wallSprite.y + 16;
-
-	if (mainBottom > wallTop) return true;
-	// if (mainTop > wallBottom) return true;
-
-	// if (mainRight < wallLeft) return true;
-	// if (mainLeft > mainRight) return true;
+	if (mainLeft < wallRight &&
+		mainRight > wallLeft &&
+		mainTop < wallBottom &&
+		mainBottom > wallTop) {
+    	return true;
+	}
 	return false;
 }
