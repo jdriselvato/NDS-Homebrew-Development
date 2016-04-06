@@ -36,23 +36,18 @@ int main(void) {
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
 
-	u16 color = ARGB16(1, 31, 0, 31);
-
 	while(1) {
 
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
-			if (!collision()) {
-				color = ARGB16(1, 31, 0, 31);
-			} else {
-				color = ARGB16(1, 31, 31, 0);
-			}
-			mainSprite.x = touch.px;
-			mainSprite.y = touch.py;
+			mainSprite.x = touch.px - 16; //16 to center the square to the pen
+			mainSprite.y = touch.py - 16; //16 to center the square to the pen
 		}
 
-		iprintf("\x1b[1;1HWall{%d, %d} | Main{%d, %d}", wallSprite.x, wallSprite.y, mainSprite.x, mainSprite.y);
+		u16 color = !collision() ? ARGB16(1, 31, 0, 31) : ARGB16(1, 31, 31, 0); // the color of the squares
+
+		iprintf("\x1b[1;1HWall{%d, %d}\n Main{%d, %d}", wallSprite.x, wallSprite.y, mainSprite.x, mainSprite.y);
 
 		dmaFillHalfWords(color, mainSprite.gfx, 16*16*2);
 		oamSet(
@@ -97,8 +92,8 @@ int main(void) {
 bool collision() { // not working yes
 	int mainWidth = 8;
 	int mainHeight = 8;
-	int wallWidth = 32;
-	int wallHeight = 32;
+	int wallWidth = 40;
+	int wallHeight = 40;
 
 	int mainLeft = mainSprite.x;
 	int wallLeft = wallSprite.x;
