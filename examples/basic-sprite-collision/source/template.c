@@ -89,7 +89,8 @@ int main(void) {
 	return 0;
 }
 
-bool collision() { // not working yes
+bool collision() {
+	// not sure yet why these are 8 and 40...
 	int mainWidth = 8;
 	int mainHeight = 8;
 	int wallWidth = 40;
