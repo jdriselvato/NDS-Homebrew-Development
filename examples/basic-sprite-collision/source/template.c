@@ -5,7 +5,6 @@ This source code explores the understanding of Sprite Collision detection. Obvio
 
 #include <nds.h>
 #include <stdio.h>
-
 /*---------------------------------------------------------------------------------
 What's new?
 - First time we've messed with the bottom screen touch!
@@ -31,12 +30,16 @@ int main(void) {
 	wallSprite.gfx = oamAllocateGfx(&oamSub, wallSprite.size, SpriteColorFormat_Bmp);
 
 	videoSetModeSub(MODE_0_2D);
+
+	consoleDemoInit();
+
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	oamInit(&oamSub, SpriteMapping_Bmp_1D_128, false);
 
 	u16 color = ARGB16(1, 31, 0, 31);
 
 	while(1) {
+
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
@@ -45,9 +48,11 @@ int main(void) {
 			} else {
 				color = ARGB16(1, 31, 31, 0);
 			}
-			mainSprite.x = touch.px - 16;
-			mainSprite.y = touch.py - 16;
+			mainSprite.x = touch.px;
+			mainSprite.y = touch.py;
 		}
+
+		iprintf("\x1b[1;1HWall{%d, %d} | Main{%d, %d}", wallSprite.x, wallSprite.y, mainSprite.x, mainSprite.y);
 
 		dmaFillHalfWords(color, mainSprite.gfx, 16*16*2);
 		oamSet(
@@ -84,24 +89,30 @@ int main(void) {
 		);
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
+		consoleClear();
 	}
 	return 0;
 }
 
 bool collision() { // not working yes
+	int mainWidth = 8;
+	int mainHeight = 8;
+	int wallWidth = 32;
+	int wallHeight = 32;
+
 	int mainLeft = mainSprite.x;
 	int wallLeft = wallSprite.x;
-	int mainRight = mainSprite.x + 16; // 16 because its a 16x16 square
-	int wallRight = wallSprite.x + 32; //32x32 square
+	int mainRight = mainSprite.x + mainWidth;
+	int wallRight = wallSprite.x + wallWidth;
 	int mainTop = mainSprite.y;
 	int wallTop = wallSprite.y;
-	int mainBottom = mainSprite.y + 16;
-	int wallBottom = wallSprite.y + 32;
+	int mainBottom = mainSprite.y + mainHeight;
+	int wallBottom = wallSprite.y + wallHeight;
 
-	if (mainLeft < wallRight &&
-		mainRight > wallLeft &&
-		mainTop < wallBottom &&
-		mainBottom > wallTop) {
+	if (mainLeft < wallRight && // left main will detect right wall
+		mainRight > wallLeft && // right main will detect left wall
+		mainTop < wallBottom && // top main will detect wall bottom
+		mainBottom > wallTop) { // bottom main will detect wall top
     	return true;
 	}
 	return false;
