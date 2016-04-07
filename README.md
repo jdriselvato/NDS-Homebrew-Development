@@ -51,9 +51,9 @@ Download here: http://desmume.org
 
 #Resources to read
 1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
-2. https://patater.com/files/projects/manual/manual.html - Best guide to get you really familair with developing NDS
-2. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
-3. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
-4. https://mtheall.com/vram.html#T0=1&NT0=32&MB0=0&TB0=0&S0=0 - Tool to check VRAM
-5. http://www.coranac.com/2009/02/some-interesting-numbers-on-nds-code-size/ - Some interesting numbers on NDS code size
-6. http://answers.drunkencoders.com - Different segments to beginner questions
+2. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
+3. https://patater.com/files/projects/manual/manual.html - Best guide to get you really familair with developing NDS
+4. https://web.archive.org/web/20150814060137/http://www.tobw.net/dswiki/index.php?title=Graphic_modes - Graphic Modes
+5. https://mtheall.com/vram.html#T0=1&NT0=32&MB0=0&TB0=0&S0=0 - Tool to check VRAM
+6. http://www.coranac.com/2009/02/some-interesting-numbers-on-nds-code-size/ - Some interesting numbers on NDS code size
+7. http://answers.drunkencoders.com - Different segments to beginner questions
