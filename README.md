@@ -1,26 +1,26 @@
-# NDS-Development
+# NDS Homebew Development
+Welcome to NDS [Homebrew](https://en.wikipedia.org/wiki/Nintendo_DS_homebrew) Development!
+
 The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples and more as I learn how to program on the NDS.
 
-This repo is designed to provide an easier understanding of how to develop on the NDS with devkitpro. The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see git and provide resources to further the understanding of the topic.
+This repo is designed to provide an easier understanding of how to develop on the NDS with devkitpro (C & C++). The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see and provide resources to further the understanding of the topic.
 
 Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
 
-Also, feel free to report issues!
-
 # Repo Examples
 
-#### *7. basic-sprite-collision* (Novice) working progress
-This source code explores the understanding of Sprite Collision detection. Obviously one of the more important parts of developing a game is allowing a reaction based on two sprites touching. In this example, we'll have a center object (wall) that will prevent the sprite from entering it's boundries.
-This is considered basic and does not contain any physics.
+#### *7. basic-sprite-collision* (Novice)
+This source code explores the understanding of Sprite Collision detection. Obviously one of the more important parts of developing a game is allowing a reaction based on two sprites touching. In this example, we'll have a center object (wall) that will notify the user it's entering boundries.
+This is considered basic and does not contain any physics or any dynamic hit detection.
 
 #### *6. basic-user-menu* (Novice)
-Here we will explore how to make a simple user menu with various fields and allow the user to select items and go to new data.
+Here we will explore how to make a simple user menu with various fields and allow the user to select items and go to new screens.
 
 #### *5. scrolling-background* (Novice) incomplete
 Since I found out about the 128 sprite limit, I needed to figure out a better way to display backgrounds. I'm guessing some where I'm missing a critical peice, probably the understanding of VRAM. So because devkitpro does come with a couple of background examples. This has turned out more complex then I thought. I'll come back to this.
 
 #### *4. tile-generator-top* (Novice)
-In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A. (Novice)
+In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A.
 
 #### *3. tile-generator* (Novice)
 We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. This generates a simple 6 x 8 tiled map of 16x16 sized sprites. We used the VRAM Bank D which is specific to the bottom screen in this example.
