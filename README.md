@@ -39,6 +39,8 @@ I first started out here trying to understand OAM, Sprite management and other b
 Devkitpro now starts you off with GC and Wii SDKs. To get the GBA/NDS version of devkitPro use the link below:
 http://devkitpro.org/wiki/Getting_Started/devkitARM
 
+All projects are currently compiled with 1.50.3 NDS rom tool and devkitARM r45 (latest).
+
 After installing (OSX perl install) it requires you to set up environment variables.
 This is what my *~/.bash_profile* looks like:
 ```

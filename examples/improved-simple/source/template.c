@@ -4,6 +4,7 @@ I first started out here trying to understand OAM, Sprite management and other b
 - John Riselvato
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
+
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>
