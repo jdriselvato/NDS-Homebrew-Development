@@ -12,6 +12,9 @@ Here the user can use the up and down key to navigate a menu and view new data w
 What's new:
 - keysDown() lets you hold down a key and it only registers as one press. Great for menus
 - consoleSetWindow() lets you set the window of the console (x, y, width, height)
+
+built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
+
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>

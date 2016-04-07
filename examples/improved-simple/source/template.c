@@ -1,8 +1,9 @@
 /*---------------------------------------------------------------------------------
 
-Simple sprite demo
--- dovoto
+I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
+- John Riselvato
 
+built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>
@@ -54,24 +55,24 @@ int main(void) {
 		}
 
 		oamSet(&oamMain, //main graphics engine context
-			0,           //oam index (0 to 127)  
+			0,           //oam index (0 to 127)
 			touch.px, touch.py,   //x and y pixle location of the sprite
 			0,                    //priority, lower renders last (on top)
-			0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
-			SpriteSize_16x16,     
-			SpriteColorFormat_256Color, 
+			0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite
+			SpriteSize_16x16,
+			SpriteColorFormat_256Color,
 			gfx,                  //pointer to the loaded graphics
-			-1,                  //sprite rotation data  
+			-1,                  //sprite rotation data
 			false,               //double the size when rotating?
 			false,			//hide the sprite?
 			false, false, //vflip, hflip
 			false	//apply mosaic
-			);                          
+			);
 
 		createSquare(touch.px, touch.py);
 
 		swiWaitForVBlank();
-		
+
 		oamUpdate(&oamMain);
 		oamUpdate(&oamSub);
 	}
@@ -86,19 +87,19 @@ void createSquare(int xLoc, int yLoc) {
 		gfxSub[i] = 1 | (1 << 8);
 	}
 
-	oamSet(&oamSub, 
-		0, 
-		xLoc, 
-		yLoc, 
-		0, 
+	oamSet(&oamSub,
 		0,
-		SpriteSize_16x16, 
-		SpriteColorFormat_256Color, 
-		gfxSub, 
-		-1, 
-		false, 
-		false,			
-		false, false, 
-		false	
+		xLoc,
+		yLoc,
+		0,
+		0,
+		SpriteSize_16x16,
+		SpriteColorFormat_256Color,
+		gfxSub,
+		-1,
+		false,
+		false,
+		false, false,
+		false
 		);
 }

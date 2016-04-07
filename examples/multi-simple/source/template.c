@@ -12,6 +12,9 @@ Animal Crossing New Leaf music is the kind of music I hope is available in the a
 Every single song is a master peice of child-like innocence. As if everything is going to be
 okay, no worries, just a small town, with friends and relaxation. That's why I love the DS/GBA/3DS
 so much, it was my buddy growing up. Thanks Nintendo.
+
+built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
+
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>

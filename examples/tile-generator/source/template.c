@@ -1,6 +1,9 @@
 /*---------------------------------------------------------------------------------
 Generating a basic tile generator from array
 -- John Riselvato ( March 26th, 2016 )
+
+built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
+
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>
@@ -59,12 +62,12 @@ int main(int argc, char** argv) {
 				dmaFillHalfWords(tmp.color, gfx_array[count], sprite_width*sprite_height*2); // fill each as a Red Square
 
 				oamSet(
-					&oamSub, //sub display 
+					&oamSub, //sub display
 					count, //oam entry to set
-					tmp.x, tmp.y, //position 
+					tmp.x, tmp.y, //position
 					0, //priority
 					tmp.paletteAlpha, //palette for 16 color sprite or alpha for bmp sprite
-					tmp.size, tmp.format, gfx_array[count], -1, 
+					tmp.size, tmp.format, gfx_array[count], -1,
 					false, //double the size of rotated sprites
 					false, //don't hide the sprite
 					false, false, //vflip, hflip
