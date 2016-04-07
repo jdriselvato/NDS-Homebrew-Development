@@ -22,7 +22,7 @@ typedef struct {
 
 touchPosition touch;
 
-Sprite mainSprite = {0, SpriteSize_16x16, 31, 31};
+Sprite mainSprite = {0, SpriteSize_16x16, 8, 8};
 Sprite wallSprite = {0, SpriteSize_32x32, 256/2 - 32, 192/2 - 32};
 
 bool collision();
@@ -45,6 +45,17 @@ int main(void) {
 			touchRead(&touch);
 			mainSprite.x = touch.px - 16; //16 to center the square to the pen
 			mainSprite.y = touch.py - 16; //16 to center the square to the pen
+		}
+
+		// Arrow Key movement
+		if (keysHeld() & KEY_UP) {
+			mainSprite.y--;
+		} else if (keysHeld() & KEY_DOWN) {
+			mainSprite.y++;
+		} else if (keysHeld() & KEY_LEFT) {
+			mainSprite.x--;
+		} else if (keysHeld() & KEY_RIGHT) {
+			mainSprite.x++;
 		}
 
 		u16 color = !collision() ? ARGB16(1, 31, 0, 31) : ARGB16(1, 31, 31, 0); // the color of the squares
