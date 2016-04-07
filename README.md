@@ -9,6 +9,9 @@ Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more 
 
 # Repo Examples
 
+#### *8. bitmap-sprite-movement* (Novice)
+It's about time we actual use images we'd use in a video game, bitmap sprites. I've provided a sprite sheet that's free to use for any of your personal projects. We'll use this sprite sheet to move the character around the top screen and use different angles to show movement. Example, moving right shows the character looking right.
+
 #### *7. basic-sprite-collision* (Novice)
 This source code explores the understanding of Sprite Collision detection. Obviously one of the more important parts of developing a game is allowing a reaction based on two sprites touching. In this example, we'll have a center object (wall) that will notify the user it's entering boundries.
 This is considered basic and does not contain any physics or any dynamic hit detection.
