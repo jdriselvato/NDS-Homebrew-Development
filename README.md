@@ -26,14 +26,14 @@ Since I found out about the 128 sprite limit, I needed to figure out a better wa
 In `tile-generator` we built the tile map on the bottom screen in this example, we do the same on the top screen using VRAM Bank A.
 
 #### *3. tile-generator* (Novice)
-We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. This generates a simple 6 x 8 tiled map of 16x16 sized sprites. We used the VRAM Bank D which is specific to the bottom screen in this example.
+We take what we've learned from `multi-simple` and instead of randomly placing sprites down, we follow an array. Just like you would in a tile based game. This generates a simple 6 x 8 tiled map of 16x16 sized sprites. We used the VRAM Bank D which is specific to the bottom screen and Sprites.
 
 <img align="right" width="150" src="http://i.imgur.com/zv62hWU.gif">
 #### *2. multi-simple* (Novice)
-This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the key up adds another sprite to the screen. This is also a good example to see how to apply different colors to the same sprite object.
+This project demos the ability to dynamically add sprites to the screen and simple rotation animation. Pressing the `A Key` adds another sprite to the screen. This is also a good example to see how to apply different colors to the same sprite object.
 
 #### *1. improved-simple* (Novice)
-I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
+This gives an excellent example of sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 
 # Downloading and Installing
 Devkitpro now starts you off with GC and Wii SDKs. To get the GBA/NDS version of devkitPro use the link below:
@@ -63,6 +63,6 @@ Download here: http://desmume.org
 6. http://www.coranac.com/2009/02/some-interesting-numbers-on-nds-code-size/ - Some interesting numbers on NDS code size
 7. http://answers.drunkencoders.com - Different segments to beginner questions
 8. http://www.cc.gatech.edu/~hyesoon/spr11/lec_arm_prog1.pdf - really awesome intro to the technical size of NDS development from GA Tech!
- 
+
 # Other Developers Examples
 1. https://github.com/Thunderbolt26/nintendo_ds_game - 3 Mini Games in one full source
