@@ -1,5 +1,7 @@
 /*---------------------------------------------------------------------------------
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
+
+What I listened to while refactoring this: https://www.youtube.com/watch?v=ob_nQpBFpL0
 - John Riselvato
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
@@ -26,19 +28,23 @@ int main(void) {
 	int SCREEN_BOTTOM = 192 - 16;
 
 	while(1) {
+		// scan for touch
 		scanKeys();
 		int key = keysHeld();
 
+		// react to touch
 		if(key & KEY_TOUCH) touchRead(&touch); // set touch variable
 		if(!key && touch.py < SCREEN_BOTTOM) touch.py += 1.0; // let the square fall
 
+		// draw based on touch
 		createSquare(touch.px, touch.py, &oamMain, mainGFX, ARGB16(1, 31, 12, 12));
 		createSquare(touch.px, touch.py, &oamSub, subGFX, ARGB16(1, 12, 31, 12));
 
-
+		// update oam
 		oamUpdate(&oamSub); // (sub) updates the oam before so VBlank can update the graphics on screen
 		oamUpdate(&oamMain); // (sub) updates the oam before so VBlank can update the graphics on screen
 
+		// draw screen
 		swiWaitForVBlank(); // prints the screen
 	}
 	return 0;
