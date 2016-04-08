@@ -1,106 +1,64 @@
 /*---------------------------------------------------------------------------------
-
 I first started out here trying to understand OAM, Sprite management and other basic graphic concepts. The End result is two colored squares sperated by screens. It also includes the sprite falling once it's let go to simulate animation.
 - John Riselvato
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
-
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
-void createSquare(int xLoc, int yLoc);
+touchPosition touch; // used to move square
+void createSquare(int xLoc, int yLoc, OamState* screen, u16* gfx, u16 color);
 
-//---------------------------------------------------------------------------------
 int main(void) {
-	//---------------------------------------------------------------------------------
-	int i = 0;
-	touchPosition touch;
+	u16* mainGFX = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_Bmp);
+	u16* subGFX = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_Bmp);
 
+	// Set up the top screen
 	videoSetMode(MODE_0_2D);
-	videoSetModeSub(MODE_0_2D);
-
 	vramSetBankA(VRAM_A_MAIN_SPRITE);
+	oamInit(&oamMain, SpriteMapping_1D_32, false);
+
+	// set up the bottom screen
+	videoSetModeSub(MODE_0_2D);
 	vramSetBankD(VRAM_D_SUB_SPRITE);
+	oamInit(&oamSub, SpriteMapping_1D_32, false);
 
-	oamInit(&oamMain, SpriteMapping_1D_32, false); // setting up the top screen
-	oamInit(&oamSub, SpriteMapping_1D_32, false); // setting up the bottom screen
-
-	u16* gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-
-	for(i = 0; i < 16 * 16 / 2; i++) {
-		gfx[i] = 1 | (1 << 8); // oddly enough equal 257 what does it mean?!
-		// gfxSub[i] = 1 | (1 << 8);
-	}
-
-	SPRITE_PALETTE[1] = RGB15(31,31,0); // square colors
-	SPRITE_PALETTE_SUB[1] = RGB15(0,31,0); // square colors
-
-	// Simple gravity constants
 	int SCREEN_BOTTOM = 192 - 16;
 
 	while(1) {
-
 		scanKeys();
 		int key = keysHeld();
 
-		if(key & KEY_TOUCH)
-			touchRead(&touch);
+		if(key & KEY_TOUCH) touchRead(&touch); // set touch variable
+		if(!key && touch.py < SCREEN_BOTTOM) touch.py += 1.0; // let the square fall
 
-		if(!key) {
-			if (touch.py < SCREEN_BOTTOM) {
-				touch.py += 1.0;
-			}
-		}
+		createSquare(touch.px, touch.py, &oamMain, mainGFX, ARGB16(1, 31, 12, 12));
+		createSquare(touch.px, touch.py, &oamSub, subGFX, ARGB16(1, 12, 31, 12));
 
-		oamSet(&oamMain, //main graphics engine context
-			0,           //oam index (0 to 127)
-			touch.px, touch.py,   //x and y pixle location of the sprite
-			0,                    //priority, lower renders last (on top)
-			0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite
-			SpriteSize_16x16,
-			SpriteColorFormat_256Color,
-			gfx,                  //pointer to the loaded graphics
-			-1,                  //sprite rotation data
-			false,               //double the size when rotating?
-			false,			//hide the sprite?
-			false, false, //vflip, hflip
-			false	//apply mosaic
-			);
 
-		createSquare(touch.px, touch.py);
+		oamUpdate(&oamSub); // (sub) updates the oam before so VBlank can update the graphics on screen
+		oamUpdate(&oamMain); // (sub) updates the oam before so VBlank can update the graphics on screen
 
-		swiWaitForVBlank();
-
-		oamUpdate(&oamMain);
-		oamUpdate(&oamSub);
+		swiWaitForVBlank(); // prints the screen
 	}
-
 	return 0;
 }
 
-void createSquare(int xLoc, int yLoc) {
-	u16* gfxSub = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
-
-	for(int i = 0; i < 16 * 16 / 2; i++) {
-		gfxSub[i] = 1 | (1 << 8);
-	}
-
-	oamSet(&oamSub,
-		0,
-		xLoc,
-		yLoc,
-		0,
-		0,
-		SpriteSize_16x16,
-		SpriteColorFormat_256Color,
-		gfxSub,
-		-1,
-		false,
-		false,
-		false, false,
-		false
+// createSquare is a function that easily allows us to add a sprite on the screen with various properties.
+void createSquare(int xLoc, int yLoc, OamState* screen, u16* gfx, u16 color) {
+	dmaFillHalfWords(color, gfx, 16*16*2); // this is how to assign the color fill to the oam gfx
+	oamSet(screen, // which display
+		1, // the oam entry to set
+		xLoc, yLoc, // x & y location
+		0, // priority
+		15, // palette for 16 color sprite or alpha for bmp sprite
+		SpriteSize_16x16, // size
+		SpriteColorFormat_Bmp, // color type
+		gfx, // the oam gfx
+		0, //affine index
+		true, //double the size of rotated sprites
+		false, //don't hide the sprite
+		false, false, //vflip, hflip
+		false //apply mosaic
 		);
 }
