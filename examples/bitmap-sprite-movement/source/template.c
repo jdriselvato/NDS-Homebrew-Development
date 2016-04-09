@@ -15,11 +15,13 @@ Things to know:
 typedef struct {
 	int x, y; // x/y lcoation
 	u16* gfx; // oam GFX
+	int gfx_frame;
+
 	int state; // sprite walk state
 	int frame; // the sprite sheet frame
 } Character;
 
-enum SpriteState {WALK_UP = 0, WALK_RIGHT = 1, WALK_DOWN = 2, WALK_LEFT = 3}; // states for walking
+enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
 
 int main(int argc, char** argv) {
 	Character character = {0, 0}; // set the initial location of the sprite
@@ -30,10 +32,17 @@ int main(int argc, char** argv) {
 	oamInit(&oamMain, SpriteMapping_1D_128, false);
 
 	character.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	character.frame = (u8*)character16x16Tiles;
+	character.gfx_frame = (u8*)character16x16Tiles;
+
 	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512);
 
 	while(1) {
+		character.state = WALK_DOWN;
+
+		int frame = character.frame + character.state;
+		u8* offset = character.gfx + frame * 16*16;
+
+		dmaCopy(offset, character.gfx, 16*16);
 
 		oamSet(&oamMain,
 			0, // oam entry id
