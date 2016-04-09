@@ -5,7 +5,7 @@ In this example, we explore how to use grit, parsing bitmap sprite sheets and di
 ### Sprite
 Here's the sprite we'll be using. It's simple and generic but if you want to use it in your own game, it's free to use.
 
-![character16x16](./gfx/character16x16.png)
+[![character16x16](./gfx/character16x16.png)]
 Simply a 64x16 spritesheet, with 16x16 sprites. 
 
 # Grit setup
@@ -20,7 +20,7 @@ Below is the grit file for the character16x16.png:
 -Mw2 # Metatile width
 ````
 
-The most important command to note here is the `-Mh<n>` and the `-Mw<n>` where `n = 2`. The NDS hardware requires tiles to be 8*8 pixels. Since the sprites we'll use are 16x16 `n` needs to be 2 (`8*2=16`). If your sprite was 32x32, `n = 4`.
+The most important command to note here is the `-Mh<n>` and the `-Mw<n>` where `n = 2`. The NDS hardware requires tiles to be 8*8 pixels. Since the sprites we'll use are 16x16 `n` needs to be 2 (`8*2=16`). If your sprite was 32x32, `n = 4`. [More on metatiles here](https://devkitpro.org/viewtopic.php?f=6&t=621).
 
 Running the `MakeFile` provide will result in the build folder including a `character16x16.h` header file and a `character16x16.s`. We'll be using this in our code to reference this sprite sheet now. It should look pretty much like this:
 ````
