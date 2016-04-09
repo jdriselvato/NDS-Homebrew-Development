@@ -21,9 +21,24 @@ Below is the grit file for the character16x16.png:
 
 The most important command to note here is the `-Mh<n>` and the `-Mw<n>` where `n = 2`. The NDS hardware requires tiles to be 8*8 pixels. Since the sprites we'll use are 16x16 `n` needs to be 2 (`8*2=16`). If your sprite was 32x32, `n = 4`.
 
-Running the `MakeFile` provide will result in the build folder including a `character16x16.h` header file. We'll be using this in our code to reference this sprite sheet now.
+Running the `MakeFile` provide will result in the build folder including a `character16x16.h` header file and a `character16x16.s`. We'll be using this in our code to reference this sprite sheet now. It should look pretty much like this:
+````
+#ifndef GRIT_CHARACTER16X16_H
+#define GRIT_CHARACTER16X16_H
+
+#define character16x16TilesLen 1024
+extern const unsigned int character16x16Tiles[256];
+
+#define character16x16PalLen 512
+extern const unsigned short character16x16Pal[256];
+
+#endif // GRIT_CHARACTER16X16_H
+````
+
+The header file referances the basic variables that are needed from the `character16x16.s` file. The `character16x16.s` contains information about your png file that the NDS understands. A more advance understanding is coming soon... (as soon as I understand it better).
 
 NOTE: some MakeFiles might have .bmp defined in it. If you are using `.png` images, change all `.bmp` to `.png` to compile the header files.
+NOTE: you might need to run `make` twice to get the `.s` file.
 
 # Understanding the Code
 
