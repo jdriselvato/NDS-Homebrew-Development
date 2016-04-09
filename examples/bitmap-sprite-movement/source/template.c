@@ -5,16 +5,15 @@ It's about time we actual use images we'd use in a video game, bitmap sprites. I
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 
+Things to know:
+- How to convert a png sprite sheet with grit to a header file
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
-/*---------------------------------------------------------------------------------
-Things to know:
----------------------------------------------------------------------------------*/
+#include <character16x16.h>
 
 typedef struct {
 	u16* gfx;
-	int x;
-	int y;
+	int x, y;
 } Sprite;
 
 int main(int argc, char** argv) {
