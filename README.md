@@ -8,7 +8,7 @@ This repo is designed to provide an easier understanding of how to develop on th
 Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
 
 # Repo Examples
-#### *9. basic-first-game* (Moderate) :octocat: Deving: octocat:
+#### *9. basic-first-game* (Moderate) :octocat: Deving :octocat:
 Everything we've learned from the first few examples has given us enough knowledge to create our first game. We'll be starting off with the `bitmap-sprite-movement` code and expanding it. Specifically, we'll be using what we learned from `bitmap-sprite-movement` and `basic-sprite-collision` to create collection game. So the character will be able to collect coins and a scoreboard will update. It's endless and no real goal but challange yourself to improve it to a full game (maybe like snake?).
 
 #### *8. bitmap-sprite-movement* (Novice)
