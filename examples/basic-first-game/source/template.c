@@ -22,10 +22,12 @@ typedef struct {
 
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
 
+Character characterMovement(Character character);
+void generateDiamond();
 void addBackground();
 
 int main(int argc, char** argv) {
-	Character character = {0, 0}; // set the initial x, y location of the sprite
+	Character character = {20, 20}; // set the initial x, y location of the sprite
 
 	// Initialize the top screen engine
 	videoSetMode(MODE_0_2D);
@@ -37,37 +39,7 @@ int main(int argc, char** argv) {
 	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
 
 	while(1) {
-		scanKeys();
-		int keys = keysHeld();
-
-		if (keys & KEY_RIGHT) {
-			character.state = WALK_RIGHT;
-			character.x++;
-		} else if (keys & KEY_LEFT) {
-			character.state = WALK_LEFT;
-			character.x--;
-		} else if (keys & KEY_DOWN) {
-			character.state = WALK_DOWN;
-			character.y++;
-		} else if (keys & KEY_UP) {
-			character.state = WALK_UP;
-			character.y--;
-		}
-
-
-		int frame = character.state;
-		u8* offset = character.gfx_frame + frame * 16*16;
-		dmaCopy(offset, character.gfx, 16*16);
-
-		oamSet(&oamMain,
-			0, // oam entry id
-			character.x, character.y, // x, y location
-			0, 15, // priority, palette
-			SpriteSize_16x16,
-			SpriteColorFormat_256Color,
-			character.gfx, // the oam gfx
-			-1, false, false, false, false, false);
-
+		character = characterMovement(character);
 		addBackground();
 
 		swiWaitForVBlank();
@@ -76,10 +48,51 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+/*---------------------------------------------------------------------------------
+Code for Character
+---------------------------------------------------------------------------------*/
+Character characterMovement(Character character) {
+	scanKeys();
+	int keys = keysHeld();
+
+	if (keys & KEY_RIGHT) {
+		character.state = WALK_RIGHT;
+		character.x++;
+	} else if (keys & KEY_LEFT) {
+		character.state = WALK_LEFT;
+		character.x--;
+	} else if (keys & KEY_DOWN) {
+		character.state = WALK_DOWN;
+		character.y++;
+	} else if (keys & KEY_UP) {
+		character.state = WALK_UP;
+		character.y--;
+	}
+
+	int frame = character.state;
+	u8* offset = character.gfx_frame + frame * 16*16;
+	dmaCopy(offset, character.gfx, 16*16);
+
+	oamSet(&oamMain,
+		0, // oam entry id
+		character.x, character.y, // x, y location
+		0, 15, // priority, palette
+		SpriteSize_16x16,
+		SpriteColorFormat_256Color,
+		character.gfx, // the oam gfx
+		-1, false, false, false, false, false);
+
+	return character;
+}
 
 /*---------------------------------------------------------------------------------
-BELOW IS NOT PART OF THE TUTORIAL BUT IS A GOOD EXAMPLE OF HOW TO MIX SPRITES WITH BACKGROUNDS
-I'm really adding this code because without a background, you can't see the black parts of the sprite.
+Code for generating the diamonds (coins)
+---------------------------------------------------------------------------------*/
+void generateDiamond() {
+
+}
+/*---------------------------------------------------------------------------------
+Code for the background
 ---------------------------------------------------------------------------------*/
 typedef struct {
 	u16* gfx;
@@ -92,18 +105,18 @@ typedef struct {
 } BGTile;
 
 int tile_colors[] = {
-	ARGB16(1, 0, 0, 31), // blue (water?)
+	ARGB16(1, 12, 12, 12), // gray (stone wall?)
 	ARGB16(1, 0, 31, 0), // green (grass?)
 	ARGB16(1, 31, 31, 0) // yellow (sand?)
 };
 
 int tile_array[6][8] = { // create a map layout
-	{0, 0, 0, 0, 0, 0, 0, 0},
-	{0, 0, 2, 2, 1, 1, 0, 0},
-	{0, 1, 1, 2, 1, 1, 1, 0},
-	{0, 1, 1, 2, 2, 2, 2, 0},
-	{0, 0, 1, 1, 1, 1, 2, 0},
-	{0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 2, 0, 0, 0, 0},
+	{1, 1, 1, 2, 1, 1, 1, 1},
+	{1, 1, 1, 2, 1, 1, 1, 1},
+	{1, 1, 1, 2, 2, 2, 2, 1},
+	{1, 1, 1, 1, 1, 1, 2, 1},
+	{1, 1, 1, 1, 1, 1, 2, 1},
 };
 
 u16* gfx_array[6*8] = {0}; // unfortunately using this is the easiest way to keep track of gfx for oamSet.
