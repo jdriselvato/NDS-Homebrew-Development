@@ -24,7 +24,7 @@ typedef struct {
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
 
 int main(int argc, char** argv) {
-	Character character = {0, 0}; // set the initial location of the sprite
+	Character character = {0, 0}; // set the initial x, y location of the sprite
 
 	// Initialize the top screen engine
 	videoSetMode(MODE_0_2D);
@@ -37,7 +37,22 @@ int main(int argc, char** argv) {
 	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
 
 	while(1) {
-		character.state = WALK_DOWN;
+		scanKeys();
+		int keys = keysHeld();
+		if (keys & KEY_RIGHT) {
+			character.state = WALK_RIGHT;
+			character.x++;
+		} else if (keys & KEY_LEFT) {
+			character.state = WALK_LEFT;
+			character.x--;
+		} else if (keys & KEY_DOWN) {
+			character.state = WALK_DOWN;
+			character.y++;
+		} else if (keys & KEY_UP) {
+			character.state = WALK_UP;
+			character.y--;
+		}
+
 
 		int frame = character.frame + character.state;
 		u8* offset = character.gfx_frame + frame * 16*16;
@@ -48,7 +63,7 @@ int main(int argc, char** argv) {
 			0, // oam entry id
 			character.x, character.y, // x, y location
 			0, 0, // priority, palette
-			SpriteSize_32x32,
+			SpriteSize_16x16,
 			SpriteColorFormat_256Color,
 			character.gfx, // the oam gfx
 			-1, false, false, false, false, false);
