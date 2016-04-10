@@ -58,8 +58,7 @@ template.o: \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/video.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h \
- /Users/jdriselvato/Programming/NDS/NDS-Development/examples/basic-first-game/build/character16x16.h \
- /Users/jdriselvato/Programming/NDS/NDS-Development/examples/basic-first-game/build/gem16x16.h
+ /Users/jdriselvato/Programming/NDS/NDS-Development/examples/basic-first-game/build/spritesheet.h
 
 /Users/jdriselvato/devkitPro/libnds/include/nds.h:
 
@@ -177,6 +176,4 @@ template.o: \
 
 /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h:
 
-/Users/jdriselvato/Programming/NDS/NDS-Development/examples/basic-first-game/build/character16x16.h:
-
-/Users/jdriselvato/Programming/NDS/NDS-Development/examples/basic-first-game/build/gem16x16.h:
+/Users/jdriselvato/Programming/NDS/NDS-Development/examples/basic-first-game/build/spritesheet.h:

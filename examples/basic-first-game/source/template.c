@@ -12,8 +12,7 @@ Things to know:
 #include <nds.h>
 #include <stdio.h>
 
-#include <character16x16.h>
-#include <gem16x16.h>
+#include <spritesheet.h>
 
 typedef struct {
 	int x, y; // x/y lcoation
@@ -52,14 +51,12 @@ int main(int argc, char** argv) {
 
 	// Set up the Character sprite
 	character.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	character.gfx_frame = (u8*)character16x16Tiles; // makes a reference to character16x16Tiles from character16x16.h
-	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
+	character.gfx_frame = (u8*)spritesheetTiles; // makes a reference to character16x16Tiles from character16x16.h
+	dmaCopy(spritesheetPal, SPRITE_PALETTE, 512);
 
 	// Set up the Gem sprite
 	gem_sprite.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gem_sprite.gfx_frame = (u8*)gem16x16Tiles;
-	//dmaCopy(gem16x16Pal, SPRITE_PALETTE, 512);
-
+	gem_sprite.gfx_frame = (u8*)spritesheetTiles;
 	while(1) {
 		printf("\x1b[1;1HScore: %d", score);
 		character = characterMovement(character);
@@ -113,7 +110,7 @@ Character characterMovement(Character character) {
 Code for generating the gem
 ---------------------------------------------------------------------------------*/
 void generateGem(Gem gem_sprite) {
-	u8* offset = gem_sprite.gfx_frame + 0 * 16*16;
+	u8* offset = gem_sprite.gfx_frame + 4 * 16*16;
 	dmaCopy(offset, gem_sprite.gfx, 16*16);
 
 	oamSet(&oamMain,
