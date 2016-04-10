@@ -10,6 +10,7 @@ Things to know:
 - Everything from the first example code to bitmap-sprite-movement
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
+#include <stdio.h>
 #include <character16x16.h>
 
 typedef struct {
@@ -26,8 +27,14 @@ Character characterMovement(Character character);
 void generateDiamond();
 void addBackground();
 
+int score = 0;
+
 int main(int argc, char** argv) {
 	Character character = {20, 20}; // set the initial x, y location of the sprite
+
+	videoSetModeSub(MODE_0_2D);
+	vramSetBankD(VRAM_D_SUB_SPRITE);
+	consoleDemoInit();
 
 	// Initialize the top screen engine
 	videoSetMode(MODE_0_2D);
@@ -39,6 +46,7 @@ int main(int argc, char** argv) {
 	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
 
 	while(1) {
+		printf("\x1b[1;1HScore: %d", score);
 		character = characterMovement(character);
 		addBackground();
 
