@@ -11,7 +11,9 @@ Things to know:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>
+
 #include <character16x16.h>
+#include <gem16x16.h>
 
 typedef struct {
 	int x, y; // x/y lcoation
@@ -23,14 +25,21 @@ typedef struct {
 
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
 
+typedef struct {
+	u16* gfx;
+	u8* gfx_frame;
+	int x, y;
+} Gem;
+
 Character characterMovement(Character character);
-void generateDiamond();
+void generateGem(Gem gem_sprite);
 void addBackground();
 
 int score = 0;
 
 int main(int argc, char** argv) {
 	Character character = {20, 20}; // set the initial x, y location of the sprite
+	Gem gem_sprite = {0, 0}; // add the gem to the screen
 
 	videoSetModeSub(MODE_0_2D);
 	vramSetBankD(VRAM_D_SUB_SPRITE);
@@ -41,13 +50,20 @@ int main(int argc, char** argv) {
 	vramSetBankA(VRAM_A_MAIN_SPRITE | VRAM_A_MAIN_BG);
 	oamInit(&oamMain, SpriteMapping_1D_128, false);
 
+	// Set up the Character sprite
 	character.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	character.gfx_frame = (u8*)character16x16Tiles; // makes a reference to character16x16Tiles from character16x16.h
 	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
 
+	// Set up the Gem sprite
+	gem_sprite.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gem_sprite.gfx_frame = (u8*)gem16x16Tiles;
+	dmaCopy(gem16x16Pal, SPRITE_PALETTE, 512);
+
 	while(1) {
 		printf("\x1b[1;1HScore: %d", score);
 		character = characterMovement(character);
+		generateGem(gem_sprite);
 		addBackground();
 
 		swiWaitForVBlank();
@@ -94,11 +110,22 @@ Character characterMovement(Character character) {
 }
 
 /*---------------------------------------------------------------------------------
-Code for generating the diamonds (coins)
+Code for generating the gem
 ---------------------------------------------------------------------------------*/
-void generateDiamond() {
+void generateGem(Gem gem_sprite) {
+	u8* offset = gem_sprite.gfx_frame + 0 * 16*16;
+	dmaCopy(offset, gem_sprite.gfx, 16*16);
 
+	oamSet(&oamMain,
+		1, // oam entry id
+		gem_sprite.x, gem_sprite.y, // x, y location
+		0, 15, // priority, palette
+		SpriteSize_16x16,
+		SpriteColorFormat_256Color,
+		gem_sprite.gfx, // the oam gfx
+		-1, false, false, false, false, false);
 }
+
 /*---------------------------------------------------------------------------------
 Code for the background
 ---------------------------------------------------------------------------------*/
