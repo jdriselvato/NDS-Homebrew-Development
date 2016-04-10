@@ -15,7 +15,7 @@ Things to know:
 typedef struct {
 	int x, y; // x/y lcoation
 	u16* gfx; // oam GFX
-	int gfx_frame;
+	u8* gfx_frame;
 
 	int state; // sprite walk state
 	int frame; // the sprite sheet frame
@@ -34,13 +34,13 @@ int main(int argc, char** argv) {
 	character.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	character.gfx_frame = (u8*)character16x16Tiles;
 
-	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512);
+	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
 
 	while(1) {
 		character.state = WALK_DOWN;
 
 		int frame = character.frame + character.state;
-		u8* offset = character.gfx + frame * 16*16;
+		u8* offset = character.gfx_frame + frame * 16*16;
 
 		dmaCopy(offset, character.gfx, 16*16);
 

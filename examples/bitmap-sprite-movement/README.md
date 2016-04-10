@@ -19,7 +19,7 @@ Below is the grit file for the character16x16.png:
 -Mw2 # Metatile width
 ````
 
-The most important command to note here is the `-Mh<n>` and the `-Mw<n>` where `n = 2`. The NDS hardware requires tiles to be 8*8 pixels. Since the sprites we'll use are 16x16 `n` needs to be 2 (`8*2=16`). If your sprite was 32x32, `n = 4`.
+The most important command to note here is the `-Mh<n>` and the `-Mw<n>` where `n = 2`. The NDS hardware requires tiles to be 8*8 pixels. Since the sprites we'll use are 16x16 `n` needs to be 2 (`8*2=16`). If your sprite was 32x32, `n = 4`. [More on metatiles here](https://devkitpro.org/viewtopic.php?f=6&t=621).
 
 Running the `MakeFile` provide will result in the build folder including a `character16x16.h` header file and a `character16x16.s`. We'll be using this in our code to reference this sprite sheet now. It should look pretty much like this:
 ````
@@ -33,6 +33,11 @@ extern const unsigned int character16x16Tiles[256];
 extern const unsigned short character16x16Pal[256];
 
 #endif // GRIT_CHARACTER16X16_H
+````
+NOTE the `character16x16Pal` and `character16x16Tiles` arrays. Those are important, if grit didn't generate those for you ensure that your grit command in the `MakeFile` looks something like this:
+````
+	grit $< -fts -o$*
+
 ````
 
 The header file referances the basic variables that are needed from the `character16x16.s` file. The `character16x16.s` contains information about your png file that the NDS understands. A more advance understanding is coming soon... (as soon as I understand it better).
