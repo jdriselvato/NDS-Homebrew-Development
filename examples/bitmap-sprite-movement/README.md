@@ -5,7 +5,8 @@ In this example, we explore how to use grit, parsing bitmap sprite sheets and di
 ### Sprite
 Here's the sprite we'll be using. It's simple and generic but if you want to use it in your own game, it's free to use.
 
-/// SPRITE IMAGE HERE
+[![character16x16](./gfx/character16x16.png)]
+Simply a 64x16 spritesheet, with 16x16 sprites. 
 
 # Grit setup
 In this project, we'll be using grit to convert the sprite I've provide into a format the NDS understands. The grit file must be in the same folder as the sprite and named the same. In most case, these files should be place in `gfx` or `data` depending on the MakeFile. In this case we'll use the `gfx` folder.
