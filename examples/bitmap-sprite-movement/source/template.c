@@ -39,6 +39,7 @@ int main(int argc, char** argv) {
 	while(1) {
 		scanKeys();
 		int keys = keysHeld();
+
 		if (keys & KEY_RIGHT) {
 			character.state = WALK_RIGHT;
 			character.x++;
@@ -56,7 +57,6 @@ int main(int argc, char** argv) {
 
 		int frame = character.frame + character.state;
 		u8* offset = character.gfx_frame + frame * 16*16;
-
 		dmaCopy(offset, character.gfx, 16*16);
 
 		oamSet(&oamMain,
