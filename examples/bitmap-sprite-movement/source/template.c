@@ -18,7 +18,6 @@ typedef struct {
 	u8* gfx_frame;
 
 	int state; // sprite walk state
-	int frame; // the sprite sheet frame
 } Character;
 
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
@@ -34,8 +33,7 @@ int main(int argc, char** argv) {
 	oamInit(&oamMain, SpriteMapping_1D_128, false);
 
 	character.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	character.gfx_frame = (u8*)character16x16Tiles;
-
+	character.gfx_frame = (u8*)character16x16Tiles; // makes a reference to character16x16Tiles from character16x16.h
 	dmaCopy(character16x16Pal, SPRITE_PALETTE, 512); // 512 because character16x16Pal
 
 	while(1) {
@@ -57,14 +55,14 @@ int main(int argc, char** argv) {
 		}
 
 
-		int frame = character.frame + character.state;
+		int frame = character.state;
 		u8* offset = character.gfx_frame + frame * 16*16;
 		dmaCopy(offset, character.gfx, 16*16);
 
 		oamSet(&oamMain,
 			0, // oam entry id
 			character.x, character.y, // x, y location
-			0, -1, // priority, palette
+			0, 15, // priority, palette
 			SpriteSize_16x16,
 			SpriteColorFormat_256Color,
 			character.gfx, // the oam gfx
