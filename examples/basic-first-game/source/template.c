@@ -31,7 +31,8 @@ typedef struct {
 } Gem;
 
 Character characterMovement(Character character);
-void generateGem(Gem gem_sprite);
+Gem generateGem(Gem gem_sprite);
+bool collisionDetected(Gem gem_sprite, Character character);
 void addBackground();
 
 int score = 0;
@@ -59,8 +60,15 @@ int main(int argc, char** argv) {
 	gem_sprite.gfx_frame = (u8*)spritesheetTiles;
 	while(1) {
 		printf("\x1b[1;1HScore: %d", score);
+
+		if (collisionDetected(gem_sprite, character)) {
+			score++;
+			gem_sprite.x = rand() % (256-16) + 1;
+			gem_sprite.y = rand() % (192-16) + 1;
+		}
+
 		character = characterMovement(character);
-		generateGem(gem_sprite);
+		gem_sprite = generateGem(gem_sprite);
 		addBackground();
 
 		swiWaitForVBlank();
@@ -105,11 +113,38 @@ Character characterMovement(Character character) {
 
 	return character;
 }
+/*---------------------------------------------------------------------------------
+Code for collision detection
+---------------------------------------------------------------------------------*/
+bool collisionDetected(Gem gem_sprite, Character character) {
+	int characterWidth = 16;
+	int characterHeight = 16;
+	int gemWidth = 16;
+	int gemHeight = 16;
+
+	int characterLeft = character.x;
+	int gemLeft = gem_sprite.x;
+	int characterRight = character.x + characterWidth;
+	int gemRight = gem_sprite.x + gemWidth;
+	int characterTop = character.y;
+	int gemTop = gem_sprite.y;
+	int characterBottom = character.y + characterHeight;
+	int gemBottom = gem_sprite.y + gemHeight;
+
+	if (characterLeft < gemRight && // left character will detect right gem
+		characterRight > gemLeft && // right character will detect left gem
+		characterTop < gemBottom && // top character will detect gem bottom
+		characterBottom > gemTop) { // bottom character will detect gem top
+    	return true;
+	}
+
+	return false;
+}
 
 /*---------------------------------------------------------------------------------
 Code for generating the gem
 ---------------------------------------------------------------------------------*/
-void generateGem(Gem gem_sprite) {
+Gem generateGem(Gem gem_sprite) {
 	u8* offset = gem_sprite.gfx_frame + 4 * 16*16;
 	dmaCopy(offset, gem_sprite.gfx, 16*16);
 
@@ -121,6 +156,8 @@ void generateGem(Gem gem_sprite) {
 		SpriteColorFormat_256Color,
 		gem_sprite.gfx, // the oam gfx
 		-1, false, false, false, false, false);
+
+	return gem_sprite;
 }
 
 /*---------------------------------------------------------------------------------
@@ -137,7 +174,7 @@ typedef struct {
 } BGTile;
 
 int tile_colors[] = {
-	ARGB16(1, 12, 12, 12), // gray (stone wall?)
+	ARGB16(1, 12, 12, 12), // gray (stone gem?)
 	ARGB16(1, 0, 31, 0), // green (grass?)
 	ARGB16(1, 31, 31, 0) // yellow (sand?)
 };
