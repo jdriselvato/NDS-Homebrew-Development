@@ -6,7 +6,7 @@ In this example, we explore how to use grit, parsing bitmap sprite sheets and di
 Here's the sprite we'll be using. It's simple and generic but if you want to use it in your own game, it's free to use.
 
 [![character16x16](./gfx/character16x16.png)]
-Simply a 64x16 spritesheet, with 16x16 sprites. 
+Simply a 64x16 spritesheet, with 16x16 sprites.
 
 # Grit setup
 In this project, we'll be using grit to convert the sprite I've provide into a format the NDS understands. The grit file must be in the same folder as the sprite and named the same. In most case, these files should be place in `gfx` or `data` depending on the MakeFile. In this case we'll use the `gfx` folder.
@@ -15,6 +15,8 @@ Below is the grit file for the character16x16.png:
 ````
 -m! # Exclude map from output (default).
 -gB8 # Bit depth of the output
+-gT FF00FF # Set the transparency color to Magenta
+
 #metatile
 -Mh2 # Metatile height
 -Mw2 # Metatile width
@@ -45,6 +47,8 @@ The header file referances the basic variables that are needed from the `charact
 
 NOTE: some MakeFiles might have .bmp defined in it. If you are using `.png` images, change all `.bmp` to `.png` to compile the header files.
 NOTE: you might need to run `make` twice to get the `.s` file.
+
+Also, here is a new one I just discovered after adding the background. Aparently the default transparent color for a sprite is black `#000`. This led to use seeing the sprite but without the black outline. To fix it we have a new argument, `-gT <color>` where color in this case is `FF00FF`, megenta. So after you create your sprites fill the background with `FF00FF` and compile grit again!
 
 # Understanding the Code
 

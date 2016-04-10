@@ -4,11 +4,12 @@
 //======================================================================
 //
 //	character16x16, 64x16@8, 
+//	Transparent color : FF,00,FF
 //	+ palette 256 entries, not compressed
 //	+ 16 tiles Metatiled by 2x2 not compressed
 //	Total size: 512 + 1024 = 1536
 //
-//	Time-stamp: 2016-04-10, 01:29:24
+//	Time-stamp: 2016-04-10, 02:06:20
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.13
 //	( http://www.coranac.com/projects/#grit )
 //
