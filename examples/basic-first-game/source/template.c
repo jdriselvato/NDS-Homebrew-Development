@@ -63,8 +63,9 @@ int main(int argc, char** argv) {
 
 		if (collisionDetected(gem_sprite, character)) {
 			score++;
-			gem_sprite.x = rand() % (256-16) + 1;
-			gem_sprite.y = rand() % (192-16) + 1;
+			// move the sprite some where else on the screen
+			gem_sprite.x = rand() % (256-16) + 1; // random x. 256 = width of screen minus 16 = sprite weidth. This prevents the gem from going off screen.
+			gem_sprite.y = rand() % (192-16) + 1; // random y. 192 = height of screen minus 16 = sprite height. This prevents the gem from going off screen.
 		}
 
 		character = characterMovement(character);
