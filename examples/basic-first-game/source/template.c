@@ -58,6 +58,7 @@ int main(int argc, char** argv) {
 	// Set up the Gem sprite
 	gem_sprite.gfx = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gem_sprite.gfx_frame = (u8*)spritesheetTiles;
+
 	while(1) {
 		printf("\x1b[1;1HScore: %d", score);
 
