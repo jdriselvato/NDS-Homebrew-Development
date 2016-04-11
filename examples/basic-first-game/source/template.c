@@ -30,7 +30,7 @@ typedef struct {
 	int x, y;
 } Gem;
 
-Character characterMovement(Character character);
+void characterMovement(Character * character);
 Gem generateGem(Gem gem_sprite);
 bool collisionDetected(Gem gem_sprite, Character character);
 void addBackground();
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
 			gem_sprite.y = rand() % (192-16) + 1; // random y. 192 = height of screen minus 16 = sprite height. This prevents the gem from going off screen.
 		}
 
-		character = characterMovement(character);
+		characterMovement(&character);
 		gem_sprite = generateGem(gem_sprite);
 		addBackground();
 
@@ -82,38 +82,36 @@ int main(int argc, char** argv) {
 /*---------------------------------------------------------------------------------
 Code for Character
 ---------------------------------------------------------------------------------*/
-Character characterMovement(Character character) {
+void characterMovement(Character * character) {
 	scanKeys();
 	int keys = keysHeld();
 
 	if (keys & KEY_RIGHT) {
-		character.state = WALK_RIGHT;
-		character.x++;
+		character->state = WALK_RIGHT;
+		character->x++;
 	} else if (keys & KEY_LEFT) {
-		character.state = WALK_LEFT;
-		character.x--;
+		character->state = WALK_LEFT;
+		character->x--;
 	} else if (keys & KEY_DOWN) {
-		character.state = WALK_DOWN;
-		character.y++;
+		character->state = WALK_DOWN;
+		character->y++;
 	} else if (keys & KEY_UP) {
-		character.state = WALK_UP;
-		character.y--;
+		character->state = WALK_UP;
+		character->y--;
 	}
 
-	int frame = character.state;
-	u8* offset = character.gfx_frame + frame * 16*16;
-	dmaCopy(offset, character.gfx, 16*16);
+	int frame = character->state;
+	u8* offset = character->gfx_frame + frame * 16*16;
+	dmaCopy(offset, character->gfx, 16*16);
 
 	oamSet(&oamMain,
 		0, // oam entry id
-		character.x, character.y, // x, y location
+		character->x, character->y, // x, y location
 		0, 15, // priority, palette
 		SpriteSize_16x16,
 		SpriteColorFormat_256Color,
-		character.gfx, // the oam gfx
+		character->gfx, // the oam gfx
 		-1, false, false, false, false, false);
-
-	return character;
 }
 /*---------------------------------------------------------------------------------
 Code for collision detection
