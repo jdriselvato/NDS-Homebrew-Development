@@ -34,7 +34,7 @@ int main(void) {
 
 		// react to touch
 		if(key & KEY_TOUCH) touchRead(&touch); // set touch variable
-		if(!key && touch.py < SCREEN_BOTTOM) touch.py += 1.0; // let the square fall
+		if(!key && touch.py < SCREEN_BOTTOM) touch.py += 1.0; // let the square fall but not go off the screen
 
 		// draw based on touch
 		createSquare(touch.px, touch.py, &oamMain, mainGFX, ARGB16(1, 31, 12, 12));

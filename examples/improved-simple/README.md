@@ -32,7 +32,9 @@ OAM is just a fancy way of saying an object attributes in memory. `oamAllocateGf
 ### Setting up the screens
 This is a pretty simple set up for the top and bottom screen. In this case we need to set up the `videoSetMode()`, `vramSetBankA()` and `oamInit()`.
 
-The `videoSetMode()` sets up the 2D processors for each engine. In both cases we are interested in `MODE_0_2D` because it's the most simplistic and gives us 4 2D backgounds. In this case we only need one for the sprite but the extra 3 are for free.
+The `videoSetMode()` sets up the 2D processors for each engine. In both cases we are interested in `MODE_0_2D` because it's the most simplistic and gives us 4 2D backgounds. In this case we are not using any of the `BG` but without this we wouldn't see anything on the respective screen.
+
+The `vramSetBankA()` is the VRAM we'll be using for the top and `vramSetBankD()` for the bottom screen. VRAM is the Video Ram Bank, which the NDS has 9 of. This is what holds the graphics for the sprites, textures for 3D objects and tiles on 2D maps. Since we are programming to show sprites on the screen we'll be using `VRAM_A_MAIN_SPRITE` & `VRAM_D_SUB_SPRITE` respectively.
 #### Top Screen
 ````
 	videoSetMode(MODE_0_2D);
@@ -45,3 +47,22 @@ The `videoSetMode()` sets up the 2D processors for each engine. In both cases we
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	oamInit(&oamSub, SpriteMapping_1D_32, false);
 ````
+After we set up the video mode and vrams we can now initialize the 2D sprite engine. We do this with `oamInit()`. `oamInit(OamState *oam, SpriteMapping mapping, bool extPalette)` comes with three variables. OamState holds the state for the 2D sprite engine. For the top screen it's `oamMain` and the bottom `oamSub`. Both of these objects are important as it'll help us distiguish were sprites should go on the hardware (top or bottom).
+
+### While loop
+The while loop might be one of the most important part of your game. Without it the game will load and then close it self. A cheap and quick way to ensure that your while look runs forever (like a game should) is like we have in this example, `while(1) {}`. Good news is you don't have to be limited to one while loop so you could have boolean variable in the while which when it is satisfied, another while loop cna run. For now we'll stick with this easy loop.
+
+### Scanning for Keys
+What would a game be without user interaction. On the NDS there's actually two different ways the user can interact with your game, buttons and touch screen. In this examples we'll go straight to what make the NDS so unique, the touch.
+````
+		scanKeys();
+		int key = keysHeld();
+		if(key & KEY_TOUCH) touchRead(&touch); // set touch variable
+````
+To initial the game looking for touch, we need to ensure the touch code is in the while loop. We can do this with `scanKeys()` after which `keysHeld()` is available to call and that returns the current button pressed (Keys = buttons and touch). To check what `key` actually is we do a bitwise AND (&) to the [KEYPAD_BIT](http://libnds.devkitpro.org/input_8h.html#aa27cad8fa018a58930b6622783a83072) predefined by DevKitPro's input. If the `key` and the `KEYPAD_BITS` (AKA KEY_TOUCH) return true after bitwise AND then the if statment is true and does whatever the code tells it to do. In this example `if (key & KEY_TOUCH)` is true then call the `touchRead(&touch)` function.
+
+What `touchRead(&touch)` does is grabs the current touch state, specifically the `x` and `y` location of the touch stylus and assigns that information to the variable `&touch`. `touch` in this example is the [`touchPosition`](http://libnds.devkitpro.org/structtouchPosition.html) and allows us to call `touch.px` or `touch.py` to get the stylus location on screen.
+
+### using touchPosition to create a Square
+In the section `Scanning for Keys` I explained how we get touchPosition, now lets explore how to use it.
+
