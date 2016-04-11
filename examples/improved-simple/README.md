@@ -30,7 +30,9 @@ OAM is just a fancy way of saying an object attributes in memory. `oamAllocateGf
 `oamAllocateGfx` returns a `u16*` which the address in vram of the allocated sprite. We'll want to keep this around so we can apply more attributes to it in the future (like coloring).
 
 ### Setting up the screens
+This is a pretty simple set up for the top and bottom screen. In this case we need to set up the `videoSetMode()`, `vramSetBankA()` and `oamInit()`.
 
+The `videoSetMode()` sets up the 2D processors for each engine. In both cases we are interested in `MODE_0_2D` because it's the most simplistic and gives us 4 2D backgounds. In this case we only need one for the sprite but the extra 3 are for free.
 #### Top Screen
 ````
 	videoSetMode(MODE_0_2D);
