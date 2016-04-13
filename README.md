@@ -8,6 +8,10 @@ This repo is designed to provide an easier understanding of how to develop on th
 Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
 
 # Repo Examples
+#### *10. Ray Casting* (Advance)
+Something I've always found interested was the idea of Ray Casting. I think the first time I saw it was in GISH. Until today, I thought it might be one of those impossible tasks to understand, I'm not so much of a Math guy. In any case, I found an awesome resource on how to do it: http://ncase.me/sight-and-light/
+I'm going to try porting the majority of the Sight and Light examples. Fortunately for us, Ncase released all the source code (HTML/JS) on [github](https://github.com/ncase/sight-and-light). I'm going to try making this as easy as possible to understand, including the equations
+
 #### *9. basic-first-game* (Moderate)
 Everything we've learned from the first few examples has given us enough knowledge to create our first game. We'll be starting off with the `bitmap-sprite-movement` code and expanding it. Specifically, we'll be using what we learned from `bitmap-sprite-movement` and `basic-sprite-collision` to create collection game. So the character will be able to collect coins and a scoreboard will update. It's endless and no real goal but challange yourself to improve it into a full game (maybe like snake?).
 
