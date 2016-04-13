@@ -40,12 +40,11 @@ int main(void) {
 		createSquare(touch.px, touch.py, &oamMain, mainGFX, ARGB16(1, 31, 12, 12));
 		createSquare(touch.px, touch.py, &oamSub, subGFX, ARGB16(1, 12, 31, 12));
 
+		// draw screen
+		swiWaitForVBlank(); // prints the screen
 		// update oam
 		oamUpdate(&oamSub); // (sub) updates the oam before so VBlank can update the graphics on screen
 		oamUpdate(&oamMain); // (sub) updates the oam before so VBlank can update the graphics on screen
-
-		// draw screen
-		swiWaitForVBlank(); // prints the screen
 	}
 	return 0;
 }

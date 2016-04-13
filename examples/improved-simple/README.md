@@ -18,16 +18,18 @@ This example will only have two functions; `main()` and `createSquare()`. If thi
 ### Allocating Graphics
 The first actions we do in `main()` is allocate the GFX (graphics) in the OAM (Object Attributed Memory):
 ````
-	u16* mainGFX = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_Bmp);
-	u16* subGFX = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_Bmp);
+	u16* mainGFX = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_Bmp); // top screen square
+	u16* subGFX = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_Bmp); // bottom screen square
 ````
 OAM is just a fancy way of saying an object attributes in memory. `oamAllocateGfx()` allows us to set gfx attributes for sprites for the specific screen; `&oamMain` being the top and `&oamSub` for the bottom.
+
+NOTE: oamAllocateGfx() should only be called once per sprite, so keep this variable out of the while loop and maybe in an array if you have a bunch.
 
 `SpriteSize_16x16` is an enum that allows us to call shorthand Sprite Size of 16x16. [Here's a full list of SpriteSizes](http://libnds.devkitpro.org/sprite_8h.html#a1b3e231e628b18808e49a2f94c96b1ea). In this case we'll be making two 16 x 16 pixel sprites.
 
 `SpriteColorFormat_Bmp` is an enum value for the Sprites Color format. `SpriteColorFormat_Bmp` specifically is used because it allows us to set in memory ARGB() values, which colors the sprite. More on that soon. Again, here's a full list of [Sprite Color Formats](http://libnds.devkitpro.org/sprite_8h.html#ada800fd4d653d0a31be9cce4e58c02b3)
 
-`oamAllocateGfx` returns a `u16*` which the address in vram of the allocated sprite. We'll want to keep this around so we can apply more attributes to it in the future (like coloring).
+`oamAllocateGfx` returns a `u16*` which the address in vram of the allocated sprite. We'll want to keep this around so we can apply more attributes to it in the future (like coloring). This pretty much is how you distiguish between different sprites in memory.
 
 ### Setting up the screens
 This is a pretty simple set up for the top and bottom screen. In this case we need to set up the `videoSetMode()`, `vramSetBankA()` and `oamInit()`.
@@ -63,6 +65,92 @@ To initial the game looking for touch, we need to ensure the touch code is in th
 
 What `touchRead(&touch)` does is grabs the current touch state, specifically the `x` and `y` location of the touch stylus and assigns that information to the variable `&touch`. `touch` in this example is the [`touchPosition`](http://libnds.devkitpro.org/structtouchPosition.html) and allows us to call `touch.px` or `touch.py` to get the stylus location on screen.
 
-### using touchPosition to create a Square
+### using touchPosition with create a Square
 In the section `Scanning for Keys` I explained how we get touchPosition, now lets explore how to use it.
+Obviously in this example we want the square to appear and move where the stylus actually touches. Before we can set up the `X` and `Y` location of the square we need to set it up memory.
 
+I've created a function, `createSquare()`, lets go over it first.
+````
+void createSquare(int xLoc, int yLoc, OamState* screen, u16* gfx, u16 color) {
+	dmaFillHalfWords(color, gfx, 16*16*2); // this is how to assign the color fill to the oam gfx
+	oamSet(screen, // which display
+		1, // the oam entry to set
+		xLoc, yLoc, // x & y location
+		0, // priority
+		15, // palette for 16 color sprite or alpha for bmp sprite
+		SpriteSize_16x16, // size
+		SpriteColorFormat_Bmp, // color type
+		gfx, // the oam gfx
+		0, //affine index
+		true, //double the size of rotated sprites
+		false, //don't hide the sprite
+		false, false, //vflip, hflip
+		false //apply mosaic
+		);
+}
+````
+This already has a bunch of comments on it but I'll point out the most important concepts.
+The reason why we have `createSquare()` is mearly due to the fact that without it you would have to rewrite
+`dmaFillHalfWords()` and `oamSet()` for each time you wanted a new sprite. If you notice reduntant code, you should probably write a function that accepts the dynamic variables so you can shorten your code length. When creating a Square the variables that most often change in this example are:
+
+````
+int xLoc // x location of square
+int yLoc // y location of square
+OamState* screen // is this a top screen or bottom screen sprite?
+u16* gfx // the sprites pointer in memory
+u16 color // the color of the sprite
+````
+hense why we pass them in the function.
+#### dmaFillHalfWords()
+````
+	dmaFillHalfWords(color, gfx, 16*16*2); // this is how to assign the color fill to the oam gfx
+````
+`dmaFillHalfWords(u16 value, void *dest, uint32 size)` is the function we used to assign color to a certain square.  Althought this function does a lot more then just set colors, it actually "fills the source with the supplied value using DMA channel 3". Pretty much pass `value` in this case color, to `dest` aka our gfx and allocate `16*16*2 = 512` bytes (16 x 16 sprite * 2).
+
+#### oamSet()
+I think the inline commented above is enough but oamSet "sets an oam entry to the supplied values".
+````
+void oamSet	(
+OamState * 	oam,
+int 	id,
+int 	x,
+int 	y,
+int 	priority,
+int 	palette_alpha,
+SpriteSize 	size,
+SpriteColorFormat 	format,
+const void * 	gfxOffset,
+int 	affineIndex,
+bool 	sizeDouble,
+bool 	hide,
+bool 	hflip,
+bool 	vflip,
+bool 	mosaic
+)
+```
+But lets out line the most important arguments.
+`OamState` is the variable we use to determine top or bottom screen placement of the sprite. `id` has to be unique, this is it's ID in memory and if a sprite shares the same `id`, it will override it. The `x` and `y` are the actual location of the sprite, this is were we pass the touchPosition `touch.px` and `touch.py` dynamically. The `gfxOffset` is the gfx `u16*` variable returned from `oamAllocateGfx()` which is exactly the sprite we are using.
+
+#### calling createSquare()
+Now that we have an understanding of `createSquare()` we can easily called it like this:
+````
+	createSquare(touch.px, touch.py, &oamMain, mainGFX, ARGB16(1, 31, 12, 12));
+````
+Passing in the touch location `x` and `y`, the oamState; in this case top screen (oamMain); the gfx (address in vram of the allocated sprite) and the sprites color. Everything else in createSquare is hardcoded to fit this example.
+
+#### wrap it up with
+Now that we have explored everything we need to understand this example, we just need to wrap it all up with this final call in the while loop:
+````
+	swiWaitForVBlank(); // prints the screen
+	oamUpdate(&oamSub); // (sub) updates the oam before so VBlank can update the graphics on screen
+	oamUpdate(&oamMain); // (sub) updates the oam before so VBlank can update the graphics on screen
+````
+`swiWaitForVBlank()` "Waits for a vertical blank interrupt" which really just means refreshes the screen and draws.
+`oamUpdate(OamState * 	oam	)` must be called for each screen and "causes oam memory to be updated...must be called during vblank if using oam api"
+
+Now if you run everything you should see two squares, one for the top screen and bottom. This might seem like a lot of documentation for a small amount of code and it really is but without this underlining understanding it'll make it difficult to create more complex NDS games. So review this a couple of time.
+
+# What to do next?
+You should have an extremely good understanding of all the core concepts above by the end of reading this tutorial. To prove it to yourself try the following extra practice questions to solidify this information.
+1. Add 2 more sprites with different colors, one per screen.
+2. Move only 1 sprite with the arrow keys and the others only move with the stylus
