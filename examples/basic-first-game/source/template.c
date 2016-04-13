@@ -31,7 +31,7 @@ typedef struct {
 } Gem;
 
 void characterMovement(Character * character);
-Gem generateGem(Gem gem_sprite);
+void generateGem(Gem * gem_sprite);
 bool collisionDetected(Gem gem_sprite, Character character);
 void addBackground();
 
@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
 		}
 
 		characterMovement(&character);
-		gem_sprite = generateGem(gem_sprite);
+		generateGem(&gem_sprite);
 		addBackground();
 
 		swiWaitForVBlank();
@@ -144,20 +144,18 @@ bool collisionDetected(Gem gem_sprite, Character character) {
 /*---------------------------------------------------------------------------------
 Code for generating the gem
 ---------------------------------------------------------------------------------*/
-Gem generateGem(Gem gem_sprite) {
-	u8* offset = gem_sprite.gfx_frame + 4 * 16*16;
-	dmaCopy(offset, gem_sprite.gfx, 16*16);
+void generateGem(Gem * gem_sprite) {
+	u8* offset = gem_sprite->gfx_frame + 4 * 16*16;
+	dmaCopy(offset, gem_sprite->gfx, 16*16);
 
 	oamSet(&oamMain,
 		1, // oam entry id
-		gem_sprite.x, gem_sprite.y, // x, y location
+		gem_sprite->x, gem_sprite->y, // x, y location
 		0, 15, // priority, palette
 		SpriteSize_16x16,
 		SpriteColorFormat_256Color,
-		gem_sprite.gfx, // the oam gfx
+		gem_sprite->gfx, // the oam gfx
 		-1, false, false, false, false, false);
-
-	return gem_sprite;
 }
 
 /*---------------------------------------------------------------------------------
