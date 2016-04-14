@@ -9,10 +9,14 @@ built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 Things to know/whats new:
 - What is Ray Casting?
 - This is the first time going into GL Read more about it here: http://libnds.devkitpro.org/videoGL_8h.html
+- v16 = vertex 4.12 fixed format
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 
 touchPosition touch; // stylus touch position
+
+void renderLine();
+
 int main(int argc, char** argv) {
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
 
@@ -27,6 +31,7 @@ int main(int argc, char** argv) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(70, 256.0 / 192.0, 0.1, 40);
+	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE);
 
 	gluLookAt( // set up camera
 		0.0, 0.0, 1.0, //camera possition
@@ -35,37 +40,28 @@ int main(int argc, char** argv) {
 	);
 
 	while(1) {
-
-		glPushMatrix();
-
-		//move it away from the camera
-		glTranslatef32(0, 0, floattof32(-1));
-
-		glMatrixMode(GL_MODELVIEW);
-
-		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE);
-
-		//draw the obj
-		// v16 = vertex 4.12 fixed format
-		glBegin(GL_QUADS);
-			glColor3b(255, 0, 0);
-			glVertex3v16(floattov16(-0.01),floattov16(-0.5), 0);
-
-			glColor3b(255, 0, 0);
-			glVertex3v16(floattov16(0.01), floattov16(-0.5), 0);
-
-			glColor3b(255, 0, 0);
-			glVertex3v16(floattov16(0.01), floattov16(0.5), 0);
-
-			glColor3b(255, 0, 0);
-			glVertex3v16(floattov16(-0.01), floattov16(0.5), 0);
-		glEnd();
-
-		glPopMatrix(1);
+		renderLine();
 
 		glFlush(0);
-
 		swiWaitForVBlank();
 	}
 	return 0;
+}
+
+void renderLine() {
+	glPushMatrix();
+	glBegin(GL_QUADS);
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(-0.01),floattov16(-0.5), 0);
+
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(0.01), floattov16(-0.5), 0);
+
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(0.01), floattov16(0.5), 0);
+
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(-0.01), floattov16(0.5), 0);
+	glEnd();
+	glPopMatrix(1);
 }
