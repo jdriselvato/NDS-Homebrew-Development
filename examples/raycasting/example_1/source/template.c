@@ -13,15 +13,21 @@ Things to know/whats new:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 
-touchPosition touch; // stylus touch position
+const struct {
+	int ax, ay;
+	int bx, by;
+} Ray = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
 
+// globals
+touchPosition touch; // stylus touch position
+Ray line_ray;
+// functions
 void renderLine();
 
 int main(int argc, char** argv) {
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
 
 	glInit(); // init GL
-
 	glClearColor(255,255,255,31); // set the BG color
 	glClearPolyID(1); // unique ID of background
 	glClearDepth(0x7FFF);
@@ -40,12 +46,17 @@ int main(int argc, char** argv) {
 	);
 
 	while(1) {
+		scanKeys();
+		if(key & KEY_TOUCH) touchRead(&touch);
+
+		line_ray.bx = touch.px;
+		line_ray.by = touch.py;
+
 		renderLine();
 
 		glFlush(0);
 		swiWaitForVBlank();
 	}
-	return 0;
 }
 
 void renderLine() {
