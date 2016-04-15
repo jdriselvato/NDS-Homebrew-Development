@@ -16,6 +16,7 @@ Things to know/whats new:
 - v16 = vertex 4.12 fixed format
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
+#include <math.h>
 
 typedef struct { // {x , y} coordinate
 	float x;
@@ -39,6 +40,7 @@ Ray line_ray;
 void renderSegments();
 void renderLine();
 Coord convertNDSCoordsToGL(Coord ndsCoord);
+Coord getIntersection(Ray ray, Square segment);
 
 int main(int argc, char** argv) {
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
@@ -73,6 +75,40 @@ int main(int argc, char** argv) {
 		glFlush(0);
 		swiWaitForVBlank();
 	}
+}
+
+Coord getIntersection(Ray ray, Square segment) {
+	Coord null = {0, 0}; // faking null
+
+	// RAY in parametric: Point + Direction*T1
+	float r_px = ray.a.x;
+	float r_py = ray.a.y;
+	float r_dx = ray.b.x-ray.a.x;
+	float r_dy = ray.b.y-ray.a.y;
+
+	// SEGMENT in parametric: Point + Direction*T2
+	float s_px = segment.a.x;
+	float s_py = segment.a.y;
+	float s_dx = segment.b.x-segment.a.x;
+	float s_dy = segment.b.y-segment.a.y;
+
+	// Are they parallel? If so, no intersect
+	float r_mag = sqrt(r_dx*r_dx+r_dy*r_dy);
+	float s_mag = sqrt(s_dx*s_dx+s_dy*s_dy);
+
+	if(r_dx/r_mag==s_dx/s_mag && r_dy/r_mag==s_dy/s_mag){ // Directions are the same.
+		return null;
+	}
+	// SOLVE FOR T1 & T2
+	float T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx);
+	float T1 = (s_px+s_dx*T2-r_px)/r_dx;
+
+	// Must be within parametic whatevers for RAY/SEGMENT
+	if(T1<0) return null;
+	if(T2<0 || T2>1) return null;
+
+	Coord raycast = {r_px+r_dx*T1, r_py+r_dy*T1};
+	return raycast;
 }
 
 // Segment related functions
