@@ -93,10 +93,13 @@ int main(int argc, char** argv) {
 
 		Coord closestIntersect = null;
 		for(int i = 0; i < sizeof(segments)/sizeof(Square); i++){
-			Coord intersect = getIntersection(line_ray, segments[i]);
-			if(!isCoordNull(intersect)) continue;
-			if(!isCoordNull(closestIntersect) || intersect.param < closestIntersect.param){
-				closestIntersect = intersect;
+			for (int t = 0; t < 4; t++) {
+				// need to change segments[] into a single line for each side
+				Coord intersect = getIntersection(line_ray, segments[i]);
+				if(!isCoordNull(intersect)) continue;
+				if(!isCoordNull(closestIntersect) || intersect.param < closestIntersect.param){
+					closestIntersect = intersect;
+				}
 			}
 		}
 		Coord intersect = closestIntersect;
@@ -111,7 +114,7 @@ int main(int argc, char** argv) {
 	}
 }
 
-Coord getIntersection(Ray ray, Square segment) {
+Coord getIntersection(Ray ray, Coord segment) {
 	// RAY in parametric: Point + Direction*T1
 	float r_px = ray.a.x;
 	float r_py = ray.a.y;
@@ -149,13 +152,13 @@ void renderSegments() {
 		glPushMatrix();
 		glBegin(GL_QUADS);
 
-		glColor3b(255, 205, 255);
+		glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-		glColor3b(255, 205, 255);
+		glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-		glColor3b(255, 205, 255);
+		glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-		glColor3b(255, 205, 255);
+		glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 
 		glEnd();
