@@ -21,7 +21,13 @@ Things to know/whats new:
 typedef struct { // {x , y} coordinate
 	float x;
 	float y;
+	float param; // something to do with T1
 } Coord;
+
+bool isCoordNull(Coord coord) {
+	if (coord.x == -1 && coord.y == -1) return true;
+	return false;
+}
 
 typedef struct { // {a.x, a.y} & {b.x, b.y}
 	Coord a;
@@ -32,9 +38,15 @@ typedef struct { // Square Segments on screen
 	Coord a, b, c, d;
 } Square;
 
+Square segments[] = { // the objects on screen
+	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
+	{{-0.3, -0.4}, {-0.4, -0.4}, {-0.4, -0.5}, {-0.3, -0.5}},
+	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
+};
 // globals
 touchPosition touch; // stylus touch position
 Ray line_ray;
+Coord null = {-1, -1}; // faking null which isn't really safe at all. I should do something else.
 
 // functions
 void renderSegments();
@@ -64,13 +76,24 @@ int main(int argc, char** argv) {
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
 
 		Coord tmp = {touch.px, touch.py};
-		line_ray.b = tmp;
+		line_ray.b = convertNDSCoordsToGL(tmp);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		renderLine();
+
+		Coord closestIntersect = null;
+		for(int i = 0; i < sizeof(segments)/sizeof(Square); i++){
+			Coord intersect = getIntersection(line_ray, segments[i]);
+			if(!isCoordNull(intersect)) continue;
+			if(!isCoordNull(closestIntersect) || intersect.param<closestIntersect.param){
+				closestIntersect=intersect;
+			}
+		}
+		Coord intersect = closestIntersect;
+
 		renderSegments();
+		renderLine(intersect);
 
 		glFlush(0);
 		swiWaitForVBlank();
@@ -78,8 +101,6 @@ int main(int argc, char** argv) {
 }
 
 Coord getIntersection(Ray ray, Square segment) {
-	Coord null = {0, 0}; // faking null
-
 	// RAY in parametric: Point + Direction*T1
 	float r_px = ray.a.x;
 	float r_py = ray.a.y;
@@ -107,17 +128,11 @@ Coord getIntersection(Ray ray, Square segment) {
 	if(T1<0) return null;
 	if(T2<0 || T2>1) return null;
 
-	Coord raycast = {r_px+r_dx*T1, r_py+r_dy*T1};
+	Coord raycast = {r_px+r_dx*T1, r_py+r_dy*T1, T1};
 	return raycast;
 }
 
 // Segment related functions
-Square segments[] = {
-	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
-	{{-0.3, -0.4}, {-0.4, -0.4}, {-0.4, -0.5}, {-0.3, -0.5}},
-	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
-};
-
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
 		glPushMatrix();
@@ -138,19 +153,19 @@ void renderSegments() {
 }
 
 // the redline related functions
-void renderLine() {
+void renderLine(Coord coord) {
 	glPushMatrix();
 	glBegin(GL_QUADS);
-		Coord converted = convertNDSCoordsToGL(line_ray.b);
+		//Coord converted = convertNDSCoordsToGL(line_ray.b);
 
 		glColor3b(255, 0, 0);
 		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
 		glColor3b(255, 0, 0);
 		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
 		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // C
+		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // C
 		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // D
+		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
 
 	glEnd();
 	glPopMatrix(1);
