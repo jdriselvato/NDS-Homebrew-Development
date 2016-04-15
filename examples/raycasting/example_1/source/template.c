@@ -1,6 +1,7 @@
 /*---------------------------------------------------------------------------------
-What I listened to:
+What I listened to/thoughts:
 Got to love Initial D. Just as it makes my drive faster then I should, it does the same to my programming fingers. https://www.youtube.com/watch?v=Gah8FnYSypk&list=RDkxLwGow0Tvw&index=3
+You know what get's no respect, Majin Bone kits.. They look sweet but never caught on. Shame.
 
 ray casting example 1
 Based on: https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html
@@ -26,11 +27,16 @@ typedef struct { // {a.x, a.y} & {b.x, b.y}
 	Coord b;
 } Ray;
 
+typedef struct { // Square Segments on screen
+	Coord a, b, c, d;
+} Square;
+
 // globals
 touchPosition touch; // stylus touch position
 Ray line_ray;
 
 // functions
+void renderSegments();
 void renderLine();
 Coord convertNDSCoordsToGL(Coord ndsCoord);
 
@@ -62,13 +68,61 @@ int main(int argc, char** argv) {
 		glLoadIdentity();
 
 		renderLine();
+		renderSegments();
 
 		glFlush(0);
 		swiWaitForVBlank();
 	}
 }
 
+// Segment related functions
+Square segments[] = {
+	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
+	{{-0.3, -0.4}, {-0.4, -0.4}, {-0.4, -0.5}, {-0.3, -0.5}},
+	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
+};
+
+void renderSegments() {
+	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
+		glPushMatrix();
+		glBegin(GL_QUADS);
+
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
+
+		glEnd();
+		glPopMatrix(1);
+	}
+}
+
+// the redline related functions
+void renderLine() {
+	glPushMatrix();
+	glBegin(GL_QUADS);
+		Coord converted = convertNDSCoordsToGL(line_ray.b);
+
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // C
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // D
+
+	glEnd();
+	glPopMatrix(1);
+}
+
+// OpenGL Coordinates functions
 Coord convertNDSCoordsToGL(Coord ndsCoord) {
+	// OpenGLs coordinates
 	float AXIS_X_MAX = 1;
 	float AXIS_X_MIN = -1;
 	float AXIS_Y_MAX = 1;
@@ -79,24 +133,6 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 	double y = (1 - ndsCoord.y / (double) SCREEN_HEIGHT) * (AXIS_Y_MAX - AXIS_Y_MIN) + AXIS_Y_MIN;
 
 	Coord converted = {x, y};
+
 	return converted;
-}
-
-void renderLine() {
-	glPushMatrix();
-	glBegin(GL_QUADS);
-		glColor3b(255, 0, 0);
-		glColor3b(255, 0, 0);
-		glColor3b(255, 0, 0);
-		glColor3b(255, 0, 0);
-
-		Coord converted = convertNDSCoordsToGL(line_ray.b);
-
-		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
-		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
-		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // C
-		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // D
-
-	glEnd();
-	glPopMatrix(1);
 }
