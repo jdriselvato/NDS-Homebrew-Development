@@ -1,4 +1,7 @@
 /*---------------------------------------------------------------------------------
+What I listened to:
+Got to love Initial D. Just as it makes my drive faster then I should, it does the same to my programming fingers. https://www.youtube.com/watch?v=Gah8FnYSypk&list=RDkxLwGow0Tvw&index=3
+
 ray casting example 1
 Based on: https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html
 
@@ -35,12 +38,10 @@ int main(int argc, char** argv) {
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
 
 	glInit(); // init GL
-	glClearColor(255,255,255,31); // set the BG color
-	glClearPolyID(1); // unique ID of background
+	glClearColor(5, 5, 5, 31); // set the BG color
 	glClearDepth(0x7FFF);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	glViewport(0,0,255,191);
 
 	gluPerspective(70, 256.0 / 192.0, 0.1, 40);
 	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE);
@@ -57,6 +58,9 @@ int main(int argc, char** argv) {
 		Coord tmp = {touch.px, touch.py};
 		line_ray.b = tmp;
 
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+
 		renderLine();
 
 		glFlush(0);
@@ -65,7 +69,16 @@ int main(int argc, char** argv) {
 }
 
 Coord convertNDSCoordsToGL(Coord ndsCoord) {
-	Coord converted = {ndsCoord.x, ndsCoord.y};
+	float AXIS_X_MAX = 1;
+	float AXIS_X_MIN = -1;
+	float AXIS_Y_MAX = 1;
+	float AXIS_Y_MIN = -1;
+
+	// Stole equations from http://stackoverflow.com/a/4521276/525576
+	double x = ndsCoord.x / (double) SCREEN_WIDTH * (AXIS_X_MAX - AXIS_X_MIN) + AXIS_X_MIN;
+	double y = (1 - ndsCoord.y / (double) SCREEN_HEIGHT) * (AXIS_Y_MAX - AXIS_Y_MIN) + AXIS_Y_MIN;
+
+	Coord converted = {x, y};
 	return converted;
 }
 
