@@ -39,6 +39,7 @@ typedef struct { // Square Segments on screen
 } Square;
 
 Square segments[] = { // the objects on screen
+	{{-1.0, -1.0}, {1, -1}, {1, 1}, {-1, 1}},
 	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
 	{{-0.3, -0.4}, {-0.4, -0.4}, {-0.4, -0.5}, {-0.3, -0.5}},
 	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
@@ -92,8 +93,8 @@ int main(int argc, char** argv) {
 		}
 		Coord intersect = closestIntersect;
 
-		renderSegments();
 		renderLine(intersect);
+		renderSegments();
 
 		glFlush(0);
 		swiWaitForVBlank();
@@ -113,7 +114,7 @@ Coord getIntersection(Ray ray, Square segment) {
 	float s_dx = segment.b.x-segment.a.x;
 	float s_dy = segment.b.y-segment.a.y;
 
-	// Are they parallel? If so, no intersect
+	// Are they parallel? If so, no intersect (Pythagorean)
 	float r_mag = sqrt(r_dx*r_dx+r_dy*r_dy);
 	float s_mag = sqrt(s_dx*s_dx+s_dy*s_dy);
 
@@ -138,13 +139,13 @@ void renderSegments() {
 		glPushMatrix();
 		glBegin(GL_QUADS);
 
-		glColor3b(255, 255, 255);
+		// glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-		glColor3b(255, 255, 255);
+		// glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-		glColor3b(255, 255, 255);
+		// glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-		glColor3b(255, 255, 255);
+		// glColor3b(255, 255, 255);
 		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 
 		glEnd();
@@ -180,7 +181,7 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 	float AXIS_Y_MIN = -1;
 
 	// Stole equations from http://stackoverflow.com/a/4521276/525576
-	double x = ndsCoord.x / (double) SCREEN_WIDTH * (AXIS_X_MAX - AXIS_X_MIN) + AXIS_X_MIN;
+	double x = (ndsCoord.x / (double) SCREEN_WIDTH) * (AXIS_X_MAX - AXIS_X_MIN) + AXIS_X_MIN;
 	double y = (1 - ndsCoord.y / (double) SCREEN_HEIGHT) * (AXIS_Y_MAX - AXIS_Y_MIN) + AXIS_Y_MIN;
 
 	Coord converted = {x, y};
