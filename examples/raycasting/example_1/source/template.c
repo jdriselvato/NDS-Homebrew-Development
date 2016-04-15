@@ -13,16 +13,23 @@ Things to know/whats new:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 
-const struct {
-	int ax, ay;
-	int bx, by;
-} Ray = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
+typedef struct { // {x , y} coordinate
+	float x;
+	float y;
+} Coord;
+
+typedef struct { // {a.x, a.y} & {b.x, b.y}
+	Coord a;
+	Coord b;
+} Ray;
 
 // globals
 touchPosition touch; // stylus touch position
 Ray line_ray;
+
 // functions
 void renderLine();
+Coord convertNDSCoordsToGL(Coord ndsCoord);
 
 int main(int argc, char** argv) {
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
@@ -32,13 +39,11 @@ int main(int argc, char** argv) {
 	glClearPolyID(1); // unique ID of background
 	glClearDepth(0x7FFF);
 
-	glViewport(0,0,255,191);
-
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+
 	gluPerspective(70, 256.0 / 192.0, 0.1, 40);
 	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE);
-
 	gluLookAt( // set up camera
 		0.0, 0.0, 1.0, //camera possition
 		0.0, 0.0, 0.0, //look at
@@ -47,10 +52,10 @@ int main(int argc, char** argv) {
 
 	while(1) {
 		scanKeys();
-		if(key & KEY_TOUCH) touchRead(&touch);
+		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
 
-		line_ray.bx = touch.px;
-		line_ray.by = touch.py;
+		Coord tmp = {touch.px, touch.py};
+		line_ray.b = tmp;
 
 		renderLine();
 
@@ -59,20 +64,26 @@ int main(int argc, char** argv) {
 	}
 }
 
+Coord convertNDSCoordsToGL(Coord ndsCoord) {
+	Coord converted = {ndsCoord.x, ndsCoord.y};
+	return converted;
+}
+
 void renderLine() {
 	glPushMatrix();
 	glBegin(GL_QUADS);
 		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(-0.01),floattov16(-0.5), 0);
-
 		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(0.01), floattov16(-0.5), 0);
-
 		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(0.01), floattov16(0.5), 0);
-
 		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(-0.01), floattov16(0.5), 0);
+
+		Coord converted = convertNDSCoordsToGL(line_ray.b);
+
+		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
+		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
+		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // C
+		glVertex3v16(floattov16(converted.x), floattov16(converted.y), 0); // D
+
 	glEnd();
 	glPopMatrix(1);
 }
