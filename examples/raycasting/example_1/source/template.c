@@ -17,6 +17,7 @@ Things to know/whats new:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <math.h>
+#include <stdio.h>
 
 typedef struct { // {x , y} coordinate
 	float x;
@@ -39,9 +40,13 @@ typedef struct { // Square Segments on screen
 } Square;
 
 Square segments[] = { // the objects on screen
-	{{-1.0, -1.0}, {1, -1}, {1, 1}, {-1, 1}},
+	{{-1.0, -1.0}, {-1.0, -1,0}, {-1.0, 1.0}, {-1.0, 1.0}}, // left wall
+	{{-1.0, -1.0}, {1.0, -1,0}, {1.0, -1.0}, {-1.0, -1.0}}, // bottom wall
+	{{1.0, -1.0}, {1.0, -1,0}, {1.0, 1.0}, {1.0, 1.0}}, // right wall
+	{{1.0, 1.0}, {1.0, 1,0}, {-1.0, 1.0}, {-1.0, 1.0}}, // top wall
+
 	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
-	{{-0.3, -0.4}, {-0.4, -0.4}, {-0.4, -0.5}, {-0.3, -0.5}},
+	{{-0.2, -0.4}, {-0.3, -0.4}, {-0.5, -0.5}, {-0.3, -0.5}},
 	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
 };
 // globals
@@ -56,6 +61,9 @@ Coord convertNDSCoordsToGL(Coord ndsCoord);
 Coord getIntersection(Ray ray, Square segment);
 
 int main(int argc, char** argv) {
+	videoSetModeSub(MODE_0_2D);
+	consoleDemoInit();
+
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
 
 	glInit(); // init GL
@@ -87,13 +95,15 @@ int main(int argc, char** argv) {
 		for(int i = 0; i < sizeof(segments)/sizeof(Square); i++){
 			Coord intersect = getIntersection(line_ray, segments[i]);
 			if(!isCoordNull(intersect)) continue;
-			if(!isCoordNull(closestIntersect) || intersect.param<closestIntersect.param){
-				closestIntersect=intersect;
+			if(!isCoordNull(closestIntersect) || intersect.param < closestIntersect.param){
+				closestIntersect = intersect;
 			}
 		}
 		Coord intersect = closestIntersect;
 
-		renderLine(intersect);
+		printf("\x1b[1;1H{%.6f, %.6f}", intersect.x, intersect.y);
+		// line_ray.b = intersect;
+		renderLine(line_ray.b);
 		renderSegments();
 
 		glFlush(0);
@@ -139,13 +149,13 @@ void renderSegments() {
 		glPushMatrix();
 		glBegin(GL_QUADS);
 
-		// glColor3b(255, 255, 255);
+		glColor3b(255, 205, 255);
 		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-		// glColor3b(255, 255, 255);
+		glColor3b(255, 205, 255);
 		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-		// glColor3b(255, 255, 255);
+		glColor3b(255, 205, 255);
 		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-		// glColor3b(255, 255, 255);
+		glColor3b(255, 205, 255);
 		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 
 		glEnd();
