@@ -72,3 +72,8 @@ Download here: http://desmume.org
 
 # Other Developers Examples
 1. https://github.com/Thunderbolt26/nintendo_ds_game - 3 Mini Games in one full source
+
+# Where to find me
+Twitter: @jdriselvato
+Instagram: @jdriselvato
+Website: johnriselvato.com

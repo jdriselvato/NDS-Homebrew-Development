@@ -4,6 +4,7 @@ Generating a multiple sprites
 This project demos the ability to dynamically add sprites to the screen.
 Pressing the key A adds another sprite to the screen
 -- John Riselvato ( March 26th, 2016 )
+find me at: @jdriselvato
 
 What I listened to while developing:
 - https://www.youtube.com/watch?v=qB4agGGyZFg

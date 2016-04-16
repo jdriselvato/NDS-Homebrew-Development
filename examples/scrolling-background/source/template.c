@@ -3,6 +3,7 @@ Listening to: Małpa. Thanks to connections at my day time job I've had the oppe
 
 Scrolling background based on backgrounds example from Devkitpro, scrolling.cpp
 -- John Riselvato ( March 26th, 2016 )
+find me at: @jdriselvato
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 

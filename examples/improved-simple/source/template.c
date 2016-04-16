@@ -3,6 +3,7 @@ I first started out here trying to understand OAM, Sprite management and other b
 
 What I listened to while refactoring this: https://www.youtube.com/watch?v=ob_nQpBFpL0
 - John Riselvato
+find me at: @jdriselvato
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 ---------------------------------------------------------------------------------*/

@@ -4,6 +4,7 @@ Generating a basic tile generator from array
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 
 -- John Riselvato ( March 26th, 2016 )
+find me at: @jdriselvato
 
 Things to know:
 - NDS only supports 128 sprites on screen unfortunately, so 12 x 16 tiles wont work at 16x16 sprites.

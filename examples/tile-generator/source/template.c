@@ -1,6 +1,7 @@
 /*---------------------------------------------------------------------------------
 Generating a basic tile generator from array
 -- John Riselvato ( March 26th, 2016 )
+find me at: @jdriselvato
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 

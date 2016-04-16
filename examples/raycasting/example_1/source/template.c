@@ -2,7 +2,7 @@
 What I listened to/thoughts:
 Got to love Initial D. Just as it makes my drive faster then I should, it does the same to my programming fingers. https://www.youtube.com/watch?v=Gah8FnYSypk&list=RDkxLwGow0Tvw&index=3
 You know what get's no respect, Majin Bone kits.. They look sweet but never caught on. Shame.
-
+- John Riselvato (johnriselvato.com)
 ray casting example 1
 Based on: https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html
 
@@ -15,6 +15,7 @@ Things to know/whats new:
 - This is the first time going into GL Read more about it here: http://libnds.devkitpro.org/videoGL_8h.html
 - v16 = vertex 4.12 fixed format
 ---------------------------------------------------------------------------------*/
+
 #include <nds.h>
 #include <math.h>
 #include <stdio.h>

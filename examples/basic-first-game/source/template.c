@@ -3,6 +3,8 @@ basic-first-game
 Everything we've learned from the first few examples has given us enough knowledge to create our first game. We'll be starting off with the `bitmap-sprite-movement` code and expanding it. Specifically, we'll be using what we learned from `bitmap-sprite-movement` and `basic-sprite-collision` to create collection game. So the character will be able to collect coins and a scoreboard will update. It's endless and no real goal but challange yourself to improve it to a full game (maybe like snake?).
 
 -- John Riselvato ( April 10th, 2016 )
+find me at: @jdriselvato
+
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 

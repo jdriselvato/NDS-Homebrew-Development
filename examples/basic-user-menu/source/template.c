@@ -4,6 +4,8 @@ In any case I'm listening to more Polish Hip-hop, current this:
 MAŁPA - Nie byłem nigdy (teledysk): https://youtu.be/HCHvGI0-ypA
 Sitek - Chodź Ze Mną: https://www.youtube.com/watch?v=38kk_HtN06s
 Sulin - Jedna minuta: https://youtu.be/-PJ10-qwvcc
+- John Riselvato
+find me at: @jdriselvato
 
 Info: Basic User Menu (basic-user-menu.c)
 
