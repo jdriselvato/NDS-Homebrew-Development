@@ -15,7 +15,6 @@ Things to know/whats new:
 - This is the first time going into GL Read more about it here: http://libnds.devkitpro.org/videoGL_8h.html
 - v16 = vertex 4.12 fixed format
 ---------------------------------------------------------------------------------*/
-
 #include <nds.h>
 #include <math.h>
 #include <stdio.h>
@@ -59,7 +58,7 @@ Coord null = {-1, -1}; // faking null which isn't really safe at all. I should d
 void renderSegments();
 void renderLine();
 Coord convertNDSCoordsToGL(Coord ndsCoord);
-Coord getIntersection(Ray ray, Square segment);
+Coord getIntersection(Ray ray, Ray segment);
 
 int main(int argc, char** argv) {
 	videoSetModeSub(MODE_0_2D);
@@ -94,9 +93,15 @@ int main(int argc, char** argv) {
 
 		Coord closestIntersect = null;
 		for(int i = 0; i < sizeof(segments)/sizeof(Square); i++){
-			for (int t = 0; t < 4; t++) {
-				// need to change segments[] into a single line for each side
-				Coord intersect = getIntersection(line_ray, segments[i]);
+			Square segment = segments[i];
+			Ray SegmentRays[] = {
+				{segment.a,segment.b}, // A to B
+				{segment.b,segment.c}, // B to C
+				{segment.c,segment.d}, // C to D
+				{segment.d,segment.a}, // D to A
+			};
+			for (int t = 0; t < sizeof(SegmentRays)/sizeof(Ray); t++) {
+				Coord intersect = getIntersection(line_ray, SegmentRays[t]);
 				if(!isCoordNull(intersect)) continue;
 				if(!isCoordNull(closestIntersect) || intersect.param < closestIntersect.param){
 					closestIntersect = intersect;
@@ -115,7 +120,7 @@ int main(int argc, char** argv) {
 	}
 }
 
-Coord getIntersection(Ray ray, Coord segment) {
+Coord getIntersection(Ray ray, Ray segment) {
 	// RAY in parametric: Point + Direction*T1
 	float r_px = ray.a.x;
 	float r_py = ray.a.y;
