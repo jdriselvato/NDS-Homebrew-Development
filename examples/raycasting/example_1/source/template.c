@@ -40,14 +40,14 @@ typedef struct { // Square Segments on screen
 } Square;
 
 Square segments[] = { // the objects on screen
+	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
+	{{-0.2, -0.4}, {-0.3, -0.4}, {-0.5, -0.5}, {-0.3, -0.5}},
+	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
+
 	{{-1.0, -1.0}, {-1.0, -1,0}, {-1.0, 1.0}, {-1.0, 1.0}}, // left wall
 	{{-1.0, -1.0}, {1.0, -1,0}, {1.0, -1.0}, {-1.0, -1.0}}, // bottom wall
 	{{1.0, -1.0}, {1.0, -1,0}, {1.0, 1.0}, {1.0, 1.0}}, // right wall
 	{{1.0, 1.0}, {1.0, 1,0}, {-1.0, 1.0}, {-1.0, 1.0}}, // top wall
-
-	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
-	{{-0.2, -0.4}, {-0.3, -0.4}, {-0.5, -0.5}, {-0.3, -0.5}},
-	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
 };
 // globals
 touchPosition touch; // stylus touch position
@@ -63,7 +63,6 @@ Coord getIntersection(Ray ray, Ray segment);
 int main(int argc, char** argv) {
 	videoSetModeSub(MODE_0_2D);
 	consoleDemoInit();
-
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
 
 	glInit(); // init GL
@@ -102,8 +101,11 @@ int main(int argc, char** argv) {
 			};
 			for (int t = 0; t < sizeof(SegmentRays)/sizeof(Ray); t++) {
 				Coord intersect = getIntersection(line_ray, SegmentRays[t]);
-				if(!isCoordNull(intersect)) continue;
-				if(!isCoordNull(closestIntersect) || intersect.param < closestIntersect.param){
+				if(intersect.param < closestIntersect.param){
+					closestIntersect = intersect;
+				} else if (isCoordNull(closestIntersect)) {
+					closestIntersect = intersect;
+				} else {
 					closestIntersect = intersect;
 				}
 			}
@@ -112,7 +114,7 @@ int main(int argc, char** argv) {
 
 		printf("\x1b[1;1H{%.6f, %.6f}", intersect.x, intersect.y);
 		// line_ray.b = intersect;
-		renderLine(line_ray.b);
+		renderLine(intersect);
 		renderSegments();
 
 		glFlush(0);
