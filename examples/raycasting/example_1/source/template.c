@@ -43,6 +43,7 @@ Square segments[] = { // the objects on screen
 	{{0.5, 0.9}, {0.4, 0.9}, {0.4, 0.5}, {0.5, 0.5}},
 	{{-0.2, -0.4}, {-0.3, -0.4}, {-0.5, -0.5}, {-0.3, -0.5}},
 	{{0.5, 0.4}, {1.0, 0.4}, {1.0, 0.1}, {0.5, 0.1}},
+	{{-0.5, 0.4}, {-1.0, 0.4}, {-1.0, 0.1}, {-0.5, 0.1}},
 
 	{{-1.0, -1.0}, {-1.0, -1,0}, {-1.0, 1.0}, {-1.0, 1.0}}, // left wall
 	{{-1.0, -1.0}, {1.0, -1,0}, {1.0, -1.0}, {-1.0, -1.0}}, // bottom wall
@@ -101,18 +102,16 @@ int main(int argc, char** argv) {
 			};
 			for (int t = 0; t < sizeof(SegmentRays)/sizeof(Ray); t++) {
 				Coord intersect = getIntersection(line_ray, SegmentRays[t]);
+				if (isCoordNull(intersect)) continue;
+				if (isCoordNull(closestIntersect)) closestIntersect = intersect;
 				if(intersect.param < closestIntersect.param){
-					closestIntersect = intersect;
-				} else if (isCoordNull(closestIntersect)) {
-					closestIntersect = intersect;
-				} else {
 					closestIntersect = intersect;
 				}
 			}
 		}
 		Coord intersect = closestIntersect;
 
-		printf("\x1b[1;1H{%.6f, %.6f}", intersect.x, intersect.y);
+		printf("\x1b[1;1HSegment @{%.6f, %.6f}", intersect.x, intersect.y);
 		// line_ray.b = intersect;
 		renderLine(intersect);
 		renderSegments();
