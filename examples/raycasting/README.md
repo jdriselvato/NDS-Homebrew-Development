@@ -6,3 +6,6 @@ The Ray cast examples by ncase are a collection of improved iterations. This inc
 
 ### *1. Example_1* :octocat: Dev-ing :octocat:
 This example shows off a basic hit detections on a single ray. This is a good starting point to understand the basics of Ray Casting. Move the stylus in any direction and watch the ray cast to various objects on the screen. Based on this [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html).
+
+### *2. Example_2* :octocat: Dev-ing :octocat:
+In this example we take multiple rays calculate the intersection of various objects on screen.  We take a lot of what we learned from the first example and expand it with multiple rays. Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft2.html).

@@ -2,7 +2,7 @@
 In this example we take a single ray from the origin of the screen and calculate the intersection of various objects on screen.
 
 # Preview
-[![character16x16](./screenshots/raycasting_example1.gif)]
+[![raycasting_example1](./screenshots/raycasting_example1.gif)]
 
 # Code Explained
 ### Intro to NDS OpenGL
