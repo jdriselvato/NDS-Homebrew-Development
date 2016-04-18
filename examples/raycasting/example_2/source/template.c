@@ -84,36 +84,48 @@ int main(int argc, char** argv) {
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
 
-		Coord tmp = {touch.px, touch.py};
-		line_ray.b = convertNDSCoordsToGL(tmp);
-
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
+		Coord intersects[50];
+		int count = 0;
+		for (float angle = 0; angle < 3.14*2; angle+= (3.14*2)/50) {
+			float dx = cos(angle);
+			float dy = sin(angle);
 
-		Coord closestIntersect = null;
-		for(int i = 0; i < sizeof(segments)/sizeof(Square); i++){
-			Square segment = segments[i];
-			Ray SegmentRays[] = {
-				{segment.a,segment.b}, // A to B
-				{segment.b,segment.c}, // B to C
-				{segment.c,segment.d}, // C to D
-				{segment.d,segment.a}, // D to A
-			};
-			for (int t = 0; t < sizeof(SegmentRays)/sizeof(Ray); t++) {
-				Coord intersect = getIntersection(line_ray, SegmentRays[t]);
-				if (isCoordNull(intersect)) continue;
-				if (isCoordNull(closestIntersect)) closestIntersect = intersect;
-				if(intersect.param < closestIntersect.param){
-					closestIntersect = intersect;
+			Coord tmp_a = {touch.px, touch.py};
+			line_ray.a = convertNDSCoordsToGL(tmp_a);
+			Coord tmp_b = {touch.px+dx, touch.py+dy};
+			line_ray.b = convertNDSCoordsToGL(tmp_b);
+
+			Coord closestIntersect = null;
+			for(int i = 0; i < sizeof(segments)/sizeof(Square); i++){
+				Square segment = segments[i];
+				Ray SegmentRays[] = {
+					{segment.a,segment.b}, // A to B
+					{segment.b,segment.c}, // B to C
+					{segment.c,segment.d}, // C to D
+					{segment.d,segment.a}, // D to A
+				};
+				for (int t = 0; t < sizeof(SegmentRays)/sizeof(Ray); t++) {
+					Coord intersect = getIntersection(line_ray, SegmentRays[t]);
+					if (isCoordNull(intersect)) continue;
+					if (isCoordNull(closestIntersect)) closestIntersect = intersect;
+					if(intersect.param < closestIntersect.param){
+						closestIntersect = intersect;
+					}
 				}
 			}
+			Coord intersect = closestIntersect;
+			intersects[count] = intersect;
+			count++;
 		}
-		Coord intersect = closestIntersect;
 
-		printf("\x1b[1;1HSegment @{%.6f, %.6f}", intersect.x, intersect.y);
-		// line_ray.b = intersect;
-		renderLine(intersect);
+		for (int i = 0; i < sizeof(intersects)/sizeof(Coord); i++) {
+			Coord intersect = intersects[i];
+			renderLine(intersect);
+		}
+
 		renderSegments();
 
 		glFlush(0);
@@ -179,13 +191,16 @@ void renderLine(Coord coord) {
 	glBegin(GL_QUADS);
 		//Coord converted = convertNDSCoordsToGL(line_ray.b);
 
-		glColor3b(255, 0, 0);
+		int x = rand()%255+1;
+		int y = rand()%255+1;
+
+		glColor3b(x, y, x);
 		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
-		glColor3b(255, 0, 0);
+		glColor3b(x, y, x);
 		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
-		glColor3b(255, 0, 0);
+		glColor3b(x, y, x);
 		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // C
-		glColor3b(255, 0, 0);
+		glColor3b(x, y, x);
 		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
 
 	glEnd();
