@@ -4,9 +4,9 @@ Got to love Initial D. Just as it makes my drive faster then I should, it does t
 You know what get's no respect, Majin Bone kits.. They look sweet but never caught on. Shame.
 - John Riselvato (johnriselvato.com)
 ray casting example 1
-Based on: https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html
+Based on: https://github.com/ncase/sight-and-light/blob/gh-pages/draft2.html
 
--- John Riselvato ( April 13th, 2016 )
+-- John Riselvato ( April 18th, 2016 )
 
 built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 
@@ -14,6 +14,7 @@ Things to know/whats new:
 - What is Ray Casting?
 - This is the first time going into GL Read more about it here: http://libnds.devkitpro.org/videoGL_8h.html
 - v16 = vertex 4.12 fixed format
+- What PI is and how COS and SIN work
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <math.h>
