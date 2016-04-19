@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
 	}
 }
 
-Coord getIntersection(Ray ray, Ray segment) {
+Coord getIntersection(Ray ray, Ray segment_line) {
 	// RAY in parametric: Point + Direction*T1
 	float r_px = ray.a.x;
 	float r_py = ray.a.y;
@@ -132,10 +132,10 @@ Coord getIntersection(Ray ray, Ray segment) {
 	float r_dy = ray.b.y-ray.a.y;
 
 	// SEGMENT in parametric: Point + Direction*T2
-	float s_px = segment.a.x;
-	float s_py = segment.a.y;
-	float s_dx = segment.b.x-segment.a.x;
-	float s_dy = segment.b.y-segment.a.y;
+	float s_px = segment_line.a.x;
+	float s_py = segment_line.a.y;
+	float s_dx = segment_line.b.x-segment_line.a.x;
+	float s_dy = segment_line.b.y-segment_line.a.y;
 
 	// Are they parallel? If so, no intersect (Pythagorean)
 	float r_mag = sqrt(r_dx*r_dx+r_dy*r_dy);
