@@ -44,3 +44,9 @@ We'll also need the `length` of the segment line doing the same with the s_d* va
 
 We also have a check to ensure that `red line ray` and the `segment` are not in the same diretion. This isn't something we'll have to worry about since the red line ray starts in the center of the screen.
 
+#### Solving for T1 & T2
+````
+	float T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx);
+	float T1 = (s_px+s_dx*T2-r_px)/r_dx;
+````
+Yep.. I don't understand this at the moment. I'm going to have to write this out a couple of times until it clicks.
