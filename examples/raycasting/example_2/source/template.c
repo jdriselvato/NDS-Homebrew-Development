@@ -154,6 +154,7 @@ Coord getIntersection(Ray ray, Ray segment) {
 	if(r_dx/r_mag==s_dx/s_mag && r_dy/r_mag==s_dy/s_mag){ // Directions are the same.
 		return null;
 	}
+
 	// SOLVE FOR T1 & T2
 	float T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx);
 	float T1 = (s_px+s_dx*T2-r_px)/r_dx;
@@ -190,20 +191,14 @@ void renderSegments() {
 void renderLine(Coord coord) {
 	glPushMatrix();
 	glBegin(GL_QUADS);
-		//Coord converted = convertNDSCoordsToGL(line_ray.b);
-
-		int x = rand()%255+1;
-		int y = rand()%255+1;
-
-		glColor3b(x, y, x);
+		glColor3b(255, 0, 0);
 		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
-		glColor3b(x, y, x);
+		glColor3b(255, 0, 0);
 		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
-		glColor3b(x, y, x);
+		glColor3b(255, 0, 0);
 		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // C
-		glColor3b(x, y, x);
+		glColor3b(255, 0, 0);
 		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
-
 	glEnd();
 	glPopMatrix(1);
 }
@@ -221,6 +216,5 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 	double y = (1 - ndsCoord.y / (double) SCREEN_HEIGHT) * (AXIS_Y_MAX - AXIS_Y_MIN) + AXIS_Y_MIN;
 
 	Coord converted = {x, y};
-
 	return converted;
 }
