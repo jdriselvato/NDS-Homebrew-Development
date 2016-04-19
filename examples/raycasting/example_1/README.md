@@ -11,4 +11,8 @@ So this is the first introduction to OpenGL on the NDS. Fortunately, I have a de
 ### Understanding *Coord getIntersection(Ray ray, Ray segment);*
 The `Coord getIntersection(Ray ray, Ray segment);` function is literally where the main computation of Ray Casting occures in this example. It's a monster but let's break it down into very simple understandings. I actually didn't understand this at all coming into it so through trail and a basic understanding of Ray Casting I was able to come to the conclusion below.
 
+Ray casting requires a basic understanding of calculas. For this example it isn't extreme calculas but it helps to know it. If this is something you need to review or don't understand [this might help](http://www.dummies.com/how-to/content/how-to-find-the-derivative-of-a-line.html) refresh the topic.
+
+#### r_p* & r_d* variables
+
 Again this was ported from an HTML5 example, [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html).

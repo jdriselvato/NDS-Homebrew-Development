@@ -80,6 +80,9 @@ int main(int argc, char** argv) {
 		0.0, 1.0, 0.0 //up
 	);
 
+	Coord tmp = {0,0}; // the red origin (center of screen)
+	line_ray.a = tmp;
+
 	while(1) {
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
