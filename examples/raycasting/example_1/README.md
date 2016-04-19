@@ -15,12 +15,12 @@ We have two different types of objects on the screen. The first is the `red ray`
 ### Understanding *Coord getIntersection(Ray ray, Ray segment);*
 The `Coord getIntersection(Ray ray, Ray segment);` function is literally where the main computation of Ray Casting occures in this example. It's a monster but let's break it down into very simple understandings. I actually didn't understand this at all coming into it so through trail and a basic understanding of Ray Casting I was able to come to the conclusion below.
 
-Ray casting requires a basic understanding of calculas. For this example it isn't extreme calculas but it helps to know it. If this is something you need to review or don't understand [this might help](http://www.dummies.com/how-to/content/how-to-find-the-derivative-of-a-line.html) refresh the topic.
+Ray casting requires a basic understanding of calculus. For this example it isn't extreme calculus but it helps to know it. If this is something you need to review or don't understand [this might help](http://www.dummies.com/how-to/content/how-to-find-the-derivative-of-a-line.html) refresh the topic.
 
 #### r_p* & r_d* and s_p* & s_d* variables
 `r_px` and `r_py` are are pretty easy, simply the `red line ray` origin, this is a constant.
 
-`r_dx` and `r_dy` is the derivative of the line. We take the derivative of a line by taking the second point in the line minus the first. In calculas it would look like this:
+`r_dx` and `r_dy` is the derivative of the line. We take the derivative of a line by taking the second point in the line minus the first. In calculus it would look like this:
 
 ````
 dy 		y^2 - y^1		3 - 1		2	 r_dy
@@ -38,7 +38,7 @@ The same idea for the `s_px` & `s_py` and `s_dx` & `s_dy`  but this time the `s`
 	float r_mag = sqrt(r_dx*r_dx+r_dy*r_dy);
 	float s_mag = sqrt(s_dx*s_dx+s_dy*s_dy);
 ````
-Not getting the calculas, well maybe this next part will be a little more familiar. Here we will use the Pythagorean theorem to solve the `length` of the our `red line ray`. The line is the `c` in the Pythagorean Theorem as expect since it is the longest side of the triangle.
+Not getting the calculus, well maybe this next part will be a little more familiar. Here we will use the Pythagorean theorem to solve the `length` of the our `red line ray`. The line is the `c` in the Pythagorean Theorem as expect since it is the longest side of the triangle.
 
 We'll also need the `length` of the segment line doing the same with the s_d* variables.
 
