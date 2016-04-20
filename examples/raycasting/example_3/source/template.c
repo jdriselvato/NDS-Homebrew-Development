@@ -54,6 +54,7 @@ Ray line_ray;
 Coord null = {-1, -1}; // faking null which isn't really safe at all. I should do something else.
 
 // functions
+void renderTriangle(Coord b, Coord c);
 void renderSegments();
 void renderLine();
 Coord convertNDSCoordsToGL(Coord ndsCoord);
@@ -119,16 +120,86 @@ int main(int argc, char** argv) {
 			count++;
 		}
 
-		for (int i = 0; i < sizeof(intersects)/sizeof(Coord); i++) {
+		for (int i = 1; i < sizeof(intersects)/sizeof(Coord); i++) {
 			// mouse being the start of a triangle
-			Coord intersect = intersects[i];
-			renderLine(intersect); // this needs to draw a triangle of each point instead of square
+			Coord b = intersects[i]; // current intersect
+			Coord c = intersects[i-1]; // the intersect before
+			renderTriangle(b, c); // makes a nice triangle
+			renderLine(b); // this needs to draw a triangle of each point instead of square
 		}
+		renderTriangle(intersects[0], intersects[49]); // we need to link the first to the last to get full fill
 
 		renderSegments();
 
 		glFlush(0);
 		swiWaitForVBlank();
+	}
+}
+
+void renderTriangle(Coord b, Coord c) {
+	// not sure what to accept as arguments yet. probably mouse as a and two segments as b and c.
+	glPushMatrix();
+	glBegin(GL_TRIANGLES);
+		glColor3b(100, 10, 10);
+		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
+		glColor3b(100, 10, 10);
+		glVertex3v16(floattov16(b.x), floattov16(b.y), 0); // B
+		glColor3b(100, 10, 10);
+		glVertex3v16(floattov16(c.x), floattov16(c.y), 0); // C
+	glEnd();
+	glPopMatrix(1);
+}
+
+// the redline related functions
+// wont be a line so much any more but a triangle.. maybe we should create a new function
+void renderLine(Coord coord) {
+	glPushMatrix();
+	glBegin(GL_QUADS);
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // C
+		glColor3b(255, 0, 0);
+		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
+	glEnd();
+	glPopMatrix(1);
+}
+
+// OpenGL Coordinates functions
+Coord convertNDSCoordsToGL(Coord ndsCoord) {
+	// OpenGLs coordinates
+	float AXIS_X_MAX = 1;
+	float AXIS_X_MIN = -1;
+	float AXIS_Y_MAX = 1;
+	float AXIS_Y_MIN = -1;
+
+	// Stole equations from http://stackoverflow.com/a/4521276/525576
+	double x = (ndsCoord.x / (double) SCREEN_WIDTH) * (AXIS_X_MAX - AXIS_X_MIN) + AXIS_X_MIN;
+	double y = (1 - ndsCoord.y / (double) SCREEN_HEIGHT) * (AXIS_Y_MAX - AXIS_Y_MIN) + AXIS_Y_MIN;
+
+	Coord converted = {x, y};
+	return converted;
+}
+
+// Segment related functions
+void renderSegments() {
+	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
+		glPushMatrix();
+		glBegin(GL_QUADS);
+
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
+		glColor3b(255, 255, 255);
+		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
+
+		glEnd();
+		glPopMatrix(1);
 	}
 }
 
@@ -163,61 +234,4 @@ Coord getIntersection(Ray ray, Ray segment) {
 
 	Coord raycast = {r_px+r_dx*T1, r_py+r_dy*T1, T1};
 	return raycast;
-}
-
-// Segment related functions
-void renderSegments() {
-	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
-		glPushMatrix();
-		glBegin(GL_QUADS);
-
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
-
-		glEnd();
-		glPopMatrix(1);
-	}
-}
-
-// the redline related functions
-// wont be a line so much any more but a triangle.. maybe we should create a new function
-void renderLine(Coord coord) {
-	glPushMatrix();
-	glBegin(GL_QUADS);
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // C
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
-	glEnd();
-	glPopMatrix(1);
-}
-
-void renderTriangle(void) {
-	// not sure what to accept as arguments yet. probably mouse as a and two segments as b and c.
-}
-
-// OpenGL Coordinates functions
-Coord convertNDSCoordsToGL(Coord ndsCoord) {
-	// OpenGLs coordinates
-	float AXIS_X_MAX = 1;
-	float AXIS_X_MIN = -1;
-	float AXIS_Y_MAX = 1;
-	float AXIS_Y_MIN = -1;
-
-	// Stole equations from http://stackoverflow.com/a/4521276/525576
-	double x = (ndsCoord.x / (double) SCREEN_WIDTH) * (AXIS_X_MAX - AXIS_X_MIN) + AXIS_X_MIN;
-	double y = (1 - ndsCoord.y / (double) SCREEN_HEIGHT) * (AXIS_Y_MAX - AXIS_Y_MIN) + AXIS_Y_MIN;
-
-	Coord converted = {x, y};
-	return converted;
 }
