@@ -11,3 +11,4 @@ This example shows off a basic hit detections on a single ray. This is a good st
 In this example we take multiple rays calculate the intersection of various objects on screen.  We take a lot of what we learned from the first example and expand it with multiple rays. Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft2.html).
 
 ### *3. Example_3* :octocat: Dev-ing :octocat:
+In this example we take multiple rays calculate the intersection of various objects on screen. The only difference between this example and Example 2 is that we are filling the rays for the first time.

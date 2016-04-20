@@ -1,5 +1,6 @@
 /*---------------------------------------------------------------------------------
 What I listened to/thoughts:
+In this example we take multiple rays calculate the intersection of various objects on screen. The only difference between this example and Example 2 is that we are filling the rays for the first time.
 Based on: https://github.com/ncase/sight-and-light/blob/gh-pages/draft3.html
 
 -- John Riselvato ( April 20th, 2016 )
