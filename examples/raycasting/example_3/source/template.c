@@ -119,8 +119,9 @@ int main(int argc, char** argv) {
 		}
 
 		for (int i = 0; i < sizeof(intersects)/sizeof(Coord); i++) {
+			// mouse being the start of a triangle
 			Coord intersect = intersects[i];
-			renderLine(intersect);
+			renderLine(intersect); // this needs to draw a triangle of each point instead of square
 		}
 
 		renderSegments();
@@ -184,6 +185,7 @@ void renderSegments() {
 }
 
 // the redline related functions
+// wont be a line so much any more but a triangle.. maybe we should create a new function
 void renderLine(Coord coord) {
 	glPushMatrix();
 	glBegin(GL_QUADS);
@@ -197,6 +199,10 @@ void renderLine(Coord coord) {
 		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
 	glEnd();
 	glPopMatrix(1);
+}
+
+void renderTriangle(void) {
+	// not sure what to accept as arguments yet. probably mouse as a and two segments as b and c.
 }
 
 // OpenGL Coordinates functions
