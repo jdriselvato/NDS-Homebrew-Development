@@ -58,8 +58,9 @@ template.o: \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/video.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h \
+ /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/image.h \
  /Users/jdriselvato/Programming/NDS/NDS-Development/examples/raycasting/example_3.5/build/box_pcx.h \
- /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/image.h
+ /Users/jdriselvato/Programming/NDS/NDS-Development/examples/raycasting/example_3.5/build/drunkenlogo_pcx.h
 
 /Users/jdriselvato/devkitPro/libnds/include/nds.h:
 
@@ -177,6 +178,8 @@ template.o: \
 
 /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h:
 
+/Users/jdriselvato/devkitPro/libnds/include/nds/arm9/image.h:
+
 /Users/jdriselvato/Programming/NDS/NDS-Development/examples/raycasting/example_3.5/build/box_pcx.h:
 
-/Users/jdriselvato/devkitPro/libnds/include/nds/arm9/image.h:
+/Users/jdriselvato/Programming/NDS/NDS-Development/examples/raycasting/example_3.5/build/drunkenlogo_pcx.h:

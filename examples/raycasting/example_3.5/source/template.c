@@ -16,8 +16,11 @@ Things to know/whats new:
 #include <nds.h>
 #include <math.h>
 #include <stdio.h>
-#include <box_pcx.h>
 #include <nds/arm9/image.h> // needed to load PCX files
+
+#include <box_pcx.h>
+#include <drunkenlogo_pcx.h>
+
 
 typedef struct { // {x , y} coordinate
 	float x;
@@ -65,32 +68,38 @@ Coord convertNDSCoordsToGL(Coord ndsCoord);
 Coord getIntersection(Ray ray, Ray segment);
 
 int main(int argc, char** argv) {
-	videoSetModeSub(MODE_0_2D);
-	consoleDemoInit();
 	videoSetMode(MODE_0_3D); // enable BG0 with 3D
+	vramSetBankA(VRAM_A_TEXTURE); // must have to load a texture
 
 	glInit(); // init GL
+	glEnable(GL_TEXTURE_2D); // enable 2D Textures
+
+	glEnable(GL_ANTIALIAS);
+
 	glClearColor(5, 5, 5, 31); // set the BG color
+	glClearPolyID(63); // BG must have a unique polygon ID for AA to work
 	glClearDepth(0x7FFF);
 
 	glViewport(0,0,255,191);
 
-	gluPerspective(70, 256.0 / 192.0, 0.1, 40);
-	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE);
-	gluLookAt( // set up camera
-		0.0, 0.0, 1.0, //camera possition
-		0.0, 0.0, 0.0, //look at
-		0.0, 1.0, 0.0 //up
-	);
+	LoadGLTextures();
+
+	gluPerspective(70, 256.0/192.0, 0.1, 40);
+	glMatrixMode(GL_MODELVIEW); // Set the current matrix to be the model matrix
+
+	// glMaterialShinyness();
+	glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_FORMAT_LIGHT0| POLY_FORMAT_LIGHT1| POLY_FORMAT_LIGHT2);
+
+	// Texture things here
+	glLight(0, RGB15(31,31,31) , 0,				  floattov10(-1.0),		 0);
+	glLight(1, RGB15(31,31,31) , 0,				  0,	floattov10(-1.0));
+	glLight(2, RGB15(31,31,31) , 0,				  0,	floattov10(1.0));
 
 	while(1) {
+		glLoadIdentity(); // Reset The View
+
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
-		// LoadGLTextures();
 
 		Coord intersects[50];
 		int count = 0;
@@ -130,8 +139,10 @@ int main(int argc, char** argv) {
 			// mouse being the start of a triangle
 			Coord b = intersects[i]; // current intersect
 			Coord c = intersects[i-1]; // the intersect before
+			glBindTexture(GL_TEXTURE_2D, texture[0]);
 			renderTriangle(b, c); // makes a nice triangle
 		}
+
 		renderTriangle(intersects[0], intersects[49]); // we need to link the first to the last to get full fill
 
 		renderSegments();
@@ -143,7 +154,7 @@ int main(int argc, char** argv) {
 // Load PCX files And Convert To Textures
 void LoadGLTextures(){
 	sImage pcx;
-	loadPCX((u8*)box_pcx, &pcx); //load our texture box_pcx from box_pcx.h
+	loadPCX((u8*)drunkenlogo_pcx, &pcx); //load our texture box_pcx from box_pcx.h
 	image8to16(&pcx);
 
 	glGenTextures(1, &texture[0]);
@@ -185,20 +196,20 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 // Segment related functions
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
-		glPushMatrix();
+		//glLoadIdentity();
+		//glPushMatrix();
 		glBegin(GL_QUADS);
-
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-		glColor3b(255, 255, 255);
-		glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
-
+			glColor3b(255, 255, 255);
+			glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
+			glColor3b(255, 255, 255);
+			glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
+			glColor3b(255, 255, 255);
+			glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
+			glColor3b(255, 255, 255);
+			glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 		glEnd();
-		glPopMatrix(1);
+
+		//glPopMatrix(1);
 	}
 }
 
