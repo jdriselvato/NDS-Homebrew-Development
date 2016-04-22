@@ -16,7 +16,8 @@ Things to know/whats new:
 #include <nds.h>
 #include <math.h>
 #include <stdio.h>
-#include <nds/arm9/image.h> // needed to learn PCX files
+#include <box_pcx.h>
+#include <nds/arm9/image.h> // needed to load PCX files
 
 typedef struct { // {x , y} coordinate
 	float x;
@@ -54,10 +55,12 @@ touchPosition touch; // stylus touch position
 Ray line_ray;
 Coord null = {-1, -1}; // faking null which isn't really safe at all. I should do something else.
 
+int	texture[1]; // Storage For One Texture
+
 // functions
+void LoadGLTextures();
 void renderTriangle(Coord b, Coord c);
 void renderSegments();
-void renderLine();
 Coord convertNDSCoordsToGL(Coord ndsCoord);
 Coord getIntersection(Ray ray, Ray segment);
 
@@ -86,6 +89,8 @@ int main(int argc, char** argv) {
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
+
+		// LoadGLTextures();
 
 		Coord intersects[50];
 		int count = 0;
@@ -126,7 +131,6 @@ int main(int argc, char** argv) {
 			Coord b = intersects[i]; // current intersect
 			Coord c = intersects[i-1]; // the intersect before
 			renderTriangle(b, c); // makes a nice triangle
-			renderLine(b); // this needs to draw a triangle of each point instead of square
 		}
 		renderTriangle(intersects[0], intersects[49]); // we need to link the first to the last to get full fill
 
@@ -135,6 +139,17 @@ int main(int argc, char** argv) {
 		glFlush(0);
 		swiWaitForVBlank();
 	}
+}
+// Load PCX files And Convert To Textures
+void LoadGLTextures(){
+	sImage pcx;
+	loadPCX((u8*)box_pcx, &pcx); //load our texture box_pcx from box_pcx.h
+	image8to16(&pcx);
+
+	glGenTextures(1, &texture[0]);
+	glBindTexture(0, texture[0]);
+	glTexImage2D(0, 0, GL_RGB, TEXTURE_SIZE_128 , TEXTURE_SIZE_128, 0, TEXGEN_TEXCOORD, pcx.image.data8);
+	imageDestroy(&pcx);
 }
 
 void renderTriangle(Coord b, Coord c) {
@@ -147,23 +162,6 @@ void renderTriangle(Coord b, Coord c) {
 		glVertex3v16(floattov16(b.x), floattov16(b.y), 0); // B
 		glColor3b(100, 10, 10);
 		glVertex3v16(floattov16(c.x), floattov16(c.y), 0); // C
-	glEnd();
-	glPopMatrix(1);
-}
-
-// the redline related functions
-// wont be a line so much any more but a triangle.. maybe we should create a new function
-void renderLine(Coord coord) {
-	glPushMatrix();
-	glBegin(GL_QUADS);
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(line_ray.a.x),floattov16(line_ray.a.y), 0); // A
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(line_ray.a.x), floattov16(line_ray.a.y), 0); // B
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // C
-		glColor3b(255, 0, 0);
-		glVertex3v16(floattov16(coord.x), floattov16(coord.y), 0); // D
 	glEnd();
 	glPopMatrix(1);
 }
