@@ -1,1 +1,0 @@
-spritesheet.o: spritesheet.s
