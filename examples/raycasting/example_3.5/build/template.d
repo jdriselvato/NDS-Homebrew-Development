@@ -1,5 +1,5 @@
 template.o: \
- /Users/jdriselvato/Programming/NDS/NDS-Development/examples/raycasting/example_3/source/template.c \
+ /Users/jdriselvato/Programming/NDS/NDS-Development/examples/raycasting/example_3.5/source/template.c \
  /Users/jdriselvato/devkitPro/libnds/include/nds.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/libversion.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/ndstypes.h \
@@ -57,7 +57,8 @@ template.o: \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/sprite.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/video.h \
- /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h
+ /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h \
+ /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/image.h
 
 /Users/jdriselvato/devkitPro/libnds/include/nds.h:
 
@@ -174,3 +175,5 @@ template.o: \
 /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/video.h:
 
 /Users/jdriselvato/devkitPro/libnds/include/nds/arm9/videoGL.h:
+
+/Users/jdriselvato/devkitPro/libnds/include/nds/arm9/image.h:

@@ -16,6 +16,7 @@ Things to know/whats new:
 #include <nds.h>
 #include <math.h>
 #include <stdio.h>
+#include <nds/arm9/image.h> // needed to learn PCX files
 
 typedef struct { // {x , y} coordinate
 	float x;
