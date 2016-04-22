@@ -13,5 +13,8 @@ In this example we take multiple rays calculate the intersection of various obje
 ### *3. Example_3* - documentation incomplete
 In this example we take multiple rays calculate the intersection of various objects on screen. The only difference between this example and Example 2 is that we are filling the rays for the first time. Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft3.html).
 
-### *3. Example_4* :octocat: Dev-ing :octocat:
+### *3.5. Example_3.5* - documentation incomplete
+Everything in this example is the same as Example_3 except I break the format we've been following. This example does not match anything the ncase example has because it doesn't apply an image to the intersection segments. If you're developing a game, most likely you are going to apply a texture of some sort to a QUAD. In this example we do exactly that because why not. I didn't want to mess with Example 4 at the moment and wanted to figure something new out with OpenGL on the NDS.
+
+### *4. Example_4* :octocat: Dev-ing :octocat:
 If you notice in example_3 some times the fill overlaps with the segment walls. So instead we'll take the corners of the segment walls as intersections instead of randomly placing a bunch of rays. Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft4.html).
