@@ -1,6 +1,10 @@
 # Ray Casting on NDS
 I found a really awesome resource on [Ray Casting](https://en.wikipedia.org/wiki/Ray_casting) with HTML5/JS Canvas. So much so that I think it's worth the effort to porting it to the NDS. This resouce by ncase, is interactive so go check it out before you start trying to understand each example. http://ncase.me/sight-and-light/
 
+#Introduction
+Something I've always found interested was the idea of Ray Casting. I think the first time I saw it was in GISH. Until today, I thought it might be one of those impossible tasks to understand, I'm not so much of a Math guy. In any case, I found an awesome resource on how to do it: http://ncase.me/sight-and-light/
+I'm going to try porting the majority of the Sight and Light examples. Fortunately for us, Ncase released all the source code (HTML/JS) on [github](https://github.com/ncase/sight-and-light). I'm going to try making this as easy as possible to understand, including the equations
+
 # Examples
 The Ray cast examples by ncase are a collection of improved iterations. This includes a total of 8 different examples some of which I will port. Below are an outline of each
 
