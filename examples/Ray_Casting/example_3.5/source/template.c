@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
 
 	glEnable(GL_ANTIALIAS);
 
-	glClearColor(5, 5, 5, 31); // set the BG color
+	glClearColor(0, 0, 0, 31); // set the BG color
 	glClearPolyID(63); // BG must have a unique polygon ID for AA to work
 	glClearDepth(0x7FFF);
 
