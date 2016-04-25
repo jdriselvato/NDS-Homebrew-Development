@@ -196,12 +196,12 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 // Segment related functions
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
+		glColor3b(255, 255, 255);
+
 		glLoadIdentity();
 		glTranslatef(0.0f,0.0f,-1.0f);
-
-		glPushMatrix();
-		glColor3b(255, 255, 255);
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
+
 		glBegin(GL_QUADS);
 			//glColor3b(255, 255, 255);
 			glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
@@ -212,7 +212,6 @@ void renderSegments() {
 			//glColor3b(255, 255, 255);
 			glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 		glEnd();
-		glPopMatrix(1);
 	}
 }
 
