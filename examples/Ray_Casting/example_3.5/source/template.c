@@ -98,8 +98,6 @@ int main(int argc, char** argv) {
 	glLight(2, RGB15(31,31,31) , 0,				  0,	floattov10(1.0));
 
 	while(1) {
-		glTranslatef(0.0f,0.0f,-1.0f);
-
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
 
@@ -199,6 +197,8 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
 		glLoadIdentity();
+		glTranslatef(0.0f,0.0f,-1.0f);
+
 		glPushMatrix();
 		glColor3b(255, 255, 255);
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
