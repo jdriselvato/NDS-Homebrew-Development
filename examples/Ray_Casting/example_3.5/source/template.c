@@ -84,6 +84,8 @@ int main(int argc, char** argv) {
 
 	LoadGLTextures();
 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 	gluPerspective(70, 256.0/192.0, 0.1, 40);
 	glMatrixMode(GL_MODELVIEW); // Set the current matrix to be the model matrix
 
@@ -96,7 +98,7 @@ int main(int argc, char** argv) {
 	glLight(2, RGB15(31,31,31) , 0,				  0,	floattov10(1.0));
 
 	while(1) {
-		glLoadIdentity(); // Reset The View
+		glTranslatef(0.0f,0.0f,-1.0f);
 
 		scanKeys();
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
@@ -196,20 +198,21 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 // Segment related functions
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
-		//glLoadIdentity();
-		//glPushMatrix();
+		glLoadIdentity();
+		glPushMatrix();
+		glColor3b(255, 255, 255);
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_QUADS);
-			glColor3b(255, 255, 255);
+			//glColor3b(255, 255, 255);
 			glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-			glColor3b(255, 255, 255);
+			//glColor3b(255, 255, 255);
 			glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-			glColor3b(255, 255, 255);
+			//glColor3b(255, 255, 255);
 			glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-			glColor3b(255, 255, 255);
+			//glColor3b(255, 255, 255);
 			glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 		glEnd();
-
-		//glPopMatrix(1);
+		glPopMatrix(1);
 	}
 }
 
