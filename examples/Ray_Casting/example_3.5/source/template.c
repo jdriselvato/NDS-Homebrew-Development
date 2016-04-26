@@ -194,12 +194,11 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 // Segment related functions
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
-		glColor3b(25, 255, 255);
-
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
-
 		glLoadIdentity();
 		glTranslatef(0.0f,0.0f,-1.0f);
+
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glColor3b(255, 255, 255);
 
 		glBegin(GL_QUADS);
 			glTexCoord2f(segments[i].a.x, segments[i].a.y);
