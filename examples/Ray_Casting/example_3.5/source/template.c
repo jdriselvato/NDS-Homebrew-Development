@@ -18,7 +18,6 @@ Things to know/whats new:
 #include <stdio.h>
 #include <nds/arm9/image.h> // needed to load PCX files
 
-#include <box_pcx.h>
 #include <drunkenlogo_pcx.h>
 
 
@@ -139,7 +138,6 @@ int main(int argc, char** argv) {
 			// mouse being the start of a triangle
 			Coord b = intersects[i]; // current intersect
 			Coord c = intersects[i-1]; // the intersect before
-			glBindTexture(GL_TEXTURE_2D, texture[0]);
 			renderTriangle(b, c); // makes a nice triangle
 		}
 
@@ -196,20 +194,24 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 // Segment related functions
 void renderSegments() {
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
-		glColor3b(255, 255, 255);
+		glColor3b(25, 255, 255);
+
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 		glLoadIdentity();
 		glTranslatef(0.0f,0.0f,-1.0f);
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 		glBegin(GL_QUADS);
-			//glColor3b(255, 255, 255);
+			glTexCoord2f(segments[i].a.x, segments[i].a.y);
 			glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
-			//glColor3b(255, 255, 255);
+
+			glTexCoord2f(segments[i].b.x, segments[i].b.y);
 			glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
-			//glColor3b(255, 255, 255);
+
+			glTexCoord2f(segments[i].c.x, segments[i].c.y);
 			glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
-			//glColor3b(255, 255, 255);
+
+			glTexCoord2f(segments[i].d.x, segments[i].d.y);
 			glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 		glEnd();
 	}
