@@ -193,13 +193,13 @@ Coord convertNDSCoordsToGL(Coord ndsCoord) {
 
 // Segment related functions
 void renderSegments() {
+	glLoadIdentity();
+	glTranslatef(0.0f,0.0f,-1.0f);
+
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glColor3b(255, 255, 255);
+
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
-		glLoadIdentity();
-		glTranslatef(0.0f,0.0f,-1.0f);
-
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
-		glColor3b(255, 255, 255);
-
 		glBegin(GL_QUADS);
 			glTexCoord2f(segments[i].a.x, segments[i].a.y);
 			glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
