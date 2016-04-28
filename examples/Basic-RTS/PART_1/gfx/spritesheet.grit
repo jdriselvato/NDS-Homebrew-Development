@@ -1,0 +1,7 @@
+-m! # Exclude map from output (default).
+-gB8 # Bit depth of the output
+-gT FF00FF # Set the transparency color to Magenta
+
+#metatile
+-Mh2 # Metatile height
+-Mw2 # Metatile width
