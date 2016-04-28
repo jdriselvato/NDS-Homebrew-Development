@@ -200,19 +200,25 @@ void renderSegments() {
 	glColor3b(255, 255, 255);
 
 	for (int i = 0; i < sizeof(segments)/sizeof(Square); i++) {
+		glPushMatrix();
 		glBegin(GL_QUADS);
-			glTexCoord2f(segments[i].a.x, segments[i].a.y);
+			//glTexCoord2f(segments[i].a.x, segments[i].a.y);
+			glTexCoord2f(0.0f, 0.0f);
 			glVertex3v16(floattov16(segments[i].a.x),floattov16(segments[i].a.y), 0); // A
 
-			glTexCoord2f(segments[i].b.x, segments[i].b.y);
+			// glTexCoord2f(segments[i].b.x, segments[i].b.y);
+			glTexCoord2f(1.0f, 0.0f);
 			glVertex3v16(floattov16(segments[i].b.x),floattov16(segments[i].b.y), 0); // B
 
-			glTexCoord2f(segments[i].c.x, segments[i].c.y);
+			// glTexCoord2f(segments[i].c.x, segments[i].c.y);
+			glTexCoord2f(1.0f, 1.0f);
 			glVertex3v16(floattov16(segments[i].c.x),floattov16(segments[i].c.y), 0); // C
 
-			glTexCoord2f(segments[i].d.x, segments[i].d.y);
+			// glTexCoord2f(segments[i].d.x, segments[i].d.y);
+			glTexCoord2f(0.0f, 1.0f);
 			glVertex3v16(floattov16(segments[i].d.x),floattov16(segments[i].d.y), 0); // D
 		glEnd();
+		glPopMatrix(1);
 	}
 }
 
