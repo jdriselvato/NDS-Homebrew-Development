@@ -47,6 +47,7 @@ Download here: http://desmume.org
 6. http://www.coranac.com/2009/02/some-interesting-numbers-on-nds-code-size/ - Some interesting numbers on NDS code size
 7. http://answers.drunkencoders.com - Different segments to beginner questions
 8. http://www.cc.gatech.edu/~hyesoon/spr11/lec_arm_prog1.pdf - really awesome intro to the technical size of NDS development from GA Tech!
+9. http://osdl.sourceforge.net/main/documentation/misc/nintendo-DS/homebrew-guide/HomebrewForDS.html - A guide to homebrew development for the Nintendo DS
 
 # Other Developers Examples
 1. https://github.com/Thunderbolt26/nintendo_ds_game - 3 Mini Games in one full source
