@@ -48,6 +48,7 @@ Download here: http://desmume.org
 7. http://answers.drunkencoders.com - Different segments to beginner questions
 8. http://www.cc.gatech.edu/~hyesoon/spr11/lec_arm_prog1.pdf - really awesome intro to the technical size of NDS development from GA Tech!
 9. http://osdl.sourceforge.net/main/documentation/misc/nintendo-DS/homebrew-guide/HomebrewForDS.html - A guide to homebrew development for the Nintendo DS
+10. http://problemkaputt.de/gbatek.htm - An awesome resource on Gameboy Advance / Nintendo DS / DSi, thanks [@zecbmo](https://github.com/zecbmo)
 
 # Other Developers Examples
 1. https://github.com/Thunderbolt26/nintendo_ds_game - 3 Mini Games in one full source
