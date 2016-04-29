@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 
 	// Initialize the top screen engine
 	videoSetModeSub(MODE_0_2D);
-	vramSetBankC(VRAM_C_SUB_BG);
+	//vramSetBankC(VRAM_C_SUB_BG);
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 	oamInit(&oamSub, SpriteMapping_1D_128, false);
 
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 
 		characterMovement(&character);
 		generateGem(&gem_sprite);
-		addBackground();
+		//addBackground();
 
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
