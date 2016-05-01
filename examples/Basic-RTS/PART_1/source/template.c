@@ -31,6 +31,7 @@ typedef struct {
 typedef struct {
 	int x, y; // location on screen
 	u16* gfx;
+	u8* gfx_frame;
 	bool shouldDisplay;
 } Menu;
 
@@ -39,11 +40,15 @@ Functions in code
 ---------------------------------------------------------------------------------*/
 void characterMovement(Character * character);
 void generateHouse(House * House_sprite);
+void generateMenu();
+
+Menu menu_object = {SCREEN_WIDTH / 2 - 8, SCREEN_HEIGHT + 8}
 
 /*---------------------------------------------------------------------------------
 Global Variables
 ---------------------------------------------------------------------------------*/
 touchPosition touch; // Stylus location
+
 
 int main(int argc, char** argv) {
 	Character character = {20, 20}; // set the initial x, y location of the sprite
@@ -64,9 +69,15 @@ int main(int argc, char** argv) {
 	House_sprite.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	House_sprite.gfx_frame = (u8*)spritesheetTiles;
 
+	menu_object.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
+	menu_object.gfx_frame = (u8*)spritesheetTiles;
+
 	while(1) {
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch); // assign touch variable
 
+		if (menu_object.shouldDisplay == true) {
+			generateMenu();
+		}
 		characterMovement(&character);
 		generateHouse(&House_sprite);
 
@@ -74,6 +85,10 @@ int main(int argc, char** argv) {
 		oamUpdate(&oamSub);
 	}
 	return 0;
+}
+
+void generateMenu() {
+	u8* offset = House_sprite->gfx_frame + 4 * 16*16;
 }
 
 /*---------------------------------------------------------------------------------
