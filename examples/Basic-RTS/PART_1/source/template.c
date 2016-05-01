@@ -23,17 +23,31 @@ typedef struct {
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
 
 typedef struct {
+	int x, y;
 	u16* gfx;
 	u8* gfx_frame;
-	int x, y;
-} Gem;
+} House;
 
+typedef struct {
+	int x, y; // location on screen
+	u16* gfx;
+	bool shouldDisplay;
+} Menu;
+
+/*---------------------------------------------------------------------------------
+Functions in code
+---------------------------------------------------------------------------------*/
 void characterMovement(Character * character);
-void generateGem(Gem * gem_sprite);
+void generateHouse(House * House_sprite);
+
+/*---------------------------------------------------------------------------------
+Global Variables
+---------------------------------------------------------------------------------*/
+touchPosition touch; // Stylus location
 
 int main(int argc, char** argv) {
 	Character character = {20, 20}; // set the initial x, y location of the sprite
-	Gem gem_sprite = {0, 0}; // add the gem to the screen
+	House House_sprite = {SCREEN_WIDTH / 2 - 8, SCREEN_HEIGHT / 2 - 8}; // Center House to Screen
 
 	// Initialize the top screen engine
 	videoSetModeSub(MODE_0_2D);
@@ -46,18 +60,42 @@ int main(int argc, char** argv) {
 	character.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	character.gfx_frame = (u8*)spritesheetTiles; // makes a reference to character16x16Tiles from character16x16.h
 
-	// Set up the Gem sprite
-	gem_sprite.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gem_sprite.gfx_frame = (u8*)spritesheetTiles;
+	// Set up the House sprite
+	House_sprite.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
+	House_sprite.gfx_frame = (u8*)spritesheetTiles;
 
 	while(1) {
+		if(keysHeld() & KEY_TOUCH) touchRead(&touch); // assign touch variable
+
 		characterMovement(&character);
-		generateGem(&gem_sprite);
+		generateHouse(&House_sprite);
 
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
 	}
 	return 0;
+}
+
+/*---------------------------------------------------------------------------------
+Code for generating the House
+---------------------------------------------------------------------------------*/
+void generateHouse(House * House_sprite) {
+	u8* offset = House_sprite->gfx_frame + 4 * 16*16;
+	dmaCopy(offset, House_sprite->gfx, 16*16);
+
+	if (touch.px > House_sprite->x && touch.px < House_sprite->x + 16 // stylus inside x pos
+		&& touch.py > House_sprite->y && touch.py < House_sprite->y + 16) { // inside y pos
+
+	}
+
+	oamSet(&oamSub,
+		1, // oam entry id
+		House_sprite->x, House_sprite->y, // x, y location
+		0, 15, // priority, palette
+		SpriteSize_16x16,
+		SpriteColorFormat_256Color,
+		House_sprite->gfx, // the oam gfx
+		-1, false, false, false, false, false);
 }
 
 /*---------------------------------------------------------------------------------
@@ -92,22 +130,5 @@ void characterMovement(Character * character) {
 		SpriteSize_16x16,
 		SpriteColorFormat_256Color,
 		character->gfx, // the oam gfx
-		-1, false, false, false, false, false);
-}
-
-/*---------------------------------------------------------------------------------
-Code for generating the gem
----------------------------------------------------------------------------------*/
-void generateGem(Gem * gem_sprite) {
-	u8* offset = gem_sprite->gfx_frame + 4 * 16*16;
-	dmaCopy(offset, gem_sprite->gfx, 16*16);
-
-	oamSet(&oamSub,
-		1, // oam entry id
-		gem_sprite->x, gem_sprite->y, // x, y location
-		0, 15, // priority, palette
-		SpriteSize_16x16,
-		SpriteColorFormat_256Color,
-		gem_sprite->gfx, // the oam gfx
 		-1, false, false, false, false, false);
 }
