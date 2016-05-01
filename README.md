@@ -54,5 +54,8 @@ Download here: http://desmume.org
 1. https://github.com/Thunderbolt26/nintendo_ds_game - 3 Mini Games in one full source
 2. https://github.com/smealum/portalDS - Portal DS
 
+# Collection of NDS Homebrew Games
+1. http://gamebrew.org/wiki/List_of_DS_homebrew_games - Probably the best list on the web
+
 # Where to find me
 [Website](http://johnriselvato.com) | [Twitter](http://twitter.com/jdriselvato) | [Instagram](instagram.com/jdriselvato)
