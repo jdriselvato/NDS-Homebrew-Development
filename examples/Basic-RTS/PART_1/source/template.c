@@ -40,11 +40,11 @@ int main(int argc, char** argv) {
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 
 	oamInit(&oamSub, SpriteMapping_1D_128, false);
+	dmaCopy(spritesheetPal, SPRITE_PALETTE_SUB, 512); // <---  ah there is a sub sprite palette
 
 	// Set up the Character sprite
 	character.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	character.gfx_frame = (u8*)spritesheetTiles; // makes a reference to character16x16Tiles from character16x16.h
-	dmaCopy(spritesheetPal, SPRITE_PALETTE, 512);
 
 	// Set up the Gem sprite
 	gem_sprite.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
