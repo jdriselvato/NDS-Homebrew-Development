@@ -42,7 +42,7 @@ void characterMovement(Character * character);
 void generateHouse(House * House_sprite);
 void generateMenu();
 
-Menu menu_object = {SCREEN_WIDTH / 2 - 8, SCREEN_HEIGHT + 8}
+Menu menu_object = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
 
 /*---------------------------------------------------------------------------------
 Global Variables
@@ -88,7 +88,17 @@ int main(int argc, char** argv) {
 }
 
 void generateMenu() {
-	u8* offset = House_sprite->gfx_frame + 4 * 16*16;
+	u8* offset = menu_object.gfx_frame + 5 * 16*16;
+	dmaCopy(offset, menu_object.gfx, 16*16);
+
+	oamSet(&oamSub,
+		2, // oam entry id
+		menu_object.x, menu_object.y, // x, y location
+		0, 15, // priority, palette
+		SpriteSize_16x16,
+		SpriteColorFormat_256Color,
+		menu_object.gfx, // the oam gfx
+		-1, false, false, false, false, false);
 }
 
 /*---------------------------------------------------------------------------------
@@ -100,7 +110,9 @@ void generateHouse(House * House_sprite) {
 
 	if (touch.px > House_sprite->x && touch.px < House_sprite->x + 16 // stylus inside x pos
 		&& touch.py > House_sprite->y && touch.py < House_sprite->y + 16) { // inside y pos
-
+		menu_object.shouldDisplay = true;
+	} else {
+		menu_object.shouldDisplay = false;
 	}
 
 	oamSet(&oamSub,
