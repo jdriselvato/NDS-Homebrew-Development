@@ -12,15 +12,7 @@ built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 Things to know:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
-#include <spritesheet.h>
-
-typedef struct {
-	int x, y, state; // x/y lcoation and sprite walk state
-	u16* gfx; // oam GFX
-	u8* gfx_frame;
-} Character;
-
-enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
+#include "units.h"
 
 typedef struct {
 	int x, y;
@@ -98,7 +90,7 @@ void generateMenu() {
 		SpriteSize_16x16,
 		SpriteColorFormat_256Color,
 		menu_object.gfx, // the oam gfx
-		-1, false, false, false, false, false);
+		-1, false, menu_object.shouldDisplay, false, false, false);
 }
 
 /*---------------------------------------------------------------------------------
@@ -108,11 +100,10 @@ void generateHouse(House * House_sprite) {
 	u8* offset = House_sprite->gfx_frame + 4 * 16*16;
 	dmaCopy(offset, House_sprite->gfx, 16*16);
 
-	if (touch.px > House_sprite->x && touch.px < House_sprite->x + 16 // stylus inside x pos
-		&& touch.py > House_sprite->y && touch.py < House_sprite->y + 16) { // inside y pos
+	menu_object.shouldDisplay = false;
+	if (touch.px > House_sprite->x && touch.px < House_sprite->x + 16 // stylus inside x pos of house
+		&& touch.py > House_sprite->y && touch.py < House_sprite->y + 16) { // inside y pos of house
 		menu_object.shouldDisplay = true;
-	} else {
-		menu_object.shouldDisplay = false;
 	}
 
 	oamSet(&oamSub,
