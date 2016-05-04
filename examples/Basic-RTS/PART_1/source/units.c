@@ -1,4 +1,5 @@
 #include <nds.h>
+#include "units.h"
 
 Character addNewUnit() {
 	Character character = {20, 20};

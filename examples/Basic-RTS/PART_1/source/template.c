@@ -12,7 +12,6 @@ built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 Things to know:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
-#include <spritesheet.h>
 #include "units.h"
 
 typedef struct {
