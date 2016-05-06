@@ -1,6 +1,8 @@
 #include <nds.h>
 #include "menu.h"
 
+extern const unsigned int spritesheetTiles[2880];
+
 Menu initMenu() {
 	Menu menu = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
 

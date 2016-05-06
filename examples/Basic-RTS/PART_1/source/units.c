@@ -1,6 +1,8 @@
 #include <nds.h>
 #include "units.h"
 
+extern const unsigned int spritesheetTiles[2880];
+
 Character addNewUnit() {
 	Character character = {20, 20};
 
