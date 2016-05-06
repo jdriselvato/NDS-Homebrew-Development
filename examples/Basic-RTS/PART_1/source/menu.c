@@ -1,3 +1,4 @@
+#include <nds.h>
 #include "menu.h"
 
 Menu initMenu() {
@@ -24,6 +25,6 @@ void displayMenu(Menu * menu) {
 		SpriteColorFormat_256Color,
 		menu->gfx, // the oam gfx
 		-1, false,
-		true, // display me?
+		false, // hide me?
 		false, false, false);
 }

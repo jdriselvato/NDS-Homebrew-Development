@@ -13,6 +13,7 @@ Things to know:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include "units.h"
+#include "menu.h"
 
 typedef struct {
 	int x, y;
