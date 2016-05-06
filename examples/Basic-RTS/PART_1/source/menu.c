@@ -2,15 +2,12 @@
 #include "menu.h"
 
 Menu initMenu() {
-	Menu menu_object = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
+	Menu menu = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
 
-	oamInit(&oamSub, SpriteMapping_1D_128, false);
-	dmaCopy(spritesheetPal, SPRITE_PALETTE_SUB, 512);
+	menu.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
+	menu.gfx_frame = (u8*)spritesheetTiles;
 
-	menu_object.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
-	menu_object.gfx_frame = (u8*)spritesheetTiles;
-
-	return menu_object;
+	return menu;
 }
 
 void displayMenu(Menu * menu) {

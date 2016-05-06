@@ -1,5 +1,3 @@
-#include <spritesheet.h>
-
 typedef struct {
 	int x, y; // location on screen
 	u16* gfx;

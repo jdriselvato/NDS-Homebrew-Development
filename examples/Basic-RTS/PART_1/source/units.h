@@ -1,5 +1,3 @@
-#include <spritesheet.h>
-
 typedef struct {
 	int x, y, state; // x/y lcoation and sprite walk state
 	u16* gfx; // oam GFX

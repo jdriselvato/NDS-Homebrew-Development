@@ -12,8 +12,10 @@ built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 Things to know:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
-#include "units.h"
+#include <spritesheet.h>
+
 #include "menu.h"
+#include "units.h"
 
 typedef struct {
 	int x, y;
@@ -25,7 +27,6 @@ typedef struct {
 Functions in code
 ---------------------------------------------------------------------------------*/
 void generateHouse(House * House_sprite);
-Menu menu_object = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
 
 /*---------------------------------------------------------------------------------
 Global Variables
@@ -39,13 +40,16 @@ int main(int argc, char** argv) {
 	videoSetModeSub(MODE_0_2D);
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 
+	oamInit(&oamSub, SpriteMapping_1D_128, false);
+	dmaCopy(spritesheetPal, SPRITE_PALETTE_SUB, 512);
+
 	Character character = addNewUnit();
+	Menu menu = initMenu();
 
 	// Set up the House sprite
 	House_sprite.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	House_sprite.gfx_frame = (u8*)spritesheetTiles;
 
-	Menu menu = initMenu();
 
 	while(1) {
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch); // assign touch variable
