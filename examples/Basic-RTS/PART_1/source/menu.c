@@ -12,7 +12,7 @@ Menu initMenu() {
 	return menu;
 }
 
-void displayMenu(Menu * menu) {
+void displayMenu(Menu * menu, bool hideMenu) {
 	u8* offset = menu->gfx_frame + 5 * 16*16;
 	dmaCopy(offset, menu->gfx, 16*16);
 
@@ -24,6 +24,6 @@ void displayMenu(Menu * menu) {
 		SpriteColorFormat_256Color,
 		menu->gfx, // the oam gfx
 		-1, false,
-		false, // hide me?
+		hideMenu, // hide me?
 		false, false, false);
 }

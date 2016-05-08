@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 	while(1) {
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch); // assign touch variable
 
-		displayMenu(&menu);
+		displayMenu(&menu, true);
 		characterMovement(&character);
 		generateHouse(&House_sprite);
 

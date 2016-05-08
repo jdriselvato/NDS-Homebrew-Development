@@ -6,4 +6,4 @@ typedef struct {
 } Menu;
 
 Menu initMenu();
-void displayMenu();
+void displayMenu(Menu * menu, bool hideMenu);
