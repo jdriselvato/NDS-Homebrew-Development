@@ -28,6 +28,8 @@ How difficult can it be to save? Well annoyingly so if you don't know a few thin
 
 Now saving should work.
 
+If you are having issues read more about it here: http://ezflash4.tumblr.com/savefiles
+
 #### Formating (OSX)
 This device requires your MiniSD (who uses MiniSD? China I guess) to be formated on FAT16. If you are not using Windows it can be really annoying to get it up formated in this old format. Below will outline now I did it.
 
