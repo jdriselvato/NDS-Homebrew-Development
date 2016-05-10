@@ -6,3 +6,4 @@ typedef struct {
 
 House initHouse();
 void generateHouse(House * House_sprite);
+bool hideHouseMenu(touchPosition touch, House * house);

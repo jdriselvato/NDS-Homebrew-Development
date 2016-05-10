@@ -25,9 +25,7 @@ Global Variables
 touchPosition touch; // Stylus location
 
 int main(int argc, char** argv) {
-
-	// Initialize the top screen engine
-	videoSetModeSub(MODE_0_2D);
+	videoSetModeSub(MODE_0_2D); // Initialize the top screen engine
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 
 	oamInit(&oamSub, SpriteMapping_1D_128, false);
@@ -43,7 +41,8 @@ int main(int argc, char** argv) {
 		characterMovement(&character);
 
 		generateHouse(&house);
-		displayMenu(&menu, true);
+		bool selected = hideHouseMenu(touch, &house);
+		displayMenu(&menu, selected);
 
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);

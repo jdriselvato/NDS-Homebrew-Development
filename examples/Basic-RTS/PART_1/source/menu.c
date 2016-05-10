@@ -5,7 +5,6 @@ extern const unsigned int spritesheetTiles[2880];
 
 Menu initMenu() {
 	Menu menu = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
-
 	menu.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	menu.gfx_frame = (u8*)spritesheetTiles;
 

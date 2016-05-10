@@ -14,12 +14,6 @@ void generateHouse(House * house) {
 	u8* offset = house->gfx_frame + 4 * 16*16;
 	dmaCopy(offset, house->gfx, 16*16);
 
-	// menu_object.shouldDisplay = false;
-	// if (touch.px > house->x && touch.px < house->x + 16 // stylus inside x pos of house
-	// 	&& touch.py > house->y && touch.py < house->y + 16) { // inside y pos of house
-	// 	menu_object.shouldDisplay = true;
-	// }
-
 	oamSet(&oamSub,
 		1, // oam entry id
 		house->x, house->y, // x, y location
@@ -29,3 +23,12 @@ void generateHouse(House * house) {
 		house->gfx, // the oam gfx
 		-1, false, false, false, false, false);
 }
+
+bool hideHouseMenu(touchPosition touch, House * house) {
+	if (touch.px > house->x && touch.px < house->x + 16 // stylus inside x pos of house
+		&& touch.py > house->y && touch.py < house->y + 16) { // inside y pos of house
+		return false;
+	}
+	return true;
+}
+
