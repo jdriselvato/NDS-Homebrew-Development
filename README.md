@@ -19,6 +19,11 @@ Here we will learn how to display a basic solid square on the screen to a full b
 
 Here we will learn about an advance idea that can make your game look reall awesome with Ray Casting. Each example has a comprehensive outline of new code, concepts and equations. I truly think anyone can learn how to Ray Cast from these examples because of how much information I go into. If you are looking to take everything you've learned from the `Graphics` category and take it to the next level, Ray Casting is it!
 
+#### 3. [Basic RTS](/examples/Basic-RTS/)
+###### *(Advance) - working progress*
+
+I'm pretty interested in getting an RTS together, so I'll be breaking up the development of it into multiple parts. The code, the sprites and the entire project is free to use for your own games! If you do develop something with it let me know, I'd love to spot light it!
+
 # Downloading and Installing
 Devkitpro now starts you off with GC and Wii SDKs. To get the GBA/NDS version of devkitPro use the link below:
 http://devkitpro.org/wiki/Getting_Started/devkitARM
