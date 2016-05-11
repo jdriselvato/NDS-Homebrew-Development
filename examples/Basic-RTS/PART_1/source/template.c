@@ -37,8 +37,9 @@ int main(int argc, char** argv) {
 
 	while(1) {
 		if(keysHeld() & KEY_TOUCH) touchRead(&touch); // assign touch variable
-
-		characterMovement(&character);
+		if (menu.gfx[0] != 0) {
+			characterMovement(&character);
+		}
 
 		generateHouse(&house);
 		bool selected = hideHouseMenu(touch, &house);

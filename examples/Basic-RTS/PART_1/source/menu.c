@@ -18,7 +18,7 @@ Menu initMenu() {
 
 void displayMenu(Menu * menu, bool hideMenu) {
 	for (int i = 0; i < 5; i++) {
-		u8* offset = menu->gfx_frame + (5) * 16*16;
+		u8* offset = menu->gfx_frame + (1 + i) * 16*16;
 		dmaCopy(offset, menu->gfx, 16*16);
 
 		oamSet(&oamSub,
@@ -29,7 +29,7 @@ void displayMenu(Menu * menu, bool hideMenu) {
 			SpriteColorFormat_256Color,
 			menu->gfx[i], // the oam gfx
 			-1, false,
-			hideMenu, // hide me?
+			hideMenu, // hide me? (hideMenu)
 			false, false, false);
 	}
 }
