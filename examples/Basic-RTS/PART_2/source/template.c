@@ -2,7 +2,7 @@
 # What  I listened to:
 
 # Basic RTS Part 2
-In this example we use our new menu to select a menu item which in return will add a unit to screen.
+In this example we use our new menu to select a menu item, specifically create a unit. Using timers we'll create a queue for creating new units and once each timer is complete a unit will be added to the screen, next to the house.
 
 -- John Riselvato ( May 12th, 2016 )
 find me at: @jdriselvato

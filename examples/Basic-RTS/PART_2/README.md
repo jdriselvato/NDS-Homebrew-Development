@@ -1,9 +1,7 @@
 # Basic RTS Part 2
-In this example we learn how to use the stylus to select a house and have a menu pop up. In Part 2, we will use this menu to select units to create.
+In this example we use our new menu to select a menu item, specifically create a unit. Using timers we'll create a queue for creating new units and once each timer is complete a unit will be added to the screen, next to the house.
 
 # Source Files
-This is the first time we actually split up our code into different source files. This is truly a better way to organize the code into different sections in order to keep things cleaner and easier to understand.
-
 #### Menu
 menu.c & menu.h will contain the functionality of all menu related code. This includes showing the menu, selecting items from the menu and more.
 
