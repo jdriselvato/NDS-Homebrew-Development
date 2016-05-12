@@ -3,7 +3,7 @@
 -- We Lost The Sea - Departure Songs (April 30th, 2016)
 -- Animal Crossing Rainy Day Theme (May 7th, 2016) - https://www.youtube.com/watch?v=5ehnZNaNow4
 
-# Basic RTS
+# Basic RTS Part 1
 In this example we learn how to use the stylus to select a house and have a menu pop up. In Part 2, we will use this menu to select units to create.
 -- John Riselvato ( April 28th, 2016 )
 find me at: @jdriselvato
