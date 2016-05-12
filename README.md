@@ -1,13 +1,14 @@
 # NDS Homebew Development
-Welcome to NDS [Homebrew](https://en.wikipedia.org/wiki/Nintendo_DS_homebrew) Development!
+Welcome to my [NDS Homebrew](https://en.wikipedia.org/wiki/Nintendo_DS_homebrew) Development Resource!
 
 The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples and more as I learn how to program on the NDS.
 
-This repo is designed to provide an easier understanding of how to develop on the NDS with devkitpro (C & C++). The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see and provide resources to further the understanding of the topic.
+This repo is designed to provide an comprehensive understanding of how to develop on the NDS with devkitpro (C & C++). The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see and provide resources to further the understanding of the topic.
 
 Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
 
 # NDS Game Development Topics
+This repo is broken up into high level topics and each of those topics have it's own README.md that go into more detail. For example the Graphics examples have a total of 9 examples. Each of those 9 examples will have it's own README outlining new information about the code. So this truly is a great way to learn the DevKitPro SDK.
 
 #### 1. [Graphics](/examples/Graphics/)
 ###### *(Novice - Moderate) - 9 Examples*
@@ -28,10 +29,10 @@ I'm pretty interested in getting an RTS together, so I'll be breaking up the dev
 Devkitpro now starts you off with GC and Wii SDKs. To get the GBA/NDS version of devkitPro use the link below:
 http://devkitpro.org/wiki/Getting_Started/devkitARM
 
-All projects are currently compiled with 1.50.3 NDS rom tool and devkitARM r45 (latest).
+All projects are currently compiled with 1.50.3 NDS rom tool and devkitARM r45 (latest), as of May 12, 2016.
 
-After installing (OSX perl install) it requires you to set up environment variables.
-This is what my *~/.bash_profile* looks like:
+After installing (I did through OSX perl install) it requires you to set up environment variables.
+This is what my *~/.bash_profile* looks like (OSX/Linux):
 ```
   export DEVKITPRO=/Users/jdriselvato/devkitPro
   export DEVKITARM=${DEVKITPRO}/devkitARM
@@ -40,8 +41,11 @@ This is what my *~/.bash_profile* looks like:
 Then literally after that go to *~/devkitPro/examples* and type *make* in any of the example folders and it will compile the source to NDS file. It couldn't be easier.
 
 #Emulator
-I'm using DESMUME as the emulator to test out the code on OSX. I do have an R4 that I'll be using to test on device
+I'm using DESMUME as the emulator to test out the code on OSX.
 Download here: http://desmume.org
+
+#Testing on Device
+Read more [here](./tools/README.md)
 
 #Resources to read
 1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
