@@ -8,14 +8,14 @@ Menu initMenu() {
 	for (u8 i = 0; i < 5; i++) {
 		menu.gfx[i] = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	}
- 	menu.gfx_frame = (u8*)spritesheetTiles;
+ 	menu.tileSheet = (u8*)spritesheetTiles;
 
 	return menu;
 }
 
 void displayMenu(Menu * menu, bool hideMenu) {
 	for (u8 i = 0; i < 5; i++) {
-		u8* offset = menu->gfx_frame + (5 + i) * 16*16;
+		u8* offset = menu->tileSheet + (5 + i) * 16*16;
 		dmaCopy(offset, menu->gfx[i], 16*16);
 
 		oamSet(&oamSub,

@@ -7,7 +7,7 @@ Character addNewUnit() {
 	Character character = {20, 20};
 
 	character.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
-	character.gfx_frame = (u8*)spritesheetTiles; // makes a reference to character16x16Tiles from character16x16.h
+	character.tileSheet = (u8*)spritesheetTiles; // makes a reference to character16x16Tiles from character16x16.h
 	return character;
 }
 
@@ -33,7 +33,7 @@ void characterMovement(Character * character) {
 	}
 
 	int frame = character->state;
-	u8* offset = character->gfx_frame + frame * 16*16;
+	u8* offset = character->tileSheet + frame * 16*16;
 	dmaCopy(offset, character->gfx, 16*16);
 
 	oamSet(&oamSub,

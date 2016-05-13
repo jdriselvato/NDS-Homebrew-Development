@@ -1,7 +1,7 @@
 typedef struct {
 	int x, y;
 	u16* gfx;
-	u8* gfx_frame;
+	u8* tileSheet;
 } House;
 
 House initHouse();

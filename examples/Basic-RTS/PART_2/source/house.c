@@ -6,12 +6,12 @@ extern const unsigned int spritesheetTiles[2880];
 House initHouse() {
 	House house = {SCREEN_WIDTH / 2 - 8, SCREEN_HEIGHT / 2 - 8};
 	house.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
-	house.gfx_frame = (u8*)spritesheetTiles;
+	house.tileSheet = (u8*)spritesheetTiles;
 	return house;
 }
 
 void generateHouse(House * house) {
-	u8* offset = house->gfx_frame + 4 * 16*16;
+	u8* offset = house->tileSheet + 4 * 16*16;
 	dmaCopy(offset, house->gfx, 16*16);
 
 	oamSet(&oamSub,
