@@ -3,6 +3,8 @@
 
 extern const unsigned int spritesheetTiles[2880];
 
+bool shouldCloseMenu = true;
+
 House initHouse() {
 	House house = {SCREEN_WIDTH / 2 - 8, SCREEN_HEIGHT / 2 - 8};
 	house.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
@@ -27,8 +29,9 @@ void generateHouse(House * house) {
 bool hideHouseMenu(touchPosition touch, House * house) {
 	if (touch.px > house->x && touch.px < house->x + 16 // stylus inside x pos of house
 		&& touch.py > house->y && touch.py < house->y + 16) { // inside y pos of house
-		return false;
+		shouldCloseMenu = false;
+		return shouldCloseMenu;
 	}
-	return true;
+	return shouldCloseMenu; // that way it doesn't close automatically
 }
 
