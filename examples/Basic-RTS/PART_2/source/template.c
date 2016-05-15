@@ -35,7 +35,10 @@ int main(int argc, char** argv) {
 	House house = initHouse();
 
 	while(1) {
-		if(keysHeld() & KEY_TOUCH) touchRead(&touch); // assign touch variable
+		if(keysHeld() & KEY_TOUCH) {
+			touchRead(&touch); // assign touch variable
+			menu.stylus(touch);
+		}
 		if (menu.gfx[0] != 0) {
 			characterMovement(&character);
 		}
