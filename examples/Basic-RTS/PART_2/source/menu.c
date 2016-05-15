@@ -2,6 +2,12 @@
 #include "menu.h"
 
 extern const unsigned int spritesheetTiles[2880];
+typedef struct {
+	int x, y; // location on screen
+	u16* gfx[5];
+	u8* tileSheet;
+	bool shouldDisplay;
+} Icon;
 
 Menu initMenu() {
 	Menu menu = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
@@ -29,4 +35,8 @@ void displayMenu(Menu * menu, bool hideMenu) {
 			hideMenu, // hide me? (hideMenu)
 			false, false, false);
 	}
+}
+
+void displayIconForSection() {
+
 }
