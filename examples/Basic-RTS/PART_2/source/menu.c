@@ -37,9 +37,8 @@ void displayMenu(Menu * menu, bool hideMenu) {
 	}
 }
 
-void stylusTouch(touchPosition touch) {
-	int x = 1;
-	x++;
+void stylusTouch(Menu * menu, touchPosition * touch) {
+	menu->x = touch->px;
 }
 
 int selectingMenuItem() {

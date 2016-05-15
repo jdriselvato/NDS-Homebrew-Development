@@ -4,9 +4,9 @@ typedef struct {
 	u8* tileSheet;
 	bool shouldDisplay;
 	u8* iconLocation;
-	void (*stylus)(touchPosition touch);
+	void (*stylus)();
 } Menu;
 
 Menu initMenu();
 void displayMenu(Menu * menu, bool hideMenu);
-void stylusTouch();
+void stylusTouch(Menu * menu, touchPosition * touch);
