@@ -15,7 +15,7 @@ Menu initMenu() {
 		menu.gfx[i] = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	}
  	menu.tileSheet = (u8*)spritesheetTiles;
-
+ 	menu.stylus = &stylusTouch;
 	return menu;
 }
 
@@ -37,6 +37,14 @@ void displayMenu(Menu * menu, bool hideMenu) {
 	}
 }
 
-void displayIconForSection() {
+void stylusTouch() {
+	int x = 1;
+	x++;
+}
 
+int selectingMenuItem() {
+	// here we will take the x & y location
+	// determine what menu item is selected
+	// return the int value (0-4)
+	return -1;
 }
