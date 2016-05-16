@@ -2,8 +2,8 @@ typedef struct {
 	int x, y; // location on screen
 	u16* gfx[5];
 	u8* tileSheet;
+	int selectedIcon;
 	bool shouldDisplay;
-	u8* iconLocation;
 	void (*stylus)();
 } Menu;
 

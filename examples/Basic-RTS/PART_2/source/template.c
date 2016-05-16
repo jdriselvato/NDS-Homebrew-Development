@@ -13,6 +13,7 @@ Things to know:
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <spritesheet.h>
+#include <stdio.h>
 
 #include "menu.h"
 #include "units.h"
@@ -27,6 +28,9 @@ int main(int argc, char** argv) {
 	videoSetModeSub(MODE_0_2D); // Initialize the top screen engine
 	vramSetBankD(VRAM_D_SUB_SPRITE);
 
+	// debugging
+	consoleDemoInit();
+
 	oamInit(&oamSub, SpriteMapping_1D_128, false);
 	dmaCopy(spritesheetPal, SPRITE_PALETTE_SUB, 512);
 
@@ -36,9 +40,11 @@ int main(int argc, char** argv) {
 
 	while(1) {
 		if(keysHeld() & KEY_TOUCH) {
-			touchRead(&touch); // assign touch variable
-			menu.stylus(&menu, &touch);
+			touchRead(&touch);
+			stylusTouch(&menu, &touch);
 		}
+
+		printf("\x1b[1;1HSelected Icon: %d", menu.selectedIcon);
 
 		characterMovement(&character);
 		generateHouse(&house);
