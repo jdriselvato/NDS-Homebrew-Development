@@ -39,10 +39,8 @@ int main(int argc, char** argv) {
 			touchRead(&touch); // assign touch variable
 			menu.stylus(&menu, &touch);
 		}
-		if (menu.gfx[0] != 0) {
-			characterMovement(&character);
-		}
 
+		characterMovement(&character);
 		generateHouse(&house);
 		bool selected = hideHouseMenu(touch, &house);
 		displayMenu(&menu, selected);

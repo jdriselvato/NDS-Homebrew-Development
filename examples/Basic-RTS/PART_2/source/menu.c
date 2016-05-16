@@ -36,6 +36,11 @@ void stylusTouch(Menu * menu, touchPosition * touch) {
 }
 
 int selectingMenuItem() {
+	for (u8 i = 0; i < 5; i++) {
+		if (touch.px > house->x && touch.px < house->x + 16 // stylus inside x pos of item
+			&& touch.py > house->y && touch.py < house->y + 16) { // inside y pos of item
+		}
+	}
 	// here we will take the x & y location
 	// determine what menu item is selected
 	// return the int value (0-4)
