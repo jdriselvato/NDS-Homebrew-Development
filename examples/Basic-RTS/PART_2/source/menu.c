@@ -2,7 +2,7 @@
 #include "menu.h"
 
 extern const unsigned int spritesheetTiles[2880];
-int selectingMenuItem(Menu menu, touchPosition touch);
+int selectingMenuItem(Menu * menu, touchPosition * touch);
 
 Menu initMenu() {
 	Menu menu = {SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT - 16};
@@ -36,10 +36,11 @@ void stylusTouch(Menu * menu, touchPosition * touch) {
 	selectingMenuItem(menu, touch);
 }
 
-int selectingMenuItem(Menu menu, touchPosition touch) {
+int selectingMenuItem(Menu * menu, touchPosition * touch) {
 	for (u8 i = 0; i < 5; i++) {
-		if (touch.px > menu.x && touch.px < menu.x // stylus inside x pos of item
-			&& touch.py > menu.y && touch.py < menu.y) { // inside y pos of item
+		if (touch->px > menu->x && touch->px < menu->x // stylus inside x pos of item
+			&& touch->py > menu->y && touch->py < menu->y) { // inside y pos of item
+
 		}
 	}
 	// here we will take the x & y location
