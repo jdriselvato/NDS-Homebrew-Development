@@ -33,18 +33,15 @@ void displayMenu(Menu * menu, bool hideMenu) {
 }
 
 void stylusTouch(Menu * menu, touchPosition * touch) {
-	selectingMenuItem(menu, touch);
+	int selectedItem = selectingMenuItem(menu, touch);
 }
 
 int selectingMenuItem(Menu * menu, touchPosition * touch) {
 	for (u8 i = 0; i < 5; i++) {
-		if (touch->px > menu->x && touch->px < menu->x // stylus inside x pos of item
+		if (touch->px > (menu->x + (16 * i)) + && touch->px < (menu->x + (16 * i)) // stylus inside x pos of item
 			&& touch->py > menu->y && touch->py < menu->y) { // inside y pos of item
-
+			return i; // return the int value (0-4) which is the select items index
 		}
 	}
-	// here we will take the x & y location
-	// determine what menu item is selected
-	// return the int value (0-4)
-	return -1;
+	return -1; // null
 }
