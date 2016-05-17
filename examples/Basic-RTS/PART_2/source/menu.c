@@ -40,14 +40,13 @@ void stylusTouch(Menu * menu, touchPosition * touch) {
 }
 
 int selectingMenuItem(Menu * menu, touchPosition * touch) {
-	// for (u8 i = 0; i < 5; i++) {
-	// 	if (
-	// 		touch->px > (menu->x)
-	// 		&& touch->px < (menu->x)
-	// 		&& touch->py > menu->y
-	// 		&& touch->py < menu->y ) {
-	// 		return i; // return the int value (0-4) which is the select items index
-	// 	}
-	// }
+	for (u8 i = 0; i < 5; i++) {
+		if (touch->px > (menu->x)
+			&& touch->px < (menu->x + (16 * (i + 1)))
+			&& touch->py > menu->y
+			&& touch->py < menu->y + 16) {
+			return i; // return the int value (0-4) which is the select items index
+		}
+	}
 	return -1; // null
 }
