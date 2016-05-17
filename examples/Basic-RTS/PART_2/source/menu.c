@@ -35,19 +35,19 @@ void displayMenu(Menu * menu, bool hideMenu) {
 }
 
 void stylusTouch(Menu * menu, touchPosition * touch) {
-	u8 icon = selectingMenuItem(menu, touch);
+	int icon = selectingMenuItem(menu, touch);
 	menu->selectedIcon = icon;
 }
 
 int selectingMenuItem(Menu * menu, touchPosition * touch) {
-	for (u8 i = 0; i < 5; i++) {
-		if (
-			touch->px > (menu->x)
-			&& touch->px < (menu->x)
-			&& touch->py > menu->y
-			&& touch->py < menu->y ) {
-			return i; // return the int value (0-4) which is the select items index
-		}
-	}
+	// for (u8 i = 0; i < 5; i++) {
+	// 	if (
+	// 		touch->px > (menu->x)
+	// 		&& touch->px < (menu->x)
+	// 		&& touch->py > menu->y
+	// 		&& touch->py < menu->y ) {
+	// 		return i; // return the int value (0-4) which is the select items index
+	// 	}
+	// }
 	return -1; // null
 }
