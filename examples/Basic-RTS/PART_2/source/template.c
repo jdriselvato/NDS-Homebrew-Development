@@ -48,6 +48,7 @@ int main(int argc, char** argv) {
 
 		characterMovement(&character);
 		generateHouse(&house);
+
 		bool selected = hideHouseMenu(touch, &house);
 		displayMenu(&menu, selected);
 

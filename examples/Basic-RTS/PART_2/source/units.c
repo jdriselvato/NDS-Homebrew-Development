@@ -1,6 +1,12 @@
 #include <nds.h>
 #include "units.h"
 
+/*---------------------------------------------------------------------------------
+Check out this example code for timers: http://libnds.devkitpro.org/time_2stopwatch_2source_2main_8c-example.html#a8
+We'll want to use timers to generate the units, not all at once.
+
+---------------------------------------------------------------------------------*/
+
 extern const unsigned int spritesheetTiles[2880];
 
 Character addNewUnit() {
@@ -15,22 +21,22 @@ Character addNewUnit() {
 Code for Character Movement
 ---------------------------------------------------------------------------------*/
 void characterMovement(Character * character) {
-	scanKeys();
-	int keys = keysHeld();
+	// scanKeys();
+	// int keys = keysHeld();
 
-	if (keys & KEY_RIGHT) {
-		character->state = WALK_RIGHT;
-		character->x++;
-	} else if (keys & KEY_LEFT) {
-		character->state = WALK_LEFT;
-		character->x--;
-	} else if (keys & KEY_DOWN) {
-		character->state = WALK_DOWN;
-		character->y++;
-	} else if (keys & KEY_UP) {
-		character->state = WALK_UP;
-		character->y--;
-	}
+	// if (keys & KEY_RIGHT) {
+	// 	character->state = WALK_RIGHT;
+	// 	character->x++;
+	// } else if (keys & KEY_LEFT) {
+	// 	character->state = WALK_LEFT;
+	// 	character->x--;
+	// } else if (keys & KEY_DOWN) {
+	// 	character->state = WALK_DOWN;
+	// 	character->y++;
+	// } else if (keys & KEY_UP) {
+	// 	character->state = WALK_UP;
+	// 	character->y--;
+	// }
 
 	int frame = character->state;
 	u8* offset = character->tileSheet + frame * 16*16;
