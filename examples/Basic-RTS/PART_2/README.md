@@ -10,3 +10,7 @@ unit.c & unit.h will contain the functionality and act as a class for the basic 
 
 #### House
 house.c & house.h will contain the functionality of the house. The house is used to create additional units which also requires the menu to be shown to do so.
+
+# Whats new?
+#### Timers & Units
+In this example we'll learn how to use the timer functionality to generate units. Units can be added to a queue and every 5 seconds a new unit will be generated and added to the map.
