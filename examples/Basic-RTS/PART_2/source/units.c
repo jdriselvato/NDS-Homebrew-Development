@@ -21,23 +21,6 @@ Character addNewUnit() {
 Code for Character Movement
 ---------------------------------------------------------------------------------*/
 void characterMovement(Character * character) {
-	// scanKeys();
-	// int keys = keysHeld();
-
-	// if (keys & KEY_RIGHT) {
-	// 	character->state = WALK_RIGHT;
-	// 	character->x++;
-	// } else if (keys & KEY_LEFT) {
-	// 	character->state = WALK_LEFT;
-	// 	character->x--;
-	// } else if (keys & KEY_DOWN) {
-	// 	character->state = WALK_DOWN;
-	// 	character->y++;
-	// } else if (keys & KEY_UP) {
-	// 	character->state = WALK_UP;
-	// 	character->y--;
-	// }
-
 	int frame = character->state;
 	u8* offset = character->tileSheet + frame * 16*16;
 	dmaCopy(offset, character->gfx, 16*16);

@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 	oamInit(&oamSub, SpriteMapping_1D_128, false);
 	dmaCopy(spritesheetPal, SPRITE_PALETTE_SUB, 512);
 
-	Character character = addNewUnit();
+	// Character character = addNewUnit();
 	Menu menu = initMenu();
 	House house = initHouse();
 
@@ -42,13 +42,10 @@ int main(int argc, char** argv) {
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
 			stylusTouch(&menu, &touch);
+			printf("\x1b[1;1HSelected Icon: %d", menu.selectedIcon);
 		}
 
-		printf("\x1b[1;1HSelected Icon: %d", menu.selectedIcon);
-
-		characterMovement(&character);
 		generateHouse(&house);
-
 		bool selected = hideHouseMenu(touch, &house);
 		displayMenu(&menu, selected);
 
