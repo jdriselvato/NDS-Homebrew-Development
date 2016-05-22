@@ -39,11 +39,9 @@ int main(int argc, char** argv) {
 	House house = initHouse();
 
 	while(1) {
-		if(keysHeld() & KEY_TOUCH) {
-			touchRead(&touch);
-			stylusTouch(&menu, &touch);
-			if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
-		}
+		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
+		stylusTouch(&menu, &touch);
+		if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
 
 		generateHouse(&house);
 		bool selected = hideHouseMenu(&touch, &house);
