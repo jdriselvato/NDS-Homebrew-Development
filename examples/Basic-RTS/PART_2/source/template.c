@@ -42,8 +42,9 @@ int main(int argc, char** argv) {
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
 			stylusTouch(&menu, &touch);
-			printf("\x1b[1;1HSelected Icon: %d", menu.selectedIcon);
+			if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
 		}
+		printf("\x1b[1;1HSelected Icon: %d", menu.selectedIcon);
 
 		generateHouse(&house);
 		bool selected = hideHouseMenu(touch, &house);
