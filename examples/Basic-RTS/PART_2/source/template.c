@@ -44,12 +44,13 @@ int main(int argc, char** argv) {
 			stylusTouch(&menu, &touch);
 			if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
 		}
-		printf("\x1b[1;1HSelected Icon: %d", menu.selectedIcon);
 
 		generateHouse(&house);
-		bool selected = hideHouseMenu(touch, &house);
+		bool selected = hideHouseMenu(&touch, &house);
 		displayMenu(&menu, selected);
 
+
+		printf("\x1b[1;1HSelected Icon: %d | Menu: %d", menu.selectedIcon, selected);
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
 	}

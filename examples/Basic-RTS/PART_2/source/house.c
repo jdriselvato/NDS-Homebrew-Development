@@ -26,9 +26,9 @@ void generateHouse(House * house) {
 		-1, false, false, false, false, false);
 }
 
-bool hideHouseMenu(touchPosition touch, House * house) {
-	if (touch.px > house->x && touch.px < house->x + 16 // stylus inside x pos of house
-		&& touch.py > house->y && touch.py < house->y + 16) { // inside y pos of house
+bool hideHouseMenu(touchPosition * touch, House * house) {
+	if (touch->px > house->x && touch->px < house->x + 16 // stylus inside x pos of house
+		&& touch->py > house->y && touch->py < house->y + 16) { // inside y pos of house
 		shouldCloseMenu = false;
 		return shouldCloseMenu;
 	}
