@@ -51,6 +51,8 @@ int main(int argc, char** argv) {
 
 
 		printf("\x1b[1;1HSelected Icon: %d | Menu: %d", menu.selectedIcon, selected);
+		printf("mx %d, my %d | tx %d, ty %d", house.x, house.y, touch.px, touch.py);
+
 		swiWaitForVBlank();
 		oamUpdate(&oamSub);
 	}
