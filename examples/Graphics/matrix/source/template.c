@@ -17,16 +17,31 @@ Things to know:
 #include <nds.h>
 #include <stdio.h>
 
+void gen_random(char *s, const int len);
+
 int main(int argc, char** argv) {
 	videoSetModeSub(MODE_0_2D);
-	vramSetBankD(VRAM_D_SUB_SPRITE);
 	consoleDemoInit();
-
+	char character;
 	while(1) {
-		int x = 0;
-		iprintf("\x1b[1;1H%d", x);
+		gen_random(&character, 10);
+
+		iprintf("\x1b[1;1B%c", character);
 		swiWaitForVBlank(); // draw updates
 		oamUpdate(&oamSub); //send the updates to the hardware
 	}
 	return 0;
+}
+
+void gen_random(char *s, const int len) {
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    for (int i = 0; i < len; ++i) {
+        s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+
+    s[len] = 0;
 }
