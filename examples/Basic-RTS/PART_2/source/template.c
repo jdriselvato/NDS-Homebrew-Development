@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
 	// House house = initHouse();
 	int touching = 0;
 	while(1) {
+		scanKeys();
 		if(keysHeld() & KEY_TOUCH) {
 			touchRead(&touch);
 			touching = 1; /// <-- it never gets here.. WHY!?!
