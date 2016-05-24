@@ -14,6 +14,7 @@ built with: Nintendo DS rom tool 1.50.3 - Dec 12 2015
 Things to know:
 - That this really just for fun as this really doesn't teach much
 - For some reason "\x1b[1;1m" doesn't clear the printed text, use "\x1b[1;1H" to do that <-- if anything this is why you should care about this code example
+- This might be of interest, "demo of ansi escape sequences" source: http://libnds.devkitpro.org/Graphics_2Printing_2ansi_console_2source_2main_8c-example.html
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>
