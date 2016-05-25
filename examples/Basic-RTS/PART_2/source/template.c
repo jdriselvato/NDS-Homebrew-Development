@@ -34,9 +34,10 @@ int main(int argc, char** argv) {
 
 	Menu menu = initMenu();
 	House house = initHouse();
+
 	while(1) {
 		scanKeys();
-		if(keysHeld() & KEY_TOUCH) touchRead(&touch);
+		if(keysDown() & KEY_TOUCH) touchRead(&touch);
 
 		stylusTouch(&menu, &touch);
 		if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
@@ -44,7 +45,7 @@ int main(int argc, char** argv) {
 		generateHouse(&house);
 		bool selected = hideHouseMenu(&touch, &house);
 		displayMenu(&menu, selected);
-
+		displayUnits();
 
 		printf("\x1b[1;1HSelected Icon: %d | Menu: %d", menu.selectedIcon, selected);
 		swiWaitForVBlank();

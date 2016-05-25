@@ -9,3 +9,4 @@ enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; 
 Character addNewUnit();
 void characterMovement(Character * character);
 void addToQueue();
+void displayUnits();
