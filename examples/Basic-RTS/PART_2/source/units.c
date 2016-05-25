@@ -4,9 +4,7 @@
 /*---------------------------------------------------------------------------------
 Check out this example code for timers: http://libnds.devkitpro.org/time_2stopwatch_2source_2main_8c-example.html#a8
 We'll want to use timers to generate the units, not all at once.
-
 ---------------------------------------------------------------------------------*/
-
 extern const unsigned int spritesheetTiles[2880];
 int queue = 0;
 
@@ -14,8 +12,9 @@ Character unitArray[100];
 int unitCount = 0;
 
 Character addNewUnit() {
-	Character character = {20 + (unitCount + 5), 20};
-
+	Character character;
+	character.x = 20;
+	character.y = 20;
 	character.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_256Color);
 	character.tileSheet = (u8*)spritesheetTiles; // makes a reference to character16x16Tiles from character16x16.h
 	return character;

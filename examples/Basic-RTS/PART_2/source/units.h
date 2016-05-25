@@ -3,8 +3,8 @@ typedef struct {
 	u16* gfx; // oam GFX
 	u8* tileSheet;
 } Character;
-
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
+
 // external function
 Character addNewUnit();
 void addToQueue();
