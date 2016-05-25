@@ -35,20 +35,20 @@ void displayUnits() {
 	if (unitCount == 0) return;
 	for (int i = 0; i < unitCount; i++) {
 		Character character = unitArray[i];
-		characterMovement(&character);
+		characterMovement(&character, i);
 	}
 }
 
 /*---------------------------------------------------------------------------------
 Code for Character Movement
 ---------------------------------------------------------------------------------*/
-void characterMovement(Character * character) {
+void characterMovement(Character * character, int oam) {
 	int frame = character->state;
 	u8* offset = character->tileSheet + frame * 16*16;
 	dmaCopy(offset, character->gfx, 16*16);
 
 	oamSet(&oamSub,
-		0, // oam entry id
+		1000 + oam, // oam entry id
 		character->x, character->y, // x, y location
 		0, 15, // priority, palette
 		SpriteSize_16x16,

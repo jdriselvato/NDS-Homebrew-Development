@@ -5,8 +5,10 @@ typedef struct {
 } Character;
 
 enum SpriteState { WALK_DOWN = 0, WALK_UP = 1, WALK_LEFT = 2, WALK_RIGHT = 3 }; // states for walking
-
+// external function
 Character addNewUnit();
-void characterMovement(Character * character);
 void addToQueue();
 void displayUnits();
+
+// Internal functions
+void characterMovement(Character * character, int oam);
