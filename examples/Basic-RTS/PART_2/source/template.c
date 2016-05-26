@@ -10,6 +10,7 @@ find me at: @jdriselvato
 built with: "Nintendo DS rom tool 1.50.3 - Dec 12 2015"
 
 Things to know:
+- I'm going to GA for Momocon 2016 this week, so I might not be able to work on this. I hope I can keep my commit streak going.
 ---------------------------------------------------------------------------------*/
 #include <nds.h>
 #include <stdio.h>
