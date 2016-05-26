@@ -37,15 +37,20 @@ int main(int argc, char** argv) {
 	House house = initHouse();
 
 	while(1) {
+		// Keys and touch code
 		scanKeys();
 		if(keysDown() & KEY_TOUCH) touchRead(&touch);
-
 		stylusTouch(&menu, &touch);
-		if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
 
+		// house code
 		generateHouse(&house);
 		bool selected = hideHouseMenu(&touch, &house);
+
+		// Menu code
 		displayMenu(&menu, selected);
+		if (menu.selectedIcon == 0) addToQueue(); // 0 = add unit
+
+		// units code
 		displayUnits();
 
 		printf("\x1b[1;1HSelected Icon: %d | Menu: %d", menu.selectedIcon, selected);

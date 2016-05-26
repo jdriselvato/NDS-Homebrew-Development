@@ -4,6 +4,17 @@
 /*---------------------------------------------------------------------------------
 Check out this example code for timers: http://libnds.devkitpro.org/time_2stopwatch_2source_2main_8c-example.html#a8
 We'll want to use timers to generate the units, not all at once.
+
+What this source does or should do:
+- When the menu item "0" is selected a new unit to be created will be added to a queue.
+- The queue will count down 2 seconds before creating a queue.
+- After 2 seconds the unit will be added to the screen near the house.
+- up to 100 units can be created
+- Units will also be assigned tasks in this source, for example:
+   - gather resource
+   - Cut trees
+   - fight
+   - build other building (undefined)
 ---------------------------------------------------------------------------------*/
 extern const unsigned int spritesheetTiles[2880];
 int queue = 0;
