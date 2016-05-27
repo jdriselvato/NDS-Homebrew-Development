@@ -32,17 +32,20 @@ Character addNewUnit() {
 }
 
 void createNewUnit() {
-	unitArray[unitCount] = addNewUnit();
-	unitCount++;
+	Character newUnit = addNewUnit(); 	// create a new unit
+	unitArray[unitCount] = newUnit;	// Save it to unit array
+	unitCount++; // increase unit array count for next addition
 }
 
 void addToQueue() {
+	// add to queue list as a new number
 	queue = queue + 1;
+	// start timer (2 seconds)
+	// at the end of timer call "createNewUnit"
 	createNewUnit();
 }
 
 void displayUnits() {
-	if (unitCount == 0) return;
 	for (int i = 0; i < unitCount; i++) {
 		Character character = unitArray[i];
 		characterMovement(&character, i);
