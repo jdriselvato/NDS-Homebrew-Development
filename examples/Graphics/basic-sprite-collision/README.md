@@ -37,5 +37,5 @@ bool collision() {
 Read up on more advance topics of collision such as hitbox detection (like above) or bitmap detection
 
 Checkout these resources for more details:
-	- http://www.gamedev.net/page/resources/_/technical/game-programming/collision-detection-r735
-	- http://buildnewgames.com/gamephysics/
+1. http://www.gamedev.net/page/resources/_/technical/game-programming/collision-detection-r735
+2. http://buildnewgames.com/gamephysics/
