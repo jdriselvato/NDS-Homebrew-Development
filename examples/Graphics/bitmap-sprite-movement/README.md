@@ -2,6 +2,9 @@
 
 In this example, we explore how to use grit, parsing bitmap sprite sheets and displaying a sprite based on key pressed. Almost everything you'd need to get started on a top down RPG world (like Pokemon, Final Fantasy, etc.)
 
+### Preview
+![movement.gif](./preview/movement.gif)
+
 ### Sprite
 Here's the sprite we'll be using. It's simple and generic but if you want to use it in your own game, it's free to use.
 
