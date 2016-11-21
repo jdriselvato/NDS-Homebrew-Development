@@ -33,4 +33,4 @@ In this code we have an array titled `title_array` which contains 6 rows of 8 ti
 
 ### Preview
 
-coming soon
+![top-screen.png](./preview/top-screen.png)
