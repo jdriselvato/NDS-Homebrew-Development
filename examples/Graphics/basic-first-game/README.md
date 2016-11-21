@@ -3,6 +3,10 @@ Everything we've learned from the first few examples has given us enough knowled
 
 Specifically, we'll be using what we learned from `bitmap-sprite-movement` and `basic-sprite-collision` to create collection game. So the character will be able to collect coins and a scoreboard will update. It's endless and no real goal but challange yourself to improve it to a full game (maybe like snake?).
 
+### Preview
+![collection.gif](./preview/collection.gif)
+For some reason the gif creator makes things x2 slower looking. 
+
 ### Sprites
 [![spritesheet.png](./gfx/spritesheet.png)]
 Interestingly enough, the DS has an easier time loading a simple SPRITE_PALLETE. At first I tried generating two different sprite sheets (one for the character and one for the gem) and which ever Pallete was allocated last was used for all sprites. So this made one of the sprites use the others color pallete.
