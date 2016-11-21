@@ -10,3 +10,8 @@ This project fakes that iconic matrix text effect. Really more of a gag but I ne
 ### Understanding the Code
 
 The `gen_random()` function sets a random character to an address and then is printed to the screen
+
+
+### Preview
+
+[![character16x16](./matrix.gif)]
