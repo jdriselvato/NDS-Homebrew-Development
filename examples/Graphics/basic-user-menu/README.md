@@ -36,4 +36,4 @@ I've created a method called `arrowKeysDownHandler(int keys, int cursorLocation)
 * **A Button** - Select Current Menu Item
 * **B Button** - Return to root of Menu
 * **UP Button** - Move cursor up
-* **Down Button* - Move cursor down
+* **Down Button** - Move cursor down
