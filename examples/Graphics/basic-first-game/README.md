@@ -9,7 +9,7 @@ Interestingly enough, the DS has an easier time loading a simple SPRITE_PALLETE.
 
 To fix it theres more complicated ways use different palletes and allocated each one in memory but I didn't want to go down that complex rabbit hole. So instead I merged both spritesheets into one, creating `spritesheet.png`. Ideally your game would probably only used one spritesheet anyway so mine as well start doing best practices.
 
-### Parshing a spritesheet
+### Parsing a spritesheet
 
 Now with having only one spritesheet we have to know each location of the sprite. For example we know that the gem sprite is the last on the list. So we can easily get it like this:
 ````
