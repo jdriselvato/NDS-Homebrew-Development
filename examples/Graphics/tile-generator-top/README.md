@@ -31,6 +31,14 @@ In this code we have an array titled `title_array` which contains 6 rows of 8 ti
 	};
 ````
 
+#### How does it display on the top screen?
+With `oamInit(&oamMain, SpriteMapping_Bmp_1D_128, false);`
+If you notice `&oamMain` is used as the first passed parameter. This is actually what determines which screen we initalize. In this case top screen.
+
+Then if we look at `oamSet()` which is used to allocate the tile in memory the second first parameter is again `&oamSub`.
+this tells the DS to draw the object on the top screen.
+
+
 ### Preview
 
 ![top-screen.png](./preview/top-screen.png)
