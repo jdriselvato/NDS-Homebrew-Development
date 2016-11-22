@@ -1,6 +1,10 @@
 # Ray Casting Example 1
 In this example we take a single ray from the origin of the screen and calculate the intersection of various objects on screen.
-Again this was ported from an HTML5 example, [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html).
+
+Again this is a ported from this HTML5 to C (NDS LIB), [found here](https://github.com/ncase/sight-and-light/blob/gh-pages/draft1.html).
+
+# Source Code
+[template.c](./source/template.c)
 
 # Preview
 [![raycasting_example1](./screenshots/raycasting_example1.gif)]
