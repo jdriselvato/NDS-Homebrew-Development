@@ -1,7 +1,10 @@
 # Ray Casting Example 4
 In example_3 we noticed that the filled color clips the segment walls. This example fixes that.
 
-Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft4.html).
+Based on this [HTML5](https://github.com/ncase/sight-and-light/blob/gh-pages/draft4.html) example and Ported to the NDS.
+
+# Source Code
+[template.c](./source/template.c)
 
 # Understanding the code
 In example_3 the reason the filling color clips the walls is because we are randomly placing the filled rays.
