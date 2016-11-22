@@ -1,6 +1,9 @@
 # Ray Casting Example 2
 In this example we take multiple rays calculate the intersection of various objects on screen. Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft2.html).
 
+# Source Code
+[template.c](./source/template.c)
+
 ### Understanding the Code
 In the first example we took a single ray of detection. In this example we use 50 rays using 360 degrees of seperation.
 
