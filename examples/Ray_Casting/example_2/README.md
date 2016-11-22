@@ -6,6 +6,8 @@ In the first example we took a single ray of detection. In this example we use 5
 
 The big difference this time is `getIntersection` is called for each ray and segment.
 
+For a better understanding of the ray casting system, check out the [first example](../../Ray_Casting/example_1#code-explained)
+
 # Preview
 ![raycasting_example2](./preview/multiple_cast.png)
 
