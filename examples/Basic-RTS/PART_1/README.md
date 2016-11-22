@@ -12,3 +12,6 @@ unit.c & unit.h will contain the functionality and act as a class for the basic 
 
 #### House
 house.c & house.h will contain the functionality of the house. The house is used to create additional units which also requires the menu to be shown to do so.
+
+### Preview
+![selecting a house](./preview/selecting_house.gif)
