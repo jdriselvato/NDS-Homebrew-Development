@@ -5,6 +5,9 @@ If you notice, the filling color actually clips the objects on screen. We'll fix
 
 Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft3.html).
 
+# Source Code
+[template.c](./source/template.c)
+
 # Preview
 
 ![raycasting_example 3](./preview/example_3.png)
