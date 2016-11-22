@@ -1,13 +1,16 @@
 # Ray Casting Example 4
-If you notice in example_3 some times the fill overlaps with the segment walls.
-So instead we'll take the corners of the segment walls as intersections instead of
-randomly placing a bunch of rays.
+In example_3 we noticed that the filled color clips the segment walls. This example fixes that.
 
 Based on this source [source](https://github.com/ncase/sight-and-light/blob/gh-pages/draft4.html).
 
-# Preview
-[![raycasting_example2](./screenshots/raycasting_example4.gif)] - coming soon
+# Understanding the code
+In example_3 the reason the filling color clips the walls is because we are randomly placing the filled rays.
+One way to fix that is to actually interpolate the rays and the segment wall. Then create a new ray at the corners of the segment wall. This then allows us to have a truely accurate ray casting as seen in the preview gif below.
 
-# Code Explained
-### NDS OpenGL
-This entire example relies on the NDS version of OpenGL, [more about that in VideoGL.h](http://libnds.devkitpro.org/videoGL_8h.html).
+# Preview
+![example 4](./preview/example_4.gif)
+Sorry for the slow gif, the mov to gif creator slows it down for some reason. 
+This demo actually works as if in real time on simulator and device
+
+# Controls
+Move the `stylus` on the bottom screen to move he ray casting center around the top screen.
