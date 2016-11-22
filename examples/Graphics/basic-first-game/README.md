@@ -4,7 +4,7 @@ Everything we've learned from the first few examples has given us enough knowled
 Specifically, we'll be using what we learned from `bitmap-sprite-movement` and `basic-sprite-collision` to create collection game. So the character will be able to collect coins and a scoreboard will update. It's endless and no real goal but challange yourself to improve it to a full game (maybe like snake?).
 
 ### Preview
-![collection.gif](./preview/collection.gif)
+![collecting.gif](./preview/collecting.gif)
 For some reason the gif creator makes things x2 slower looking. 
 
 ### Sprites
