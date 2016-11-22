@@ -7,6 +7,8 @@ In the first example we took a single ray of detection. In this example we use 5
 The big difference this time is `getIntersection` is called for each ray and segment.
 
 # Preview
-[![raycasting_example2](./preview/multiple_cast.png)] - coming soon
+![raycasting_example2](./preview/multiple_cast.png)
 
+
+#### NOTE
 This entire example relies on the NDS version of OpenGL, [more about that in VideoGL.h](http://libnds.devkitpro.org/videoGL_8h.html).
