@@ -3,17 +3,17 @@ This page will be an active collection of DS projects on the web (old and new). 
 
 Hit me up @kite0080 if you want your project to show up on this page.
 
-## Games:
+### Games:
 1. 3 Mini Games (full source) - https://github.com/Thunderbolt26/nintendo_ds_game
 2. Portal DS - https://github.com/smealum/portalDS
 
-## Applications:
+### Applications:
 1. DS Youtube Player - https://github.com/Gericom/YoutubeDS
 
-# Utilities:
+### Utilities:
 *coming soon*
 
-# Collection of NDS Homebrew Games:
+### Collection of NDS Homebrew Games:
 1. gamebrew.org - http://gamebrew.org/wiki/List_of_DS_homebrew_games
 
 
