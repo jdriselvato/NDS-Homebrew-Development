@@ -59,12 +59,5 @@ Read more [here](./tools/README.md)
 9. http://osdl.sourceforge.net/main/documentation/misc/nintendo-DS/homebrew-guide/HomebrewForDS.html - A guide to homebrew development for the Nintendo DS
 10. http://problemkaputt.de/gbatek.htm - An awesome resource on Gameboy Advance / Nintendo DS / DSi, thanks [@zecbmo](https://github.com/zecbmo)
 
-# Other Developers Examples
-1. https://github.com/Thunderbolt26/nintendo_ds_game - 3 Mini Games in one full source
-2. https://github.com/smealum/portalDS - Portal DS
-
-# Collection of NDS Homebrew Games
-1. http://gamebrew.org/wiki/List_of_DS_homebrew_games - Probably the best list on the web
-
 # Where to find me
 [Website](http://johnriselvato.com) | [Twitter](http://twitter.com/jdriselvato) | [Instagram](instagram.com/jdriselvato)
