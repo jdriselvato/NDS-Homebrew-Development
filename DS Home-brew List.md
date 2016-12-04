@@ -15,7 +15,7 @@ Hit me up @kite0080 if you want your project to show up on this page.
 
 ---
 
-# Agrigator Website for Homebrews (no source code):
+# Aggregator Website for Homebrews (no source code):
 1. gamebrew.org - http://gamebrew.org/wiki/List_of_DS_homebrew_games
 
 
