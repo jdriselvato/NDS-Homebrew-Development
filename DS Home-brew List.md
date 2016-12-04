@@ -15,3 +15,7 @@ Hit me up @kite0080 if you want your project to show up on this page.
 
 # Collection of NDS Homebrew Games:
 1. gamebrew.org - http://gamebrew.org/wiki/List_of_DS_homebrew_games
+
+
+# Where to find me
+[Website](http://johnriselvato.com) | [Twitter](http://twitter.com/jdriselvato) | [Instagram](instagram.com/jdriselvato)
