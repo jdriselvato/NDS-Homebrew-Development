@@ -17,10 +17,12 @@ This example will only have two functions; `main()` and `createSquare()`. If thi
 
 ### Allocating Graphics
 The first actions we do in `main()` is allocate the GFX (graphics) in the OAM (Object Attributed Memory):
+
 ````
 	u16* mainGFX = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_Bmp); // top screen square
 	u16* subGFX = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_Bmp); // bottom screen square
 ````
+
 OAM is just a fancy way of saying an object attributes in memory. `oamAllocateGfx()` allows us to set gfx attributes for sprites for the specific screen; `&oamMain` being the top and `&oamSub` for the bottom.
 
 NOTE: oamAllocateGfx() should only be called once per sprite, so keep this variable out of the while loop and maybe in an array if you have a bunch.
@@ -100,7 +102,9 @@ OamState* screen // is this a top screen or bottom screen sprite?
 u16* gfx // the sprites pointer in memory
 u16 color // the color of the sprite
 ````
+
 hense why we pass them in the function.
+
 #### dmaFillHalfWords()
 ````
 	dmaFillHalfWords(color, gfx, 16*16*2); // this is how to assign the color fill to the oam gfx
@@ -108,7 +112,9 @@ hense why we pass them in the function.
 `dmaFillHalfWords(u16 value, void *dest, uint32 size)` is the function we used to assign color to a certain square.  Althought this function does a lot more then just set colors, it actually "fills the source with the supplied value using DMA channel 3". Pretty much pass `value` in this case color, to `dest` aka our gfx and allocate `16*16*2 = 512` bytes (16 x 16 sprite * 2).
 
 #### oamSet()
+
 I think the inline commented above is enough but oamSet "sets an oam entry to the supplied values".
+
 ````
 void oamSet	(
 OamState * 	oam,
@@ -127,7 +133,8 @@ bool 	hflip,
 bool 	vflip,
 bool 	mosaic
 )
-```
+````
+
 But lets out line the most important arguments.
 `OamState` is the variable we use to determine top or bottom screen placement of the sprite. `id` has to be unique, this is it's ID in memory and if a sprite shares the same `id`, it will override it. The `x` and `y` are the actual location of the sprite, this is were we pass the touchPosition `touch.px` and `touch.py` dynamically. The `gfxOffset` is the gfx `u16*` variable returned from `oamAllocateGfx()` which is exactly the sprite we are using.
 
