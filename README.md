@@ -40,14 +40,14 @@ This is what my *~/.bash_profile* looks like (OSX/Linux):
 
 Then literally after that go to *~/devkitPro/examples* and type *make* in any of the example folders and it will compile the source to NDS file. It couldn't be easier.
 
-#Emulator
+# Emulator
 I'm using DESMUME as the emulator to test out the code on OSX.
 Download here: http://desmume.org
 
-#Testing on Device
+# Testing on Device
 Read more [here](./tools/README.md)
 
-#Resources to read
+# Resources to read
 1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
 2. http://libnds.devkitpro.org/index.html - The libNDS documentation (the bible practically)
 3. https://patater.com/files/projects/manual/manual.html - Best guide to get you really familair with developing NDS
