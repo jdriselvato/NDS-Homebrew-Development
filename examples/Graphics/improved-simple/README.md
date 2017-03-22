@@ -8,7 +8,7 @@ What makes this stand out is the fact that we have two squares on the screen wit
 
 This article will go over the basic concepts of simple example in depth.
 
-#Understanding the Code
+# Understanding the Code
 
 First off, ever NDS program you write will 99% of the time include `#include <nds.h>`. This header file incases everything you'll need from DevKitPro. So include it!
 
