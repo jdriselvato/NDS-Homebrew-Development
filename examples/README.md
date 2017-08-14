@@ -4,6 +4,8 @@ This repo is broken up into high level topics and each of those topics have it's
 # How to use this guide
 I learn best by looking at source code and then twisting it to do something new. So with each example I provide a completed application. I suggest you look at the example source code and if you have questions most likely the new concepts are covered in the README.md file of each example root folder. So look at the code first if you have question, look at the README.md and if you still have questions ask for help on our [Discord](https://discord.gg/JtnxnDD) or [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/)
 
+# Examples
+
 #### 1. [Graphics](/examples/Graphics/)
 ###### *(Novice - Moderate) - 9 Examples*
 
