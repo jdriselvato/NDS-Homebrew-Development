@@ -45,7 +45,7 @@ int main(void) {
 		swiWaitForVBlank(); // prints the screen
 		// update oam
 		oamUpdate(&oamSub); // (sub) updates the oam before so VBlank can update the graphics on screen
-		oamUpdate(&oamMain); // (sub) updates the oam before so VBlank can update the graphics on screen
+		oamUpdate(&oamMain); // (main) updates the oam before so VBlank can update the graphics on screen
 	}
 	return 0;
 }
