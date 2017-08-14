@@ -1,13 +1,14 @@
 # NDS Homebew Development
 Welcome to my [NDS Homebrew](https://en.wikipedia.org/wiki/Nintendo_DS_homebrew) Development Resource!
 
-Join our Discord: https://discord.gg/JtnxnDD
 
 The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples and more as I learn how to program on the NDS.
 
 This repo is designed to provide an comprehensive understanding of how to develop on the NDS with devkitpro (C & C++). The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see and provide resources to further the understanding of the topic.
 
 Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
+
+Join our Discord: https://discord.gg/JtnxnDD
 
 # NDS Game Development Topics
 This repo is broken up into high level topics and each of those topics have it's own README.md that go into more detail. For example the Graphics examples have a total of 9 examples. Each of those 9 examples will have it's own README outlining new information about the code. So this truly is a great way to learn the DevKitPro SDK.
@@ -48,6 +49,12 @@ Download here: http://desmume.org
 
 # Testing on Device
 Read more [here](./tools/README.md)
+
+# Still have questions join our communities
+Come join us at [/r/NDSHacks](https://www.reddit.com/r/NDSHacks/) to learn more about NDS Homebrew.
+
+Join our Discord: https://discord.gg/JtnxnDD
+
 
 # Resources to read
 1. http://devkitpro.org/wiki/Getting_Started/devkitARM - Getting Started
