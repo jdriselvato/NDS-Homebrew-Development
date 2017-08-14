@@ -1,6 +1,8 @@
 # NDS Homebew Development
 Welcome to my [NDS Homebrew](https://en.wikipedia.org/wiki/Nintendo_DS_homebrew) Development Resource!
 
+Join our Discord: https://discord.gg/JtnxnDD
+
 The Nintendo DS has a special place in my heart and I thought it was about time to started developing on it. You'll find resources, examples and more as I learn how to program on the NDS.
 
 This repo is designed to provide an comprehensive understanding of how to develop on the NDS with devkitpro (C & C++). The examples that come with devkitpro are excellent but in some cases are very one off. Here you'll find examples that are specific to game development. I'll also include as much commented as I see and provide resources to further the understanding of the topic.
