@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Sound Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Sounds Functions
+		</div>
+		<br />
+		<div id="desc">
+			Play sound effects with these functions.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="sound.html#LoadRaw">Sound.LoadRaw()</a>
+			</li>
+			<li>
+				<a href="sound.html#Play">Sound:Play()</a>
+			</li>
+			<li>
+				<a href="sound.html#Free">Sound:Free()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="LoadRaw">
+			<span class="variable">SndTest</span> = Sound.LoadRaw( <span class="parameter">rawfile</span> )
+		</div>
+		<p>
+			Load a .raw sound file into the SndTest variable. Do this before trying to play it.
+			<br /><br />
+			<span class="parameter">rawfile</span> is a string that specifies which .raw file is to be loaded. (Example: Sound.LoadRaw( "win.raw" ))
+			<br /><br />
+			<span class="variable">SndTest</span> is the variable used to play the loaded sound later on.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Play">
+			<span class="variable">Sound</span>:Play()
+		</div>
+		<p>
+			Plays the sound.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Free">
+			<span class="variable">Sound</span>:Free()
+		</div>
+		<p>
+			Removes sound from memory, freeing up memory for other things.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

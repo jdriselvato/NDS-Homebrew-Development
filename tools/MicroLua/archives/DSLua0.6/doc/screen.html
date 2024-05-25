@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Screen Set-up Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Screen Set-up Functions
+		</div>
+		<br />
+		<div id="desc">
+			These functions are needed to draw backgrounds on the screen like text, 8-bit backgrounds, and tile backgrounds.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="screen.html#WaitForVBL">Screen.WaitForVBL()</a>
+			</li>
+			<li>
+				<a href="screen.html#LoadTextBG">Screen.LoadTextBG()</a>
+			</li>
+			<li>
+				<a href="screen.html#Load8BitBG">Screen.Load8BitBG()</a>
+			</li>
+			<li>
+				<a href="screen.html#LoadTileBG">Screen.LoadTileBG()</a>
+			</li>
+			<li>
+				<a href="screen.html#Initialize">Screen.Initialize()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="WaitForVBL">
+			Screen.WaitForVBL()
+		</div>
+		<p>
+			Pauses the program and waits for a single V-blank to happen, then continues. On the DS, there are 60 V-blanks every second.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="LoadTextBG">
+			<span class="variable">BackgroundText</span> = Screen.LoadTextBG()
+		</div>
+		<p>
+			Loads a text background into a variable.
+			<br /><br />
+			<span class="variable">BackgroundText</span> is the variable that is used later when intializing the screens with this background.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Load8BitBG">
+			<span class="variable">Background8Bit</span> = Screen.Load8BitBG()
+		</div>
+		<p>
+			Loads an 8-bit background into a variable.
+			<br /><br />
+			<span class="variable">Background8Bit</span> is the variable that is used later when initializing the screens with this background.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="LoadTileBG">
+			<span class="variable">BackgroundTile</span> = Screen.LoadTileBG()
+		</div>
+		<p>
+			Loads a tile background into a variable.
+			<br /><br />
+			<span class="variable">BackgroundTile</span> is the variable that is used later when intializing the screens with this background.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Initialize">
+			Screen.Initialize( <span class="parameter">screen</span>, <span class="parameter">background1</span> [, <span class="parameter">background2</span>, ...] )
+		</div>
+		<p>
+			Initializes a background variable (see the above functions) onto a screen.
+			<br /><br />
+			<span class="parameter">screen</span> can be either 1 (top screen) or 0 (bottom screen).<br />
+			<span class="parameter">background1</span> is the background to load the screen to. It is the variable you got when using the above three functions (Screen.Load<type>BG().) You can load more than one background to the screen by putting another background variable after the first one (background1 in this example). The background on the left will be the top-most background.</span>
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

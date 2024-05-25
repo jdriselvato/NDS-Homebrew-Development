@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Sprite Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Sprite Functions
+		</div>
+		<br />
+		<div id="desc">
+			Functions to draw and move around sprites on the screens.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="sprite.html#LoadPalette">Sprite.Palette()</a>
+			</li>
+			<li>
+				<a href="sprite.html#Create">Sprite.Create()</a>
+			</li>
+			<li>
+				<a href="sprite.html#SetFrame">Sprite:SetFrame()</a>
+			</li>
+			<li>
+				<a href="sprite.html#MoveTo">Sprite:MoveTo()</a>
+			</li>
+			<li>
+				<a href="sprite.html#Free">Sprite:Free()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="LoadPalette">
+			Sprite.LoadPalette( <span class="parameter">screen</span>, <span class="parameter">palettenumber</span>, <span class="parameter">palettefile</span> )
+		</div>
+		<p>
+			Loads a palette.
+			<br /><br />
+			<span class="parameter">screen</span> is the screen that the palette will be loaded to. It can be 1 (top screen) or 0 (bottom screen).<br />
+			<span class="parameter">palettenumber</span> can be any unique number from other palettes. You will use it to identify this palette with your sprite(s).<br />
+			<span class="parameter">palettefile</span> is the .pal file that will be loaded. (Ex: "sprite.pal")
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Create">
+			<span class="variable">Sprite</span> = Sprite.Create( <span class="parameter">SpriteFrames</span>, <span class="parameter">framenumber</span>, <span class="parameter">palettenumber</span>, <span class="parameter">x</span>, <span class="parameter">y</span> )
+		</div>
+		<p>
+			Creates a sprite and draws it onto the screen.
+			<br /><br />
+			<span class="parameter">SpriteFrames</span> is the variable that you will have loaded the .raw file into (see Frame Strip functions).<br />
+			<span class="parameter">framenumber</span> is the frame that you want it to start on (frame 0 is the first one and should be used if there is only one frame.)<br />
+			<span class="parameter">palettenumber</span> is the number that you made in the Sprite.LoadPalette() function.<br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the coordinates on the screen of where to draw the sprite (the top-left pixel). X is from 0 to 255, Y is from 0 to 191.
+			<br /><br />
+			<span class="variable">Sprite</span> is the variable that is used in other functions to control the sprite.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SetFrame">
+			<span class="variable">Sprite</span>:SetFrame( <span class="parameter">SpriteFrames</span>, <span class="parameter">framenumber</span> )
+		</div>
+		<p>
+			Sets the sprite to a new frame.
+			<br /><br />
+			<span class="parameter">SpriteFrames</span> is the variable that you will have loaded the .raw file into (see Frame Strip functions).<br />
+			<span class="parameter">framenumber</span> is the frame that you want to change to. The first frame is frame 0.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="MoveTo">
+			<span class="variable">Sprite</span>:MoveTo( <span class="parameter">x</span>, <span class="parameter">y</span> )
+		</div>
+		<p>
+			Moves the sprite to a different location on the screen, instantly.
+			<br /><br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the new coordinates of the sprite. X can be 0 to 255, Y can be 0 to 191.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Free">
+			<span class="variable">Sprite</span>:Free()
+		</div>
+		<p>
+			Frees a sprite from memory and erases it from the screen. The sprite must be set to frame 0 before freeing because of a bug in DSLua 0.5.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

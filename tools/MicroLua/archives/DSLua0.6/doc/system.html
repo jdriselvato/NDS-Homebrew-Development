@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - System Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			System Functions
+		</div>
+		<br />
+		<div id="desc">
+			Most of these functions don't have any parameters, they mostly just return DS system values.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="system.html#WaitForAnyKey">DSLua.WaitForAnyKey()</a>
+			</li>
+			<li>
+				<a href="system.html#VBlankCount">DSLua.VBlankCount()</a>
+			</li>
+			<li>
+				<a href="system.html#Year">DSLua.Year()</a>
+			</li>
+			<li>
+				<a href="system.html#Month">DSLua.Month()</a>
+			</li>
+			<li>
+				<a href="system.html#Day">DSLua.Day()</a>
+			</li>
+			<li>
+				<a href="system.html#Hour">DSLua.Hour()</a>
+			</li>
+			<li>
+				<a href="system.html#Min">DSLua.Min()</a>
+			</li>
+			<li>
+				<a href="system.html#AlarmHour">DSLua.AlarmHour()</a>
+			</li>
+			<li>
+				<a href="system.html#AlarmMin">DSLua.AlarmMin()</a>
+			</li>
+			<li>
+				<a href="system.html#Sec">DSLua.Sec()</a>
+			</li>
+			<li>
+				<a href="system.html#UserName">DSLua.UserName()</a>
+			</li>
+			<li>
+				<a href="system.html#UserMessage">DSLua.UserMessage()</a>
+			</li>
+			<li>
+				<a href="system.html#BirthMonth">DSLua.BirthMonth()</a>
+			</li>
+			<li>
+				<a href="system.html#BirthDay">DSLua.BirthDay()</a>
+			</li>
+			<li>
+				<a href="system.html#Color">DSLua.Color()</a>
+			</li>
+			<li>
+				<a href="system.html#Language">DSLua.Language()</a>
+			</li>
+			<li>
+				<a href="system.html#Version">DSLua.Version()</a>
+			</li>
+			<li>
+				<a href="system.html#SetScreenLight">DSLua.SetScreenLight()</a>
+			</li>
+			<li>
+				<a href="system.html#SetLedBlink">DSLua.SetLedBlink()</a>
+			</li>
+			<li>
+				<a href="system.html#SwitchScreens">DSLua.SwitchScreens()</a>
+			</li>
+			<li>
+				<a href="system.html#LidClosed">DSLua.LidClosed()</a>
+			</li>
+			<li>
+				<a href="system.html#SetDSLBrightness">DSLua.SetDSLBrightness()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="WaitForAnyKey">
+			DSLua.WaitForAnyKey()
+		</div>
+		<p>
+			Pause the program until a button is pressed (A/B/X/Y/L/R/Start/Select.)
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="VBlankCount">
+			DSLua.VBlankCount()
+		</div>
+		<p>
+			Returns the number of V-Blanks since the program started.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Year">
+			DSLua.Year()
+		</div>
+		<p>
+			Returns the year in four digits as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Month">
+			DSLua.Month()
+		</div>
+		<p>
+			Returns the month as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Day">
+			DSLua.Day()
+		</div>
+		<p>
+			Returns the day of the month as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Hour">
+			DSLua.Hour()
+		</div>
+		<p>
+			Returns the hour of the day as an integer, from 0 to 23.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Min">
+			DSLua.Min()
+		</div>
+		<p>
+			Returns the minute of the hour as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="AlarmHour">
+			DSLua.AlarmHour()
+		</div>
+		<p>
+			Returns the hour that the alarm is set to go off.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="AlarmMin">
+			DSLua.AlarmMin()
+		</div>
+		<p>
+			Returns the minute that the alarm is set to go off.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Sec">
+			DSLua.Sec()
+		</div>
+		<p>
+			Returns the second of the minute as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="UserName">
+			DSLua.UserName()
+		</div>
+		<p>
+			Returns the username that the DS is set to as a string.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="UserMessage">
+			DSLua.UserMessage()
+		</div>
+		<p>
+			Returns the message that the DS is set to as a string.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="BirthMonth">
+			DSLua.BirthMonth()
+		</div>
+		<p>
+			Returns the month of the user's birthday as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="BirthDay">
+			DSLua.BirthDay()
+		</div>
+		<p>
+			Returns the day of the month of the user's birthday as an integer.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Color">
+			DSLua.Color()
+		</div>
+		<p>
+			Returns the color that the DS is set to as an integer. 0 = Gray, 1 = Maroon, 2 = Red, 3 = Pink, 4 = Orange, 5 = Yellow, 6 = Lime, 7 = Green, 8 = Dark Green, 9 = Teal, 10 = Light Blue, 11 = Blue, 12 = Dark Blue, 13 = Dark Purple, 14 = Light Purple, 15 = Dark Pink.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Language">
+			DSLua.Language()
+		</div>
+		<p>
+			Returns the language that the DS is set to as an integer. 0 = Japanese, 1 = English, 2 = French, 3 = German, 4 = Italian, 5 = Spanish.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Version">
+			DSLua.Version()
+		</div>
+		<p>
+			Returns the version of DSLua is using.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SetScreenLight">
+			DSLua.SetScreenLight( <span class="parameter">screen</span>, <span class="parameter">status</span> )
+		</div>
+		<p>
+			Toggles one of the screens backlight on or off.
+			<br /><br />
+			<span class="parameter">screen</span> is either 0 for bottom screen or 1 for top screen.<br />
+			<span class="parameter">status</span> is either 0 for turning off the backlight or 1 for turning it on.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SetLedBlink">
+			DSLua.SetLedBlink( <span class="parameter">blink</span>, <span class="parameter">speed</span> )
+		</div>
+		<p>
+			Makes the power LED blink.
+			<br /><br />
+			<span class="parameter">blink</span> can be either 1 for start blinking, or 0 for stop blinking.<br />
+			<span class="parameter">speed</span> can be either 0 for slow (like when the DS is in sleep mode), or 1 for fast (like when you're on Nintendo WFC).
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SwitchScreens">
+			DSLua.SwitchScreens()
+		</div>
+		<p>
+			Switches the screens so whatever is supposed to go on the top screen goes on the bottom, and whatever is supposed to go on the bottom screen goes on the top.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="LidClosed">
+			DSLua.LidClosed()
+		</div>
+		<p>
+			Returns true if the DS lid is closed, otherwise it returns false.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SetDSLBrightness">
+			DSLua.SetDSLBrightness( <span class="parameter">brightness</span> )
+		</div>
+		<p>
+			If it's a DS lite, it sets the brightness setting.
+			<br /><br />
+			<span class="parameter">brightness</span> is a number from 0 to 3, 0 being the dimmest, 3 being the brightest.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

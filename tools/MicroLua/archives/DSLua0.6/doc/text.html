@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Text Output Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Text Output Functions
+		</div>
+		<br />
+		<div id="desc">
+			These functions are used to output text to the screen. To initialize a screen to display text, see the Screen.LoadTextBG() and Screen.Initialize() functions.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="text.html#SetColor">TextBackground:SetColor()</a>
+			</li>
+			<li>
+				<a href="text.html#PrintXY">TextBackground:PrintXY()</a>
+			</li>
+			<li>
+				<a href="text.html#Clear">TextBackground:Clear()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="SetColor">
+			<span class="variable">TextBackground</span>:SetColor( <span class="parameter">color</span> )
+		</div>
+		<p>
+			Set the text color for that background. All previously printed text on the background will stay the same color, only the text that is printed after the SetColor function is affected.
+			<br /><br />
+			<span class="parameter">color</span> can be a number from 0 to 9. 0 = white, 1 = red, 2 = green, 3 = blue, 4 = purple, 5 = cyan, 6 = yellow, 7 = light grey, 8 = dark grey, 9 = black.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="PrintXY">
+			<span class="variable">TextBackground</span>:PrintXY( <span class="parameter">x</span>, <span class="parameter">y</span>, <span class="parameter">text</span> )
+		</div>
+		<p>
+			Print text to the screen.
+			<br /><br />
+			<span class="parameter">x</span> can be a number from 0 to 31. It controls where the text will start printing to, horizontally.<br />
+			<span class="parameter">y</span> can be a number from 0 to 23. It controls where the text will start printing to, vertically.<br />
+			<span class="parameter">text</span> is the string that will be printed.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SetColor">
+			<span class="variable">TextBackground</span>:Clear()
+		</div>
+		<p>
+			Clear all text on that background.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

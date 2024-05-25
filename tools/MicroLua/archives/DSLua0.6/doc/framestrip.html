@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Frame Strip Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Frame Strip Functions
+		</div>
+		<br />
+		<div id="desc">
+			Frame Strips are assigned to sprites. They allow a sprite to be animated. A sprite can only be up to 18 frames.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="framestrip.html#Create">FrameStrip.Create()</a>
+			</li>
+			<li>
+				<a href="framestrip.html#LoadBin">FrameStrip:LoadBin()</a>
+			</li>
+			<li>
+				<a href="framestrip.html#FreeAll">FrameStrip:FreeAll()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="Create">
+			<span class="variable">SpriteFrames</span> = FrameStrip.Create( <span class="parameter">screen</span>, <span class="parameter">width</span>, <span class="parameter">height</span>, <span class="parameter">colormode</span> )
+		</div>
+		<p>
+			Creates a framestrip, loading it into a variable.
+			<br /><br />
+			<span class="parameter">screen</span> can be 1 or 0. 1 = top screen, 0 = bottom screen.<br />
+			<span class="parameter">width</span>, <span class="parameter">height</span> are the width and height of each frame in pixels. The widths and heights must be either 16, 32, or 64.<br />
+			<span class="parameter">colormode</span> is the sprite's color mode, as a string. It can be "16", "256", or "16bit".
+			<br /><br />
+			<span class="variable">SpriteFrames</span> is the variable that will be used later to control the frame strip.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="LoadBin">
+			<span class="variable">SpriteFrames</span>:LoadBin( <span class="parameter">rawfile</span>, <span class="parameter">num_of_frames</span> )
+		</div>
+		<p>
+			Loads a raw image file into a frame strip.
+			<br /><br />
+			<span class="parameter">rawfile</span> is the .raw file that will be loaded. (Example: "sprite.raw")<br />
+			<span class="parameter">num_of_frames</span> is the number of frames in the framestrip.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="FreeAll">
+			<span class="variable">SpriteFrames</span>:FreeAll()
+		</div>
+		<p>
+			Frees all frames in the frame strip from memory.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

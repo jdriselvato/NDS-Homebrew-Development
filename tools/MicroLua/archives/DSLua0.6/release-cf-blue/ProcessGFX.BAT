@@ -1,0 +1,1 @@
+bin\gfx2gba -p%1.pal -t8 %1

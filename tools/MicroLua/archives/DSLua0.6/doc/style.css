@@ -1,0 +1,80 @@
+body {
+	background-color : #FFFFEE;
+	color : #000000;
+}
+
+a:link {
+	text-decoration : none;
+	color : #FF7700;
+}
+
+a:visited {
+	text-decoration : none;
+	color : #FF7700;
+}
+
+a:active {
+	text-decoration : none;
+	color : #FF7700;
+}
+
+a:hover {
+	text-decoration : underline;
+	color : #FF7700;
+}
+	
+#header {
+	font-size : 22pt;
+}
+
+#desc {
+	font-weight : bold;
+}
+
+#back {
+	font-size : 10pt;
+	position : relative;
+	left : 2px;
+}
+
+.code {
+	background-color : #CCCCCC;
+	color : #000000;
+	border : 2px dashed #000077;
+	width : 100%;
+	font-weight : bold;
+}
+
+.parameter {
+	font-weight : bold;
+	font-style : italic;
+	color : #000077;
+}
+
+#functionlist {
+	border : 1px solid #000000;
+	background-color : #EEEEEE;
+	color : #777777;
+}
+
+p {
+	position : relative;
+	left : 50px;
+	background-color : #EEEEEE;
+	border : 1px solid #CCCCCC;
+}
+
+.variable {
+	font-weight : bold;
+	font-style : italic;
+	color : #007700;
+}
+
+.paragraph {
+	background-color : #EEEEEE;
+	border : 1px solid #CCCCCC;
+}
+
+.title {
+	font-size : 16pt;
+}

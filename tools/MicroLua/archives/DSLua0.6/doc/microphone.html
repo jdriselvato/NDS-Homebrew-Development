@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Microphone Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Microphone Functions
+		</div>
+		<br />
+		<div id="desc">
+			These functions are for microphone input.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="microphone.html#StartRecording">Mic.StartRecording()</a>
+			</li>
+			<li>
+				<a href="microphone.html#GetVol">Mic.GetVol()</a>
+			</li>
+			<li>
+				<a href="microphone.html#Replay">Mic.Replay()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="StartRecording">
+			Mic.StartRecording( <span class="parameter">buffer</span>, <span class="parameter">length</span> )
+		</div>
+		<p>
+			Starts recording from the microphone.
+			<br /><br />
+			<span class="parameter">buffer</span> is the variable where the sound will be stored.<br />
+			<span class="parameter">length</span> is the length of the sound you want to record.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="GetVol">
+			Mic.GetVol()
+		</div>
+		<p>
+			Returns the volume of the sound that the microphone is recording.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Replay">
+			Mic.Replay( <span class="parameter">channel</span>, <span class="parameter">buffer</span>, <span class="parameter">length</span> )
+		</div>
+		<p>
+			Plays a sound that was recorded.
+			<br /><br />
+			<span class="parameter">channel</span> is the sound channel you want to replay the sound on.<br />
+			<span class="parameter">buffer</span> is the variable where the sound was stored when recorded.<br />
+			<span class="parameter">length</span> is the length of the sound you want to replay.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

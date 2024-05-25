@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Wifi Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Wifi Functions
+		</div>
+		<br />
+		<ul id="functionlist">
+			<li>
+				<a href="wifi.html#ConnectWFC">Wifi.ConnectWFC()</a>
+			</li>
+			<li>
+				<a href="wifi.html#GetHTTP">Wifi.GetHTTP()</a>
+			</li>
+			<li>
+				<a href="wifi.html#InitUDP">Wifi.InitUDP()</a>
+			</li>
+			<li>
+				<a href="wifi.html#InitTCP">Wifi.InitTCP()</a>
+			</li>
+			<li>
+				<a href="wifi.html#Disconnect">Wifi.Disconnect()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="ConnectWFC">
+			Wifi.ConnectWFC()
+		</div>
+		<p>
+			Connect to an access point using the options set using online DS games.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="GetHTTP">
+			Wifi.GetHTTP( <span class="parameter">url</span>, <span class="parameter">buffer</span> )
+		</div>
+		<p>
+			Stores data from a URL (http://www.website.com) in a variable.
+			<br /><br />
+			<span class="parameter">url</span> is the URL of the website/page that you want to get data from.<br />
+			<span class="parameter">buffer</span> is the variable that the data will be sored into.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="InitUDP">
+			<span class="variable">Socket</span> = Wifi.InitUDP( <span class="parameter">ip</span>, <span class="parameter">port</span> )
+		</div>
+		<p>
+			Creates a non-blocking UDP connection to an IP address or URL. If it's a URL, it should have no http:// and no sub-directories. Good example: www.google.com. Bad example: http://www.google.com/index.html.
+			<br /><br />
+			<span class="parameter">ip</span> is the IP address or URL that you want to connect to, as a string. If it is an empty string (""), it will be a client connection.<br />
+			<span class="parameter">port</span> is the port number you are connecting with.
+			<br /><br />
+			<span class="variable">Socket</span> is used to send and receive data later on. (See Socket Functions.)
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="InitTCP">
+			<span class="variable">Socket</span> = Wifi.InitTCP( <span class="parameter">ip</span>, <span class="parameter">port</span> )
+		</div>
+		<p>
+			Creates a non-blocking TCP connection to an IP address or URL. If it's a URL, it should have no http:// and no sub-directories. Good example: www.google.com. Bad example: http://www.google.com/index.html.
+			<br /><br />
+			<span class="parameter">ip</span> is the IP address or URL that you want to connect to, as a string. If it is an empty string (""), it will be a client connection.<br />
+			<span class="parameter">port</span> is the port number you are connecting with.
+			<br /><br />
+			<span class="variable">Socket</span> is used to send and receive data later on. (See Socket Functions.)
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Disconnect">
+			Wifi.Disconnect()
+		</div>
+		<p>
+			Disconnect from the access point and turn off wifi hardware.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

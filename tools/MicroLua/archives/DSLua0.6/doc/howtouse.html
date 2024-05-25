@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - How to Setup and Use DSLua
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			How to Setup and Use DSLua
+		</div>
+		<br />
+		<ul id="functionlist">
+			<li>
+				<a href="howtouse.html#Welcome_to_DSLua">Welcome to DSLua</a>
+			</li>
+			<li>
+				<a href="howtouse.html#CF_Flavour">CF Flavour</a>
+			</li>
+			<li>
+				<a href="howtouse.html#GBFS_Flavour">GBFS Flavour</a>
+			</li>
+			<li>
+				<a href="howtouse.html#Auto-start">Auto-start</a>
+			</li>
+			<li>
+				<a href="howtouse.html#gfx2gba">gfx2gba</a>
+			</li>
+			<li>
+				<a href="howtouse.html#More_Information">More Information</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="paragraph" id="Welcome_to_DSLua">
+			<span class="title">Welcome to DSLua</span><br /><br />
+			DSLua is a port of the <a href="http://www.lua.org">Lua scripting language</a> to the <a href="http://www.nintendo.com/systemsds">Nintendo DS</a>. Originally made by waruwaru, now maintained by sypherce, daltonlaffs, and me, Jeremysr. You can get it or the source code from DSLua.com, on the download page. This document will explain how to use DSLua and write programs for it.
+		</div>
+		
+		<br /><br /><br /><br />
+		
+		<div class="paragraph">
+			<span class="title">CF Flavour</span><br /><br />
+			DSLua comes in two flavours: CF flavour, and GBFS flavour. This section will explain the CF flavour.<br /><br />
+			
+			The CF flavour is a single DS executable that you can run on your DS. When run, it opens a file browser. You can browse through your storage card, press A to run lua programs (highlighted in green.)<br /><br />
+			
+			The CF flavour comes in 3 more versions: blue, green, and gray, like DSOrganize. Blue will be the best choice for Supercards, green will work best for M3 devices, and gray will work for most other devices. If none of them work, you may have to use DSLua GBFS flavour.<br /><br />
+		</div>
+		
+		<br /><br /><br /><br />
+		
+		<div class="paragraph">
+			<span class="title">GBFS Flavour</span><br /><br />
+			The GBFS flavour packs your lua files (and graphics, music, sound effects, whatever you need to run your program) into a single DS executable, so you don't have to have all the lua files on your storage device, like in the CF flavour.<br /><br />
+			
+			To pack the files, you must first put your files in the scripts directory (found in the main directory of DSLua GBFS flavour). Then, run PACK.BAT. It should put all the files from the scripts directory and pack them into bundle/DSLUA-PACK.nds (or .ds.gba or .sc.nds). Then you run whichever one is compatible with your homebrew device, and when run it will let you choose a packed file to run (lua files will be highlighted in green.)
+		</div>
+		
+		<br /><br /><br /><br />
+		
+		<div class="paragraph">
+			<span class="title">Auto-start</span><br /><br />
+			The Auto-start feature lets you make a DSLua file that will automatically run a certain file on the storage device (or GBFS). See auto-start.bat for instructions and an example.
+		</div>
+		
+		<br /><br /><br /><br />
+		
+		<div class="paragraph">
+			<span class="title">gfx2gba</span><br /><br />
+			Currently your game sprites must be in .raw/.pal format, and your backgrounds must be in .raw/.pal/.map format. To convert them, use gfx2gba.exe which is found in the bin directory. From the command line, run this to make a sprite:<br /><br />
+			<div class="code">
+				gfx2gba -p<span class="variable">output.pal</span> <span class="parameter">input.bmp</span>
+			</div>
+			<br /><br />
+			The output will be a palette file (output.pal) and a raw image file with the same name as your input (in this example it would be input.raw). The input file must be a 256-colour bitmap (.bmp). Its width and height must be 16, 32, or 64 pixels. (Examples: 16x16, 32x64, 64x16...)<br /><br />
+			
+			To make a background (tile map), you need to add -m to the command:<br /><br />
+			<div class="code">
+				gfx2gba -m -p<span class="variable">output.pal</span> <span class="parameter">input.bmp</span>
+			</div>
+			<br /><br />
+			With this example it will output three files: input.raw, input.map, and output.pal. Like sprites, the input bitmap must be 256 colours and the width and height must be in multiples of 8.
+		</div>
+		
+		<br /><br /><br /><br />
+		
+		<div class="paragraph">
+			<span class="title">More Information</span><br /><br />
+			<ul class="functionlist">
+				<li>
+					<a href="http://www.lua.org/pil">Programming in Lua</a>
+				</li>
+				<li>
+					<a href="http://www.dslua.com">DSLua.com (good place to ask for help)</a>
+				</li>
+				<li>
+					<a href="http://www.bio-gaming.com/jeremy/dslua/index.php?act=tutorials">Jeremysr's DSLua Tutorials</a>
+				</li>
+			</ul>
+		</div>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

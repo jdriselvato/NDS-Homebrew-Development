@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Socket Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Socket Functions
+		</div>
+		<br />
+		<ul id="functionlist">
+			<li>
+				<a href="socket.html#Send">Socket:Send()</a>
+			</li>
+			<li>
+				<a href="socket.html#SendTo">Socket:SendTo()</a>
+			</li>
+			<li>
+				<a href="socket.html#Recv">Socket:Recv()</a>
+			</li>
+			<li>
+				<a href="socket.html#RecvFrom">Socket:RecvFrom()</a>
+			</li>
+			<li>
+				<a href="socket.html#Close">Socket:Close()</a>
+			</li>
+			<li>
+				<a href="socket.html#GetRemoteIP">Socket:GetRemoteIP()</a>
+			</li>
+			<li>
+				<a href="socket.html#GetLocalIP">Socket:GetLocalIP()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="Send">
+			<span class="variable">Socket</span>:Send( <span class="parameter">buffer</span> )
+		</div>
+		<p>
+			Sends data to the last IP address or URL "talked" to.
+			<br /><br />
+			<span class="parameter">buffer</span> is the data that is to be sent.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SendTo">
+			<span class="variable">Socket</span>:SendTo( <span class="parameter">ip</span>, <span class="parameter">buffer</span> )
+		</div>
+		<p>
+			Sends data to an IP address or URL.
+			<br /><br />
+			<span class="parameter">ip</span> is the IP address or URL that the data will be sent to. A URL must look like www.google.com and not http://www.google.com or www.google.com/index.html.<br />
+			<span class="parameter">buffer</span> is the data that will be sent.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Recv">
+			<span class="variable">Socket</span>:Recv( <span class="parameter">buffer</span> )
+		</div>
+		<p>
+			Receives data from the last IP address or URL "talked" to.
+			<br /><br />
+			<span class="parameter">buffer</span> is the variable where the data will be stored to.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="RecvFrom">
+			<span class="variable">Socket</span>:RecvFrom( <span class="parameter">ip</span>, <span class="parameter">buffer</span> )
+		</div>
+		<p>
+			Receives data from an IP address or URL.
+			<br /><br />
+			<span class="parameter">ip</span> is the IP address or URL that the data will be received from. A URL must look like www.google.com and not http://www.google.com or www.google.com/index.html.<br />
+			<span class="parameter">buffer</span> is the variable where the data will be stored to.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Close">
+			<span class="variable">Socket</span>:Close()
+		</div>
+		<p>
+			Disconnects the UDP or TCP socket. Wi-fi will still be active.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="GetRemoteIP">
+			<span class="variable">Socket</span>:GetRemoteIP()
+		</div>
+		<p>
+			Returns the last IP address that was communicated with.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="GetLocalIP">
+			<span class="variable">Socket</span>:GetLocalIP()
+		</div>
+		<p>
+			Returns the local IP address of the DS.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

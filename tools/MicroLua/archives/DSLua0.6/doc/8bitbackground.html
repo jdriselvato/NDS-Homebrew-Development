@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - 8-Bit Background Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			8-Bit Background Functions
+		</div>
+		<br />
+		<div id="desc">
+			These functions let you print pixels and lines to the screen individually. To initalize an 8-Bit Background, see Screen.Load8BitBG() and Screen.Initialize().
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="8bitbackground.html#SetPaletteColor">Background:SetPaletteColor()</a>
+			</li>
+			<li>
+				<a href="8bitbackground.html#Plot">Background:Plot()</a>
+			</li>
+			<li>
+				<a href="8bitbackground.html#Line">Background:Line()</a>
+			</li>
+			<li>
+				<a href="8bitbackground.html#Clear">Background:Clear()</a>
+			</li>
+			<li>
+				<a href="8bitbackground.html#GetPixel">Background:GetPixel()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="SetPaletteColor">
+			<span class="variable">Background</span>:SetPaletteColor( <span class="parameter">colornumber</span>, <span class="parameter">colorR</span>, <span class="parameter">colorG</span>, <span class="parameter">colorB</span> )
+		</div>
+		<p>
+			You need to set up the palette before drawing to the screen.
+			<br /><br />
+			<span class="parameter">colornumber</span> will be used later when printing pixels and lines. It can be any number, just make it unique from other colors in the palette.<br />
+			<span class="parameter">colorR</span>, <span class="parameter">colorG</span>, <span class="parameter">colorB</span> are the RGB (Red Green Blue) values used to make a color. They can each be a number from 0 to 31. (So that is a maximum of 256 color combinations.)
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Plot">
+			<span class="variable">Background</span>:Plot( <span class="parameter">x</span>, <span class="parameter">y</span>, <span class="parameter">color</span> )
+		</div>
+		<p>
+			Prints a single pixel to the screen.
+			<br /><br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the X and Y coordinates of where to place the pixel on the screen. X can go from 0 to 255, Y can go from 0 to 191.<br />
+			<span class="parameter">color</span> is the color number that you used in SetPaletteColor().
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Line">
+			<span class="variable">Background</span>:Line( <span class="parameter">x1</span>, <span class="parameter">y1</span>, <span class="parameter">x2</span>, <span class="parameter">y2</span>, <span class="parameter">color</span> )
+		</div>
+		<p>
+			Prints a line to the screen.
+			<br /><br />
+			<span class="parameter">x1</span>, <span class="parameter">y1</span> are the coordinates where the line starts.<br />
+			<span class="parameter">x2</span>, <span class="parameter">y2</span> are the coordinates where the line ends.<br />
+			<span class="parameter">color</span> is the color number that you used in SetPaletteColor().
+			
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Clear">
+			<span class="variable">Background</span>:Clear()
+		</div>
+		<p>
+			Clears the background of all pixels.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="GetPixel">
+			<span class="variable">Background</span>:GetPixel( <span class="parameter">x</span>, <span class="parameter">y</span> )
+		</div>
+		<p>
+			Returns the colour of a pixel on an 8-bit background.
+			<br /><br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the coordinates of the pixel you want the colour of. The screen dimensions from 0 are 255 by 191 pixels.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

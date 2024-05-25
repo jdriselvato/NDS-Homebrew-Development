@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Music Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Music Functions
+		</div>
+		<br />
+		<div id="desc">
+			These functions play background music for your game.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="music.html#LoadMod">Music.LoadMod()</a>
+			</li>
+			<li>
+				<a href="music.html#Play">Music:Play()</a>
+			</li>
+			<li>
+				<a href="music.html#Pause">Music:Pause()</a>
+			</li>
+			<li>
+				<a href="music.html#Stop">Music:Stop()</a>
+			</li>
+			<li>
+				<a href="music.html#Free">Music:Free()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="LoadMod">
+			<span class="variable">Music</span> = Music.LoadMod( <span class="parameter">modfile</span> )
+		</div>
+		<p>
+			Loads a .mod music file into a variable. Do this before playing the music.
+			<br /><br />
+			<span class="parameter">modfile</span> is the filename of the .mod music file you want to load. (Example: "music.mod")
+			<br /><br />
+			<span class="variable">Music</span> is the variable you will use to play the music that you loaded.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Play">
+			<span class="variable">Music</span>:Play()
+		</div>
+		<p>
+			Starts playing the music.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Pause">
+			<span class="variable">Music</span>:Pause()
+		</div>
+		<p>
+			Pauses the music. Use Music:Play() to continue it.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Stop">
+			<span class="variable">Music</span>:Stop()
+		</div>
+		<p>
+			Stops the music. Use Music:Play() to start from the beginning.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="Free">
+			<span class="variable">Music</span>:Free()
+		</div>
+		<p>
+			Free the music from memory to make room for other things.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>

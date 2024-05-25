@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>
+			DSLua Documentation - Tiled Background Functions
+		</title>
+		<style type="text/css" media="screen">
+			@import "style.css";
+		</style>
+	</head>
+	<body>
+		<a href="index.html" id="back">Back to index</a>
+		<hr />
+		<div id="header">
+			Tiled Background Functions
+		</div>
+		<br />
+		<div id="desc">
+			Use these functions to draw tiled scrollable images on the screens.
+		</div>
+		<ul id="functionlist">
+			<li>
+				<a href="tilebackground.html#LoadPalette">Background:LoadPalette()</a>
+			</li>
+			<li>
+				<a href="tilebackground.html#LoadTiles">Background:LoadTiles()</a>
+			</li>
+			<li>
+				<a href="tilebackground.html#LoadMap">Background:LoadMap()</a>
+			</li>
+			<li>
+				<a href="tilebackground.html#SetMapTile">Background:SetMapTile()</a>
+			</li>
+			<li>
+				<a href="tilebackground.html#ScrollXY">Background:ScrollXY()</a>
+			</li>
+			<li>
+				<a href="tilebackground.html#GetTile">Background:GetTile()</a>
+			</li>
+		</ul>
+		<br /><br /><br />
+		<div class="code" id="LoadPalette">
+			<span class="variable">Background</span>:LoadPalette( <span class="parameter">palettefile</span> )
+		</div>
+		<p>
+			Loads a palette in a file into a variable (in this case, Background).
+			<br /><br />
+			<span class="parameter">palettefile</span> is the file name of the palette you want to load. (Example: "map.pal")
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="LoadTiles">
+			<span class="variable">Background</span>:LoadTiles( <span class="parameter">rawfile</span>, <span class="parameter">colormode</span> )
+		</div>
+		<p>
+			Loads the tiles from a .raw image file into a variable (in this case, Background).
+			<br /><br />
+			<span class="parameter">rawfile</span> is the file name of the .raw image file you want to load. (Example: "map.raw")<br />
+			<span class="parameter">colormode</span> is an integer that can either be 16 or 256. Either 16 colors or 256 colors.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="LoadMap">
+			<span class="variable">Background</span>:LoadMap( <span class="parameter">mapfile</span>, <span class="parameter">width</span>, <span class="parameter">height</span> )
+		</div>
+		<p>
+			Loads a map into a background variable (in this case, Background).
+			<br /><br />
+			<span class="parameter">mapfile</span> is the file name of the map file you want to load. (Example: "map.map")<br />
+			<span class="parameter">width</span>, <span class="parameter">height</span> are the width and height of the map in tiles (NOT pixels). Tiles are always 8 pixels in width and height. So if you want to use pixels you would do "Background:LoadMap( "map.map", ( pixel_width / 8 ), ( pixel_height / 8 ) )".
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="SetMapTile">
+			<span class="variable">Background</span>:SetMapTile( <span class="parameter">x</span>, <span class="parameter">y</span>, <span class="parameter">tilenumber</span> )
+		</div>
+		<p>
+			Sets a certain tile on the map to a different tile.
+			<br /><br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the coordinates of the tile to change. (Divide by 8 if you are measuring with pixels.)<br />
+			<span class="parameter">tilenumber</span> is the number of the new tile.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="ScrollXY">
+			<span class="variable">Background</span>:ScrollXY( <span class="parameter">x</span>, <span class="parameter">y</span> )
+		</div>
+		<p>
+			Scrolls a map to a new position instantly.
+			<br /><br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the coordinates for the new position.
+		</p>
+		
+		<br /><br /><br /><br />
+		
+		<div class="code" id="GetTile">
+			<span class="variable">Background</span>:GetTile( <span class="parameter">x</span>, <span class="parameter">y</span> )
+		</div>
+		<p>
+			Returns a tile on the screen.
+			<br /><br />
+			<span class="parameter">x</span>, <span class="parameter">y</span> are the coordinates for the tile you want to get.
+		</p>
+		<hr />
+		<a href="index.html" id="back">Back to index</a>
+	</body>
+</html>
