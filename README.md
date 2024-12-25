@@ -68,7 +68,6 @@ Join our Discord: https://discord.gg/JtnxnDD
 9. http://osdl.sourceforge.net/main/documentation/misc/nintendo-DS/homebrew-guide/HomebrewForDS.html - A guide to homebrew development for the Nintendo DS
 10. http://problemkaputt.de/gbatek.htm - An awesome resource on Gameboy Advance / Nintendo DS / DSi, thanks [@zecbmo](https://github.com/zecbmo)
 11. https://sylvainhb.blogspot.com/2009/02/xargon-may-source-be-with-you.html - sprite collision example
-12. https://github.com/Bigfoot9999/Slope-Game - Slope Game w/ Source
 
 # Where to find me
 [Website](http://johnriselvato.com) | [Twitter](http://twitter.com/jdriselvato) | [Instagram](instagram.com/jdriselvato)
