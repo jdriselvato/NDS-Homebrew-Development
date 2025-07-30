@@ -82,7 +82,7 @@ void addNewSquare() {
 	Sprite tmp = {0, color, rand_x, rand_y}; // create a sprite
 	tmp.gfx = oamAllocateGfx(&oamSub, SpriteSize_16x16, SpriteColorFormat_Bmp);
 
-	sprites[sprite_count + 1] = tmp; // add sprite to our sprites array
+	sprites[sprite_count] = tmp; // add sprite to our sprites array
 	sprite_count++; // increase sprite_count one
 }
 
